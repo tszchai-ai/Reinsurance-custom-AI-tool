@@ -1,0 +1,1060 @@
+{
+  "meta": {
+    "current_workbook": "test1_UmbrellaXoL_2025.xlsx",
+    "prior_workbook": "test1_UmbrellaXoL_2024.xlsx",
+    "run_time_utc": "2026-08-05T05:10:53.013334+00:00",
+    "comparability_mode": "strict",
+    "run_status": "complete",
+    "tolerances": {
+      "abs": 5000,
+      "rel": 0.01,
+      "rate_pp": 2.0,
+      "premium_projection_abs": 250000,
+      "premium_projection_rel": 0.2
+    },
+    "schema_profiles": {
+      "prior": {
+        "present_tabs": [
+          "Intro",
+          "WP by State & Segment",
+          "Large Claims (subline 1)",
+          "Large Claims (subline 2)",
+          "Large Claims (subline 3)",
+          "Rate Change (subline 1)",
+          "Rate Change (subline 2)",
+          "Rate Change (subline 3)",
+          "Limit Profile (in-force)"
+        ],
+        "triangle_inventory": [],
+        "has_lob_column": false,
+        "notable_basis_measure_notes": [
+          "Risk attaching",
+          "Data as of 2023-11-30",
+          "Three sublines"
+        ]
+      },
+      "current": {
+        "present_tabs": [
+          "Intro",
+          "WP by State & Segment",
+          "Large Claims (subline 1)",
+          "Large Claims (subline 2)",
+          "Rate Change (subline 1)",
+          "Rate Change (subline 2)",
+          "Limit Profile (in-force)"
+        ],
+        "triangle_inventory": [],
+        "has_lob_column": false,
+        "notable_basis_measure_notes": [
+          "Risk attaching",
+          "Data as of 2024-11-30",
+          "Two sublines"
+        ]
+      }
+    },
+    "limitations": [
+      "No policy-level listing in either workbook; EXP-A and EXP-E are not applicable.",
+      "No loss triangles in either workbook; TRI-A through TRI-D are not applicable."
+    ],
+    "issue_counts": {
+      "total": 11,
+      "Critical": 1,
+      "High": 8,
+      "Medium": 2,
+      "Low": 0
+    }
+  },
+  "issues": [
+    {
+      "rule_id": "CLM-A",
+      "title": "Claim date and accident-year logic violations",
+      "severity": "Critical",
+      "context": "Subline 2 claim listing date integrity as of 2024-11-30",
+      "grouping_key": "CLM-A|subline2|date_logic",
+      "instance_count": 1,
+      "delta_summary": {
+        "violations": 2
+      },
+      "instances": [
+        {
+          "entity_key": "C1--00414",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "E170:H170"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "E165:I165"
+            }
+          },
+          "prior_values": {
+            "policy_eff_date": "2022-10-07",
+            "accident_date": "2023-06-23",
+            "accident_year": 2023
+          },
+          "current_values": {
+            "policy_eff_date": "2022-07-10",
+            "accident_date": "2022-06-23",
+            "accident_year": 2023
+          },
+          "deltas": {
+            "accident_before_policy_effective_days": 17,
+            "accident_year_mismatch": true
+          }
+        }
+      ],
+      "samples_returned": 1,
+      "suggested_action": "Correct the claim dates/AY and validate the claim linkage to the policy record."
+    },
+    {
+      "rule_id": "CLM-B",
+      "title": "Unexplained missing large claims in Subline 2",
+      "severity": "High",
+      "context": "AY 2020-2023 overlap; no explicit threshold note; current minimum incurred inferred at 57,014.23",
+      "grouping_key": "CLM-B|subline2|overlap2020-2023",
+      "instance_count": 7,
+      "delta_summary": {
+        "count": 7,
+        "prior_total_incurred_sum": 12448211.36,
+        "min_prior_incurred": 1257754.35,
+        "max_prior_incurred": 2758421.21
+      },
+      "instances": [
+        {
+          "entity_key": "C1--00232",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "row": 95,
+              "cell": "A95:O95"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "total_incurred": 1492642.64
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "C1--00235",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "row": 96,
+              "cell": "A96:O96"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "total_incurred": 2758421.21
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "C1--00252",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "row": 106,
+              "cell": "A106:O106"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "total_incurred": 1394151.8
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "C1--00260",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "row": 110,
+              "cell": "A110:O110"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "total_incurred": 1257754.35
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "C1--00318",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "row": 136,
+              "cell": "A136:O136"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "total_incurred": 2038620.19
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "C1--00436",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "row": 180,
+              "cell": "A180:O180"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "accident_year": 2023,
+            "total_incurred": 2074471.94
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "C1--00469",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "row": 194,
+              "cell": "A194:O194"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "accident_year": 2023,
+            "total_incurred": 1432149.23
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        }
+      ],
+      "samples_returned": 7,
+      "suggested_action": "Reconcile all seven claim IDs and document any scope, threshold, or claim-number changes."
+    },
+    {
+      "rule_id": "SEC-A",
+      "title": "Subline 3 removed from current submission without explanation",
+      "severity": "High",
+      "context": "Section inventory: Wholesale / E&S Umbrella",
+      "grouping_key": "SEC-A|subline3_removed",
+      "instance_count": 5,
+      "delta_summary": {
+        "missing_exhibits": 4,
+        "prior_claim_count": 236,
+        "prior_inforce_premium": 51888392.83
+      },
+      "instances": [
+        {
+          "entity_key": "Subline 3 definition",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Intro",
+              "cell": "A16:B16"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Intro",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "subline": "Subline 3",
+            "definition": "Wholesale / E&S Umbrella"
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "Large Claims (subline 3)",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 3)",
+              "range": "A1:O243"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 3)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "claim_count": 236
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "Rate Change (subline 3)",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Rate Change (subline 3)",
+              "range": "A1:E458"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Rate Change (subline 3)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "rows": 450
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "WP Subline 3 block",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "WP by State & Segment",
+              "range": "A172:K224"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "WP by State & Segment",
+              "range": "A172:L224",
+              "status": "blank"
+            }
+          },
+          "prior_values": {
+            "2023_total": 48088170.66,
+            "projection": 53203826.086956516
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "In-force limit profile Subline 3 block",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Limit Profile (in-force)",
+              "range": "A33:D40"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Limit Profile (in-force)",
+              "range": "A33:D40",
+              "status": "blank"
+            }
+          },
+          "prior_values": {
+            "premium_total": 51888392.83,
+            "policy_count": 3321
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        }
+      ],
+      "samples_returned": 5,
+      "suggested_action": "Confirm whether Subline 3 exited or moved; provide a scope bridge and consistent restated exhibits."
+    },
+    {
+      "rule_id": "OTH-A",
+      "title": "Program terms changed materially / commission disclosure removed",
+      "severity": "High",
+      "context": "Umbrella XoL treaty structure and commercial terms",
+      "grouping_key": "OTH-A|treaty_terms",
+      "instance_count": 3,
+      "delta_summary": {
+        "count": 3
+      },
+      "instances": [
+        {
+          "entity_key": "Retention & Limit",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Intro",
+              "cell": "B9"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Intro",
+              "cell": "B9"
+            }
+          },
+          "prior_values": {
+            "value": "$10,000,000 xs $1,000,000"
+          },
+          "current_values": {
+            "value": "$5,000,000 xs $5,000,000"
+          },
+          "deltas": {
+            "note": "attachment and layer limit both changed"
+          }
+        },
+        {
+          "entity_key": "Reinstatements",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Intro",
+              "cell": "B10"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Intro",
+              "cell": "B10"
+            }
+          },
+          "prior_values": {
+            "value": "1 free; 1 @ 100%"
+          },
+          "current_values": {
+            "value": "2 free; 2 @ 100%"
+          },
+          "deltas": {
+            "note": "reinstatement structure changed"
+          }
+        },
+        {
+          "entity_key": "Commission",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Intro",
+              "cell": "B11"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Intro",
+              "cell": "B11"
+            }
+          },
+          "prior_values": {
+            "value": "10% broker B; 5% on reinstatements"
+          },
+          "current_values": {
+            "value": null
+          },
+          "deltas": {
+            "not_found": true
+          }
+        }
+      ],
+      "samples_returned": 3,
+      "suggested_action": "Confirm final treaty structure and commission terms and restate pricing assumptions to the intended structure."
+    },
+    {
+      "rule_id": "CLM-G",
+      "title": "Matched closed claims show material attribute drift",
+      "severity": "High",
+      "context": "Subline 2 stable/closed claim attributes",
+      "grouping_key": "CLM-G|subline2|stable_attributes",
+      "instance_count": 3,
+      "delta_summary": {
+        "count": 3,
+        "fields_affected": [
+          "Claim Status",
+          "Loss State",
+          "Umbrella Limit",
+          "Description",
+          "Company Name",
+          "Policy Eff Date",
+          "Accident Date"
+        ]
+      },
+      "instances": [
+        {
+          "entity_key": "C1--00253",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "A107:O107"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "A104:O104"
+            }
+          },
+          "prior_values": {
+            "status": "Closed"
+          },
+          "current_values": {
+            "status": "NA"
+          },
+          "deltas": {
+            "changed_fields": {
+              "Claim Status": {
+                "prior": "Closed",
+                "current": "NA"
+              },
+              "Loss State": {
+                "prior": "FL",
+                "current": "CA"
+              },
+              "Umbrella Limit": {
+                "prior": 10000000,
+                "current": 1000000
+              },
+              "Describtion": {
+                "prior": "Catastrophic spinal injury; lifetime care; high demand",
+                "current": "NA"
+              }
+            }
+          }
+        },
+        {
+          "entity_key": "C1--00414",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "A170:O170"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "A165:O165"
+            }
+          },
+          "prior_values": {
+            "status": "Closed"
+          },
+          "current_values": {
+            "status": "Closed"
+          },
+          "deltas": {
+            "changed_fields": {
+              "Policy Eff Date": {
+                "prior": "2022-10-07 00:00:00",
+                "current": "2022-07-10 00:00:00"
+              },
+              "Accident Date": {
+                "prior": "2023-06-23 00:00:00",
+                "current": "2022-06-23 00:00:00"
+              }
+            }
+          }
+        },
+        {
+          "entity_key": "C1--00237",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "A98:O98"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "A96:O96"
+            }
+          },
+          "prior_values": {
+            "status": "Closed"
+          },
+          "current_values": {
+            "status": "Closed"
+          },
+          "deltas": {
+            "changed_fields": {
+              "Company Name": {
+                "prior": "20-2-00174",
+                "current": "20-2-00408"
+              }
+            }
+          }
+        }
+      ],
+      "samples_returned": 3,
+      "suggested_action": "Validate claim-key linkage and restore the correct stable attributes from source systems."
+    },
+    {
+      "rule_id": "CLM-C",
+      "title": "Structural drift in Subline 1 claim fields",
+      "severity": "High",
+      "context": "Large Claims Subline 1 schema",
+      "grouping_key": "CLM-C|subline1|schema",
+      "instance_count": 2,
+      "delta_summary": {
+        "removed_fields": 1,
+        "combined_fields": 2
+      },
+      "instances": [
+        {
+          "entity_key": "Loss State",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 1)",
+              "cell": "F7"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 1)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "field": "Loss State"
+          },
+          "current_values": null,
+          "deltas": {
+            "not_found": true
+          }
+        },
+        {
+          "entity_key": "ALAE granularity",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Large Claims (subline 1)",
+              "cell": "J7:K7"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 1)",
+              "cell": "I7"
+            }
+          },
+          "prior_values": {
+            "fields": [
+              "ANO",
+              "DCC"
+            ]
+          },
+          "current_values": {
+            "field": "Expense"
+          },
+          "deltas": {
+            "note": "components combined"
+          }
+        }
+      ],
+      "samples_returned": 2,
+      "suggested_action": "Provide the Loss State field and a mapping confirming Expense equals ANO plus DCC."
+    },
+    {
+      "rule_id": "PRM-C",
+      "title": "Current written-premium projections materially below historical trend",
+      "severity": "High",
+      "context": "Subline totals; projection compared with 2022-2023 full-year average because 2024 is incomplete at 2024-11-30",
+      "grouping_key": "PRM-C|WP|subline_projection",
+      "instance_count": 2,
+      "delta_summary": {
+        "count": 2,
+        "relative_change_min": -0.6332332322762528,
+        "relative_change_max": -0.29460999808996313
+      },
+      "instances": [
+        {
+          "entity_key": "Subline 1",
+          "where": {
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "WP by State & Segment",
+              "range": "I114:J114",
+              "projection_cell": "L114"
+            }
+          },
+          "prior_values": null,
+          "current_values": {
+            "historical_full_years": [
+              56083644.34500103,
+              68941954.53136
+            ],
+            "benchmark_average": 62512799.43818051,
+            "projection": 22927617.39130434
+          },
+          "deltas": {
+            "amount": -39585182.04687618,
+            "relative": -0.6332332322762528
+          }
+        },
+        {
+          "entity_key": "Subline 2",
+          "where": {
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "WP by State & Segment",
+              "range": "D169:E169",
+              "projection_cell": "G169"
+            }
+          },
+          "prior_values": null,
+          "current_values": {
+            "historical_full_years": [
+              46038189.37,
+              50032993.93344001
+            ],
+            "benchmark_average": 48035591.65172,
+            "projection": 33883826.08695652
+          },
+          "deltas": {
+            "amount": -14151765.564763479,
+            "relative": -0.29460999808996313
+          }
+        }
+      ],
+      "samples_returned": 2,
+      "suggested_action": "Request projection support and confirm whether the figures are partial-year or reflect planned portfolio shrink."
+    },
+    {
+      "rule_id": "EXP-D",
+      "title": "Combined in-force limit profile does not reconcile to Subline 1 + Subline 2",
+      "severity": "High",
+      "context": "Current in-force premium and policy count; same limit-profile exhibit",
+      "grouping_key": "EXP-D|limit_profile|combined_vs_sublines",
+      "instance_count": 2,
+      "delta_summary": {
+        "premium_mismatch": 64224540.49,
+        "policy_count_reconciles": true
+      },
+      "instances": [
+        {
+          "entity_key": "In-force premium",
+          "where": {
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Limit Profile (in-force)",
+              "combined_range": "B8:B13",
+              "subline_ranges": [
+                "B17:B22",
+                "B26:B31"
+              ]
+            }
+          },
+          "prior_values": null,
+          "current_values": {
+            "combined": 64224540.49,
+            "subline_1": 73752560.99,
+            "subline_2": 54696519.99,
+            "subline_sum": 128449080.98
+          },
+          "deltas": {
+            "combined_minus_subline_sum": -64224540.49
+          }
+        },
+        {
+          "entity_key": "Policy count",
+          "where": {
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Limit Profile (in-force)",
+              "combined_range": "C8:C13",
+              "subline_ranges": [
+                "C17:C22",
+                "C26:C31"
+              ]
+            }
+          },
+          "prior_values": null,
+          "current_values": {
+            "combined": 7509,
+            "subline_1": 4245,
+            "subline_2": 3264,
+            "subline_sum": 7509
+          },
+          "deltas": {
+            "combined_minus_subline_sum": 0
+          }
+        }
+      ],
+      "samples_returned": 2,
+      "suggested_action": "Rebuild the combined premium formulas from the subline blocks and confirm the intended scope."
+    },
+    {
+      "rule_id": "ANM-B",
+      "title": "Extreme historical written-premium jump in Subline 1",
+      "severity": "High",
+      "context": "Subline 1 historical WP total, year 2016",
+      "grouping_key": "ANM-B|WP|subline1|2016",
+      "instance_count": 1,
+      "delta_summary": {
+        "amount": 38344887.9,
+        "relative": 1.226612910660143
+      },
+      "instances": [
+        {
+          "entity_key": "Subline 1 / 2016",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "WP by State & Segment",
+              "cell": "C114"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "WP by State & Segment",
+              "cell": "C114"
+            }
+          },
+          "prior_values": {
+            "written_premium": 31260789.42
+          },
+          "current_values": {
+            "written_premium": 69605677.32
+          },
+          "deltas": {
+            "amount": 38344887.9,
+            "relative": 1.226612910660143
+          }
+        }
+      ],
+      "samples_returned": 1,
+      "suggested_action": "Confirm whether 2016 was restated; reconcile the underlying state cells and formula references."
+    },
+    {
+      "rule_id": "CLM-F",
+      "title": "Claim description\u2013severity mismatch",
+      "severity": "Medium",
+      "context": "Current large-claim narratives vs incurred severity",
+      "grouping_key": "CLM-F|all_sublines|description_severity",
+      "instance_count": 4,
+      "delta_summary": {
+        "count": 4
+      },
+      "instances": [
+        {
+          "entity_key": "C1--01451",
+          "where": {
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 1)",
+              "cell": "L426:M426"
+            }
+          },
+          "prior_values": null,
+          "current_values": {
+            "total_incurred": 88672.5,
+            "umbrella_limit": 5000000,
+            "description": "Exhaustion across layers; massive wrongful deaths; nuclear verdict"
+          },
+          "deltas": {
+            "trigger": "catastrophic-text vs small loss"
+          }
+        },
+        {
+          "entity_key": "C1--01472",
+          "where": {
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 1)",
+              "cell": "L442:M442"
+            }
+          },
+          "prior_values": null,
+          "current_values": {
+            "total_incurred": 3955957.34,
+            "umbrella_limit": 5000000,
+            "description": "Minor dog bite; stitches; small demand"
+          },
+          "deltas": {
+            "trigger": "minor-text vs major loss"
+          }
+        },
+        {
+          "entity_key": "C1--00521",
+          "where": {
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "N206:O206"
+            }
+          },
+          "prior_values": null,
+          "current_values": {
+            "total_incurred": 99547.87,
+            "umbrella_limit": 10000000,
+            "description": "Venue unfavorable; nuclear verdict risk flagged"
+          },
+          "deltas": {
+            "trigger": "catastrophic-text vs small loss"
+          }
+        },
+        {
+          "entity_key": "C1--00626",
+          "where": {
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Large Claims (subline 2)",
+              "cell": "N252:O252"
+            }
+          },
+          "prior_values": null,
+          "current_values": {
+            "total_incurred": 74467.89,
+            "umbrella_limit": 1000000,
+            "description": "Venue unfavorable; nuclear verdict risk flagged"
+          },
+          "deltas": {
+            "trigger": "catastrophic-text vs small loss"
+          }
+        }
+      ],
+      "samples_returned": 4,
+      "suggested_action": "Verify claim descriptions, claim-number mapping, and currency/units for the flagged records."
+    },
+    {
+      "rule_id": "RTC-E",
+      "title": "Rate change granularity reduced from State\u00d7Year\u00d7business type to State\u00d7Year",
+      "severity": "Medium",
+      "context": "Rate change methodology for Sublines 1 and 2",
+      "grouping_key": "RTC-E|rate_granularity",
+      "instance_count": 2,
+      "delta_summary": {
+        "affected_sublines": 2
+      },
+      "instances": [
+        {
+          "entity_key": "Subline 1",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Rate Change (subline 1)",
+              "cell": "A8:E8"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Rate Change (subline 1)",
+              "cell": "A8:C8"
+            }
+          },
+          "prior_values": {
+            "columns": [
+              "State",
+              "Year",
+              "New business",
+              "renewal business",
+              "Combined"
+            ]
+          },
+          "current_values": {
+            "columns": [
+              "State",
+              "Year",
+              "Rate change (%)"
+            ]
+          },
+          "deltas": {
+            "removed_dimensions": [
+              "New business",
+              "renewal business"
+            ]
+          }
+        },
+        {
+          "entity_key": "Subline 2",
+          "where": {
+            "prior": {
+              "workbook": "test1_UmbrellaXoL_2024.xlsx",
+              "sheet": "Rate Change (subline 2)",
+              "cell": "A8:E8"
+            },
+            "current": {
+              "workbook": "test1_UmbrellaXoL_2025.xlsx",
+              "sheet": "Rate Change (subline 2)",
+              "cell": "A8:C8"
+            }
+          },
+          "prior_values": {
+            "columns": [
+              "State",
+              "Year",
+              "New business",
+              "renewal business",
+              "Combined"
+            ]
+          },
+          "current_values": {
+            "columns": [
+              "State",
+              "Year",
+              "Rate change (%)"
+            ]
+          },
+          "deltas": {
+            "removed_dimensions": [
+              "New business",
+              "renewal business"
+            ]
+          }
+        }
+      ],
+      "samples_returned": 2,
+      "suggested_action": "Explain the methodology change and provide New/Renewal detail or a bridge to the prior format."
+    }
+  ]
+}
