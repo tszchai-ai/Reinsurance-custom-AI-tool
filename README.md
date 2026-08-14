@@ -64,7 +64,6 @@ The comparison runs above used the GPT-5.6 (Sol) model.
 | `test1_PropertyXoL_rating.xlsx` | Property per-risk XoL experience-rating input workbook with 4,136 individual claims, Commercial and Personal business, premium/rate data, and three treaty layers; used for claim-level trend, development, layering, and aggregation. |
 | `Rating_Function_Calls (Energy QS).json` | Full audit register for the Energy QS rating result, including workbook profile, mapped inputs, one documented plug-in, 60 deterministic function calls, raw outputs, validation checks, results, and limitations. |
 | `Rating_Function_Calls (Property XoL).json` | Full audit register for the Property XoL rating result, including workbook profile, mapped inputs, documented plug-ins, 186 deterministic function calls, raw outputs, validation checks, results, warnings, and limitations. |
-| `Rating_Function_Calls_old.json` | Earlier Energy QS function-call register retained for version/reference comparison; it records 65 calls under an earlier result structure and assumption set. |
 | `access_rating.txt` | Plain-text convenience list of the experience-rating Custom GPT and shared result links. The same links are presented above. |
 
 ## Suggested Workflow
