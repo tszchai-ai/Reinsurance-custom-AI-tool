@@ -15,7 +15,7 @@ The workbooks in this repository are synthetic research examples. Results suppor
 
 | Test | Generic ChatGPT result | Custom GPT result |
 |---|---|---|
-| Energy quota share (QS) | [Without the Custom GPT](https://chatgpt.com/share/6a711141-beec-83ea-814d-8c4ad49e479c) | [With the Custom GPT](https://chatgpt.com/share/6a72c40b-a4ec-83ea-8e1b-6ea56d44a223) |
+| Energy quota share (QS) | [Without the Custom GPT](https://chatgpt.com/share/6a711141-beec-83ea-814d-8c4ad49e479c) | [With the Custom GPT](https://chatgpt.com/share/6a72c40b-a4ec-83ea-ac55-4d673cc54123) |
 | Umbrella excess of loss (XoL) | [Without the Custom GPT](https://chatgpt.com/share/6a714792-b274-83ea-aece-cf58d4d50ada) | [With the Custom GPT](https://chatgpt.com/share/6a72c708-7c10-83ea-8e1b-6ea56d44a223) |
 | Property XoL | [Without the Custom GPT](https://chatgpt.com/share/6a72a69e-1ce8-83ea-aec8-50968f09eadf) | [Standard thinking](https://chatgpt.com/share/6a736f7e-4f64-83ea-8bbd-ba10f825319b) · [Extended thinking](https://chatgpt.com/share/6a736a71-9654-83ea-9d4d-e79d88add773) |
 
