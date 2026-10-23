@@ -15,7 +15,7 @@ The workbooks in this repository are synthetic research examples. Results suppor
 
 - [Open the Broker Submission Validation AI Chat Website via Responses API](https://reinsurance-broker-validation.sleekmars4.chatgpt.site) (Note: You need a funded API key in [OpenAI Developers Platform](https://developers.openai.com/).)
 
-| Test | Generic ChatGPT result | Custom GPT result |
+| Test | Generic ChatGPT result | Custom AI tool result |
 |---|---|---|
 | Energy quota share (QS) | [Without the Custom GPT](https://chatgpt.com/share/6a711141-beec-83ea-814d-8c4ad49e479c) | [With the Custom GPT](https://chatgpt.com/share/6a72c40b-a4ec-83ea-ac55-4d673cc54123) |
 | Umbrella excess of loss (XoL) | [Without the Custom GPT](https://chatgpt.com/share/6a714792-b274-83ea-aece-cf58d4d50ada) | [With the Custom GPT](https://chatgpt.com/share/6a72c708-7c10-83ea-8e1b-6ea56d44a223) |
