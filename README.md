@@ -9,9 +9,11 @@ The workbooks in this repository are synthetic research examples. Results suppor
 
 ## Access the Custom GPTs and Results
 
-### Broker Submission Validation Custom GPT
+### Broker Submission Validation custom AI tool
 
-- [Open the Broker Submission Validation Custom GPT](https://chatgpt.com/g/g-6a726bc3377481919161a1011336d446-reinsurance-custom-gpt)
+- [Open the Broker Submission Validation Custom GPT](https://chatgpt.com/g/g-6a726bc3377481919161a1011336d446-reinsurance-custom-gpt) (Note: Custom GPT feature will be retired after December 11. To access the custom AI tool after the retirement of Custom GPT, go to the published website below.)
+
+- [Open the Broker Submission Validation Chat Website via Responses API](https://reinsurance-broker-validation.sleekmars4.chatgpt.site) (Note: You need a funded API key in [OpenAI Developers Platform](https://developers.openai.com/).)
 
 | Test | Generic ChatGPT result | Custom GPT result |
 |---|---|---|
@@ -23,8 +25,12 @@ The comparison runs above used the GPT-5.6 (Sol) model.
 
 ### Experience Rating Custom GPT
 
-- [Open the Experience Rating Custom GPT](https://chatgpt.com/g/g-6a78ead7c85c8191ba248770070b989d-reinsurance-custom-gpt-experience-rating)
+- [Open the Experience Rating Custom GPT](https://chatgpt.com/g/g-6a78ead7c85c8191ba248770070b989d-reinsurance-custom-gpt-experience-rating) (Note: Custom GPT feature will be retired after December 11. To access the custom AI tool after the retirement of Custom GPT, go to the published website below.)
+
+- [Open the Broker Submission Validation Chat Website via Responses API](https://reinsurance-experience-rating.sleekmars4.chatgpt.site) (Note: You need a funded API key in [OpenAI Developers Platform](https://developers.openai.com/).)
+  
 - [Energy QS result — standard thinking](https://chatgpt.com/share/6a7aab5e-f0ac-83ea-8fe3-7185fd9becbe)
+  
 - [Property XoL result — extended thinking](https://chatgpt.com/share/6a7aa1d1-ef98-83ea-b728-eb37bb454921)
 
 ## Repository Contents
