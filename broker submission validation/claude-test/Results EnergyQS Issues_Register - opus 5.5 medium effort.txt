@@ -1,0 +1,2227 @@
+{
+  "meta": {
+    "current_workbook": "test1_EnergyQS_2025.xlsx",
+    "prior_workbook": "test1_EnergyQS_2024.xlsx",
+    "run_time_utc": "2026-11-19T17:51:43Z",
+    "run_status": "complete",
+    "skipped_checks": [],
+    "comparability_mode": "strict",
+    "tolerances": {
+      "abs": 5000,
+      "rel": 0.01,
+      "rate_pp": 2.0,
+      "rate_proj_vs_actual_pp": 3.0,
+      "prm_b": "max(20%,250k)",
+      "prm_c": "20% and 250k",
+      "prm_d": "max(5%,100k)",
+      "triangle_offdiag": "max(1%,5k)",
+      "tri_d": 0.15,
+      "claim_arith": 1.0
+    },
+    "schema_profiles": {
+      "prior": {
+        "present_tabs": [
+          "Intro",
+          "Premium summary",
+          "Rate change",
+          "Exposure listing",
+          "Exposure summary",
+          "Claim listing",
+          "Loss triangles"
+        ],
+        "currency": "USD",
+        "as_of": "2023-11-30",
+        "treaty": "Energy QS 2024-04-01",
+        "claim_listing": {
+          "rows": 206,
+          "threshold": "incurred loss > 100,000",
+          "window": "AY 2019–2023",
+          "has_status": true
+        },
+        "exposure_listing": {
+          "rows": 4325,
+          "window": "incepting 2022-12-01 to 2023-11-30",
+          "has_sic": true
+        },
+        "triangles": [
+          "Total Incurred Loss and ALAE",
+          "Incurred Loss",
+          "ALAE"
+        ],
+        "triangle_basis": "AY, 12–120 months",
+        "has_lob_column": false
+      },
+      "current": {
+        "present_tabs": [
+          "Intro",
+          "Premium summary",
+          "Rate change",
+          "Exposure listing",
+          "Exposure summary",
+          "Claim listing",
+          "Loss triangles"
+        ],
+        "currency": "USD",
+        "as_of": "2024-11-30",
+        "treaty": "Energy QS 2025-04-01",
+        "claim_listing": {
+          "rows": 225,
+          "threshold": "incurred loss > 100,000",
+          "window": "AY 2020–2024",
+          "has_status": false
+        },
+        "exposure_listing": {
+          "rows": 4597,
+          "window": "incepting 2023-12-01 to 2024-11-30",
+          "has_sic": false,
+          "scope_note": "exclude policies from Alabama state (out of appetite)"
+        },
+        "triangles": [
+          "Total Incurred Loss and ALAE",
+          "Incurred Loss",
+          "ALAE"
+        ],
+        "triangle_basis": "AY, 12–132 months",
+        "has_lob_column": false
+      }
+    },
+    "tab_mapping": "All 7 tabs map 1:1 by name",
+    "checks_passed_notes": [
+      "CLM-G: 155 matched claims — no attribute or financial drift",
+      "CLM-D: no paid decreases or negative O/S",
+      "PRM-B: prior 2024 proj 84.6M vs current revised 85.2M (+0.7%)",
+      "PRM-E: original vs revised 2024 (84.6M→85.2M)",
+      "RTC-A/RTC-B: history unchanged; 2024 proj 1.6 vs revised 1.0 (0.6pp)",
+      "ANM-E: Total = Loss + ALAE in every triangle cell, both files",
+      "Exposure summary % columns sum to 100%",
+      "EXP-E: no Renewed→New, no state/GC-LS changes among 3,629 renewals"
+    ]
+  },
+  "issue_counts": {
+    "total": 18,
+    "Critical": 3,
+    "High": 10,
+    "Medium": 5,
+    "Low": 0
+  },
+  "issues": [
+    {
+      "rule_id": "CLM-A",
+      "title": "Claim row arithmetic failures (Total Incurred ≠ Incurred Loss + Incurred ALAE; paid + O/S ≠ incurred)",
+      "severity": "Critical",
+      "context": "Claim listing, row-level identities, current file; tolerance 1.00",
+      "grouping_key": "CLM-A|claim_listing|arithmetic|current",
+      "instances": [
+        {
+          "claim_id": "C--00897",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 180,
+              "range": "M180:Q180"
+            }
+          },
+          "current_values": {
+            "incurred_loss": 205750.49,
+            "incurred_alae": 21340.98,
+            "total_incurred": 289025.38
+          },
+          "deltas": {
+            "total_minus_components": 61933.91
+          }
+        },
+        {
+          "claim_id": "C--00910",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 185,
+              "range": "K185:Q185"
+            }
+          },
+          "current_values": {
+            "paid_loss": 548501.37,
+            "os_loss": 118753.13,
+            "incurred_loss": 692238.4,
+            "paid_alae": 153073.31,
+            "os_alae": 33562.7,
+            "incurred_alae": 193622.08,
+            "total_incurred": 1013523.01
+          },
+          "deltas": {
+            "paid_plus_os_minus_incurred_loss": -24983.9,
+            "paid_plus_os_minus_incurred_alae": -6986.07,
+            "total_minus_components": 127662.53
+          }
+        },
+        {
+          "claim_id": "C--00927",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 193,
+              "range": "M193:Q193"
+            }
+          },
+          "current_values": {
+            "incurred_loss": 145728.14,
+            "incurred_alae": 15162.17,
+            "total_incurred": 235210.08
+          },
+          "deltas": {
+            "total_minus_components": 74319.77
+          }
+        },
+        {
+          "claim_id": "C--00938",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 198,
+              "range": "M198:Q198"
+            }
+          },
+          "current_values": {
+            "incurred_loss": 289005.34,
+            "incurred_alae": 58787.32,
+            "total_incurred": 253101.57
+          },
+          "deltas": {
+            "total_minus_components": -94691.09
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 4,
+        "total_identity_breaks": 4,
+        "component_identity_breaks": 1,
+        "min_total_delta": -94691.09,
+        "max_total_delta": 127662.53
+      },
+      "suggested_action": "Correct component or total columns for the 4 claims; confirm column definitions and whether any additional cost element is embedded in Total Incurred.",
+      "instance_count": 4,
+      "samples_returned": 4
+    },
+    {
+      "rule_id": "CLM-A",
+      "title": "Claim date logic violations (reported before loss; loss before policy inception; inception after valuation date)",
+      "severity": "Critical",
+      "context": "Claim listing date integrity, current file; as-of 2024-11-30",
+      "grouping_key": "CLM-A|claim_listing|date_logic|current",
+      "instances": [
+        {
+          "claim_id": "C--01002",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 225,
+              "range": "C225:H225"
+            },
+            "as_of": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "cell": "B6"
+            }
+          },
+          "current_values": {
+            "loss_date": "2024-07-14",
+            "reporting_date": "2024-06-09",
+            "policy_inception": "2024-12-28",
+            "as_of": "2024-11-30",
+            "AY": 2024,
+            "PY": 2024,
+            "total_incurred": 171989.58
+          },
+          "deltas": {
+            "reporting_minus_loss_days": -35,
+            "inception_after_loss_days": 167,
+            "inception_after_as_of_days": 28
+          }
+        },
+        {
+          "claim_id": "C--01019",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 233,
+              "range": "C233:D233"
+            }
+          },
+          "current_values": {
+            "loss_date": "2024-07-11",
+            "reporting_date": "2022-10-17",
+            "total_incurred": 522524.42
+          },
+          "deltas": {
+            "reporting_minus_loss_days": -633
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 2
+      },
+      "suggested_action": "Correct loss/report/inception dates and policy linkage for C--01002 and C--01019; confirm C--01002 policy P-2024-02053 incepts before the loss.",
+      "instance_count": 2,
+      "samples_returned": 2
+    },
+    {
+      "rule_id": "EXP-A",
+      "title": "Obvious exposure-row errors (premium > limit; negative written premium)",
+      "severity": "Critical",
+      "context": "Exposure listing row validation, current file",
+      "grouping_key": "EXP-A|exposure_listing|current",
+      "instances": [
+        {
+          "policy_id": "P-2024-02892",
+          "insured_id": "I-2021-00713",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "row": 3185,
+              "range": "J3185:K3185"
+            },
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 2978,
+              "range": "K2978:L2978"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P-2023-02646",
+            "written_premium": 4131.34,
+            "limit": 500000
+          },
+          "current_values": {
+            "written_premium": 514350.25,
+            "limit": 500000
+          },
+          "deltas": {
+            "premium_change": 510218.91,
+            "premium_change_pct": 123.4996
+          },
+          "issue": "written premium exceeds limit; ~124x renewal premium"
+        },
+        {
+          "policy_id": "P-2024-00900",
+          "insured_id": "I-2021-00224",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1244,
+              "cell": "J1244"
+            },
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1151,
+              "cell": "K1151"
+            }
+          },
+          "prior_values": {
+            "written_premium": 2975.17
+          },
+          "current_values": {
+            "written_premium": -2780.3,
+            "limit": 500000
+          },
+          "issue": "negative written premium"
+        },
+        {
+          "policy_id": "P-2024-00393",
+          "insured_id": "I-2024-00075",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "row": 750,
+              "cell": "J750"
+            }
+          },
+          "current_values": {
+            "written_premium": -382.47,
+            "limit": 500000
+          },
+          "issue": "negative written premium (new insured)"
+        },
+        {
+          "policy_id": "P-2024-01470",
+          "insured_id": "I-2014-00605",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1796,
+              "cell": "J1796"
+            },
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1665,
+              "cell": "K1665"
+            }
+          },
+          "prior_values": {
+            "written_premium": 3015.95
+          },
+          "current_values": {
+            "written_premium": -137.2,
+            "limit": 500000
+          },
+          "issue": "negative written premium"
+        }
+      ],
+      "delta_summary": {
+        "count": 4,
+        "premium_gt_limit": 1,
+        "negative_premium": 3,
+        "negative_premium_sum": -3299.97
+      },
+      "suggested_action": "Correct P-2024-02892 premium (likely 5,143.50 or decimal/keying error) and confirm whether negative premiums are return-premium endorsements that belong in a separate field.",
+      "instance_count": 4,
+      "samples_returned": 4
+    },
+    {
+      "rule_id": "CLM-B",
+      "title": "Large claims in prior listing missing from current (unexplained)",
+      "severity": "High",
+      "context": "Claim listing; overlap window AY 2020–2023; threshold incurred loss > 100,000 in both years (A12 notes); AY 2019 roll-off (48 claims) not flagged",
+      "grouping_key": "CLM-B|claim_listing|AY2020-2023|thr100k",
+      "instances": [
+        {
+          "claim_id": "C--00521",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Claim listing",
+              "row": 60,
+              "range": "A60:S60"
+            }
+          },
+          "prior_values": {
+            "AY": 2020,
+            "status": "Open",
+            "gc_ls": "LS",
+            "policy_limit": 10000000,
+            "incurred_loss": 1218282.31,
+            "total_incurred": 1568573.57
+          },
+          "current_values": null
+        },
+        {
+          "claim_id": "C--00757",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Claim listing",
+              "row": 160,
+              "range": "A160:S160"
+            }
+          },
+          "prior_values": {
+            "AY": 2022,
+            "status": "Closed",
+            "gc_ls": "GC",
+            "policy_limit": 10000000,
+            "incurred_loss": 1860713.66,
+            "total_incurred": 2061797.65
+          },
+          "current_values": null
+        },
+        {
+          "claim_id": "C--00869",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Claim listing",
+              "row": 217,
+              "range": "A217:S217"
+            }
+          },
+          "prior_values": {
+            "AY": 2022,
+            "status": "Open",
+            "gc_ls": "LS",
+            "policy_limit": 10000000,
+            "incurred_loss": 1992663.37,
+            "total_incurred": 2507111.11
+          },
+          "current_values": null
+        }
+      ],
+      "delta_summary": {
+        "missing_count": 3,
+        "explained_by_threshold": 0,
+        "unexplained": 3,
+        "prior_total_incurred_missing": 6137482.33,
+        "min_prior_incurred_loss": 1218282.31,
+        "max_prior_incurred_loss": 1992663.37,
+        "missing_ids": [
+          "C--00521",
+          "C--00757",
+          "C--00869"
+        ]
+      },
+      "suggested_action": "Ask broker to reinstate or explain removal (closed-without-payment, reclassification, recovery, merged claim); none fall below the unchanged threshold or outside the window.",
+      "instance_count": 3,
+      "samples_returned": 3
+    },
+    {
+      "rule_id": "TRI-C",
+      "title": "Large-claim listing aggregates exceed triangle diagonal (AY 2023–2024)",
+      "severity": "High",
+      "context": "Total Incurred Loss & ALAE (and Loss, ALAE components), AY basis, latest diagonal vs claims >100k listing",
+      "grouping_key": "TRI-C|total_incurred|AY",
+      "instances": [
+        {
+          "AY": 2023,
+          "dev": 24,
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "range": "Q134:Q239 (AY=2023 rows)",
+              "note": "sum of Total Incurred filtered AY=2023"
+            },
+            "current_triangle": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "D25"
+            }
+          },
+          "current_values": {
+            "claims_total_incurred": 43205838.52,
+            "triangle_total": 33986020,
+            "claims_incurred_loss": 36242980.01,
+            "triangle_loss_D41": 28550546,
+            "claims_incurred_alae": 6962858.51,
+            "triangle_alae_D57": 5435474
+          },
+          "deltas": {
+            "excess_total": 9219818.52,
+            "ratio": 1.271
+          }
+        },
+        {
+          "AY": 2024,
+          "dev": 12,
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "range": "Q180:Q236 (AY=2024 rows)",
+              "note": "sum of Total Incurred filtered AY=2024"
+            },
+            "current_triangle": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "C26"
+            }
+          },
+          "current_values": {
+            "claims_total_incurred": 12655326.75,
+            "triangle_total": 8423744.3,
+            "claims_incurred_loss": 10187199.94,
+            "triangle_loss_C42": 7106452,
+            "claims_incurred_alae": 2298901.69,
+            "triangle_alae_C58": 1317292.3
+          },
+          "deltas": {
+            "excess_total": 4231582.45,
+            "ratio": 1.502
+          }
+        },
+        {
+          "AY": 2023,
+          "dev": 12,
+          "file": "prior (pre-existing)",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Claim listing",
+              "range": "R182:R220 (AY=2023 rows)",
+              "note": "sum of Total Incurred filtered AY=2023"
+            },
+            "prior_triangle": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "C25"
+            }
+          },
+          "prior_values": {
+            "claims_total_incurred": 23343048.29,
+            "triangle_total": 17691485.9
+          },
+          "deltas": {
+            "excess_total": 5651562.39,
+            "ratio": 1.319
+          }
+        }
+      ],
+      "delta_summary": {
+        "count_current": 2,
+        "count_prior": 1,
+        "max_excess": 9219818.52,
+        "ratios_current": [
+          1.271,
+          1.502
+        ]
+      },
+      "suggested_action": "Reconcile triangle to listing for AY 2023–2024; the triangle (all claims, ground-up) cannot be smaller than the >100k listing — confirm whether the latest diagonals are stale or on a different basis.",
+      "instance_count": 3,
+      "samples_returned": 3
+    },
+    {
+      "rule_id": "TRI-B",
+      "title": "Previously reported diagonal values restated upward (off-diagonal edits)",
+      "severity": "High",
+      "context": "Incurred Loss and Total Incurred triangles, AY 2020–2022 at prior latest diagonal (as of 2023-11-30); ALAE triangle unchanged; tolerance max(1%, 5,000)",
+      "grouping_key": "TRI-B|incurred|AY",
+      "instances": [
+        {
+          "triangle": "Total Incurred Loss and ALAE",
+          "AY": 2020,
+          "dev": 48,
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "F22"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "F22"
+            }
+          },
+          "prior_values": {
+            "value": 25542504
+          },
+          "current_values": {
+            "value": 25961481.56
+          },
+          "deltas": {
+            "abs": 418977.56,
+            "pct": 0.0164
+          }
+        },
+        {
+          "triangle": "Total Incurred Loss and ALAE",
+          "AY": 2021,
+          "dev": 36,
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "E23"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "E23"
+            }
+          },
+          "prior_values": {
+            "value": 22311949
+          },
+          "current_values": {
+            "value": 23253458.7
+          },
+          "deltas": {
+            "abs": 941509.7,
+            "pct": 0.0422
+          }
+        },
+        {
+          "triangle": "Total Incurred Loss and ALAE",
+          "AY": 2022,
+          "dev": 24,
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "D24"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "D24"
+            }
+          },
+          "prior_values": {
+            "value": 33314288
+          },
+          "current_values": {
+            "value": 36134222.3
+          },
+          "deltas": {
+            "abs": 2819934.3,
+            "pct": 0.0846
+          }
+        },
+        {
+          "triangle": "Incurred Loss",
+          "AY": 2020,
+          "dev": 48,
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "F38"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "F38"
+            }
+          },
+          "prior_values": {
+            "value": 20948878
+          },
+          "current_values": {
+            "value": 21367855.56
+          },
+          "deltas": {
+            "abs": 418977.56,
+            "pct": 0.02
+          }
+        },
+        {
+          "triangle": "Incurred Loss",
+          "AY": 2021,
+          "dev": 36,
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "E39"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "E39"
+            }
+          },
+          "prior_values": {
+            "value": 18830194
+          },
+          "current_values": {
+            "value": 19771703.7
+          },
+          "deltas": {
+            "abs": 941509.7,
+            "pct": 0.05
+          }
+        },
+        {
+          "triangle": "Incurred Loss",
+          "AY": 2022,
+          "dev": 24,
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "D40"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "D40"
+            }
+          },
+          "prior_values": {
+            "value": 28199343
+          },
+          "current_values": {
+            "value": 31019277.3
+          },
+          "deltas": {
+            "abs": 2819934.3,
+            "pct": 0.1
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 6,
+        "min_abs": 418977.56,
+        "max_abs": 2819934.3,
+        "min_pct": 0.0164,
+        "max_pct": 0.1,
+        "total_restatement_total_triangle": 4180421.56
+      },
+      "suggested_action": "Request explanation for the loss-only restatement of AY 2020–2022 (late-reported claims re-dated, reserve strengthening re-booked to earlier evaluations, or data refresh) and confirm the evaluation basis of each column.",
+      "instance_count": 6,
+      "samples_returned": 6
+    },
+    {
+      "rule_id": "PRM-A",
+      "title": "Historical earned premium CY 2014–2016 reduced vs prior submission",
+      "severity": "High",
+      "context": "Historical Earned Premium block (CY × GC/LS/Total), Premium summary rows 17–19; mirrored in triangle EP column; CY 2017–2020 unchanged; tolerance max(1%, 5,000)",
+      "grouping_key": "PRM-A|earned_premium|CY|block_historical_EP",
+      "instances": [
+        {
+          "cell_key": "CY2014 GC",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "B17"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "B17"
+            }
+          },
+          "prior_values": {
+            "value": 9695921
+          },
+          "current_values": {
+            "value": 7756736.8
+          },
+          "deltas": {
+            "abs": -1939184.2,
+            "pct": -0.2
+          }
+        },
+        {
+          "cell_key": "CY2014 LS",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "C17"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "C17"
+            }
+          },
+          "prior_values": {
+            "value": 4879329
+          },
+          "current_values": {
+            "value": 3903463.2
+          },
+          "deltas": {
+            "abs": -975865.8,
+            "pct": -0.2
+          }
+        },
+        {
+          "cell_key": "CY2014 Total",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "D17"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "D17"
+            }
+          },
+          "prior_values": {
+            "value": 14575250
+          },
+          "current_values": {
+            "value": 11660200
+          },
+          "deltas": {
+            "abs": -2915050,
+            "pct": -0.2
+          }
+        },
+        {
+          "cell_key": "CY2015 GC",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "B18"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "B18"
+            }
+          },
+          "prior_values": {
+            "value": 20291990
+          },
+          "current_values": {
+            "value": 17248191.5
+          },
+          "deltas": {
+            "abs": -3043798.5,
+            "pct": -0.15
+          }
+        },
+        {
+          "cell_key": "CY2015 LS",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "C18"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "C18"
+            }
+          },
+          "prior_values": {
+            "value": 10906363
+          },
+          "current_values": {
+            "value": 9270408.55
+          },
+          "deltas": {
+            "abs": -1635954.45,
+            "pct": -0.15
+          }
+        },
+        {
+          "cell_key": "CY2015 Total",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "D18"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "D18"
+            }
+          },
+          "prior_values": {
+            "value": 31198353
+          },
+          "current_values": {
+            "value": 26518600.05
+          },
+          "deltas": {
+            "abs": -4679752.95,
+            "pct": -0.15
+          }
+        },
+        {
+          "cell_key": "CY2016 GC",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "B19"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "B19"
+            }
+          },
+          "prior_values": {
+            "value": 24987479
+          },
+          "current_values": {
+            "value": 22988480.68
+          },
+          "deltas": {
+            "abs": -1998998.32,
+            "pct": -0.08
+          }
+        },
+        {
+          "cell_key": "CY2016 LS",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "C19"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "C19"
+            }
+          },
+          "prior_values": {
+            "value": 13243531
+          },
+          "current_values": {
+            "value": 12184048.52
+          },
+          "deltas": {
+            "abs": -1059482.48,
+            "pct": -0.08
+          }
+        },
+        {
+          "cell_key": "CY2016 Total",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Premium summary",
+              "cell": "D19"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "D19"
+            }
+          },
+          "prior_values": {
+            "value": 38231010
+          },
+          "current_values": {
+            "value": 35172529.2
+          },
+          "deltas": {
+            "abs": -3058480.8,
+            "pct": -0.08
+          }
+        },
+        {
+          "cell_key": "Triangle earned premium column AY2014–2016 (same restatement)",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "range": "B16:B18"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "range": "B16:B18; also B32:B34, B48:B50"
+            }
+          },
+          "prior_values": {
+            "values": [
+              14575250,
+              31198353,
+              38231010
+            ]
+          },
+          "current_values": {
+            "values": [
+              11660200,
+              26518600.05,
+              35172529.2
+            ]
+          },
+          "deltas": {
+            "pct": [
+              -0.2,
+              -0.15,
+              -0.08
+            ]
+          }
+        }
+      ],
+      "instance_count": 9,
+      "delta_summary": {
+        "cells_flagged": 9,
+        "total_reduction_2014_2016": -10653283.75,
+        "pct_by_year": {
+          "2014": -0.2,
+          "2015": -0.15,
+          "2016": -0.08
+        },
+        "note": "uniform factors 0.80/0.85/0.92 applied to both GC and LS — looks like a manual haircut; AY loss triangles for 2014–2016 unchanged, so loss ratios rise"
+      },
+      "suggested_action": "Ask for the basis of the CY 2014–2016 earned premium restatement (flat factors 0.80/0.85/0.92); confirm which version is right before using these years in loss-ratio or on-level analysis.",
+      "samples_returned": 10
+    },
+    {
+      "rule_id": "PRM-C",
+      "title": "TY 2025 GWP projection far below historical trend",
+      "severity": "High",
+      "context": "Treaty Year GWP; as-of 2024-11-30 so TY2024 treated as incomplete; benchmark = average of full TY 2022–2023",
+      "grouping_key": "PRM-C|GWP|TY|total",
+      "instances": [
+        {
+          "block": "Total Treaty Year Subject Written Premium",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "N11"
+            },
+            "benchmark": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "range": "J11:K11"
+            },
+            "reference_revised_2024": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Premium summary",
+              "cell": "M11"
+            }
+          },
+          "current_values": {
+            "proj_2025": 49400000,
+            "benchmark_avg_TY2022_2023": 76488478.5,
+            "revised_2024": 85200000
+          },
+          "deltas": {
+            "abs_vs_benchmark": -27088478.5,
+            "pct_vs_benchmark": -0.3541,
+            "pct_vs_revised_2024": -0.4202
+          }
+        },
+        {
+          "block": "Intro estimated gross ceded premium (same driver)",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Intro",
+              "cell": "B31"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Intro",
+              "cell": "B31"
+            }
+          },
+          "prior_values": {
+            "value": 84600000
+          },
+          "current_values": {
+            "value": 49400000
+          },
+          "deltas": {
+            "abs": -35200000,
+            "pct": -0.4161
+          }
+        }
+      ],
+      "instance_count": 1,
+      "delta_summary": {
+        "projection": 49400000,
+        "benchmark": 76488478.5,
+        "diff": -27088478.5,
+        "pct": -0.3541
+      },
+      "suggested_action": "Request a premium bridge for the ~42% drop vs revised 2024 (Alabama exit is ~1.4M only); check that the projection is a full 12-month figure and reconcile it to the -13.8% rate assumption.",
+      "samples_returned": 2
+    },
+    {
+      "rule_id": "RTC-C",
+      "title": "2025 projected rate change −13.8% outside historical band",
+      "severity": "High",
+      "context": "Rate change exhibit (GC only), policy year",
+      "grouping_key": "RTC-C|rate_change|PY",
+      "instances": [
+        {
+          "year": "2025 Projected",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Rate change",
+              "cell": "B22"
+            },
+            "history": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Rate change",
+              "range": "B10:B21"
+            }
+          },
+          "current_values": {
+            "projected": -13.8,
+            "hist_min": -2.6,
+            "hist_max": 9.3
+          },
+          "deltas": {
+            "pp_below_hist_min": -11.2
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 1,
+        "projected": -13.8,
+        "historical_range": [
+          -2.6,
+          9.3
+        ]
+      },
+      "suggested_action": "Confirm sign/basis of −13.8% and provide the underwriting rationale; check consistency with the 2025 premium projection.",
+      "instance_count": 1,
+      "samples_returned": 1
+    },
+    {
+      "rule_id": "EXP-E",
+      "title": "Top-25 prior policies by written premium largely not renewed (19 of 25)",
+      "severity": "High",
+      "context": "Top 25 prior policies by Written Premium (all 10M limit) matched on Insured ID; book-wide renewal rate 3,629/4,325 = 83.9% vs 24% for top 25; none are Alabama",
+      "grouping_key": "EXP-E|top25_WP|insured_id",
+      "instances": [
+        {
+          "insured_id": "I-2022-00039",
+          "policy_id": "P-2023-00214",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 546,
+              "range": "A546:L546"
+            }
+          },
+          "prior_values": {
+            "written_premium": 97552.83,
+            "limit": 10000000,
+            "state": "NY",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2023-00020",
+          "policy_id": "P-2023-00108",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 440,
+              "range": "A440:L440"
+            }
+          },
+          "prior_values": {
+            "written_premium": 97514.39,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2022-00484",
+          "policy_id": "P-2023-02701",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 3033,
+              "range": "A3033:L3033"
+            }
+          },
+          "prior_values": {
+            "written_premium": 97307.65,
+            "limit": 10000000,
+            "state": "AZ",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2021-00837",
+          "policy_id": "P-2023-03093",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 3425,
+              "range": "A3425:L3425"
+            }
+          },
+          "prior_values": {
+            "written_premium": 96885.06,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2022-00530",
+          "policy_id": "P-2023-03031",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 3363,
+              "range": "A3363:L3363"
+            }
+          },
+          "prior_values": {
+            "written_premium": 96503.17,
+            "limit": 10000000,
+            "state": "NY",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2019-00623",
+          "policy_id": "P-2023-02842",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 3174,
+              "range": "A3174:L3174"
+            }
+          },
+          "prior_values": {
+            "written_premium": 96493.93,
+            "limit": 10000000,
+            "state": "NY",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2021-01007",
+          "policy_id": "P-2023-03806",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 4138,
+              "range": "A4138:L4138"
+            }
+          },
+          "prior_values": {
+            "written_premium": 96461.76,
+            "limit": 10000000,
+            "state": "NY",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2023-00620",
+          "policy_id": "P-2023-03050",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 3382,
+              "range": "A3382:L3382"
+            }
+          },
+          "prior_values": {
+            "written_premium": 96060.86,
+            "limit": 10000000,
+            "state": "IL",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2022-00137",
+          "policy_id": "P-2023-00797",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1129,
+              "range": "A1129:L1129"
+            }
+          },
+          "prior_values": {
+            "written_premium": 96053.16,
+            "limit": 10000000,
+            "state": "NY",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2021-00793",
+          "policy_id": "P-2023-02926",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 3258,
+              "range": "A3258:L3258"
+            }
+          },
+          "prior_values": {
+            "written_premium": 95611.99,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2022-00323",
+          "policy_id": "P-2023-01761",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 2093,
+              "range": "A2093:L2093"
+            }
+          },
+          "prior_values": {
+            "written_premium": 95197.85,
+            "limit": 10000000,
+            "state": "AZ",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2018-00199",
+          "policy_id": "P-2023-01123",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1455,
+              "range": "A1455:L1455"
+            }
+          },
+          "prior_values": {
+            "written_premium": 95144.77,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2021-00362",
+          "policy_id": "P-2023-01384",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1716,
+              "range": "A1716:L1716"
+            }
+          },
+          "prior_values": {
+            "written_premium": 95086.9,
+            "limit": 10000000,
+            "state": "NY",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2020-00549",
+          "policy_id": "P-2023-03774",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 4106,
+              "range": "A4106:L4106"
+            }
+          },
+          "prior_values": {
+            "written_premium": 94838.83,
+            "limit": 10000000,
+            "state": "NY",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2023-00062",
+          "policy_id": "P-2023-00270",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 602,
+              "range": "A602:L602"
+            }
+          },
+          "prior_values": {
+            "written_premium": 94673.21,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2023-00332",
+          "policy_id": "P-2023-01578",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1910,
+              "range": "A1910:L1910"
+            }
+          },
+          "prior_values": {
+            "written_premium": 94510.62,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2015-00293",
+          "policy_id": "P-2023-01891",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 2223,
+              "range": "A2223:L2223"
+            }
+          },
+          "prior_values": {
+            "written_premium": 94118.49,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2022-00187",
+          "policy_id": "P-2023-01043",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 1375,
+              "range": "A1375:L1375"
+            }
+          },
+          "prior_values": {
+            "written_premium": 94089.55,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        },
+        {
+          "insured_id": "I-2016-00554",
+          "policy_id": "P-2023-03094",
+          "status": "not_found",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "row": 3426,
+              "range": "A3426:L3426"
+            }
+          },
+          "prior_values": {
+            "written_premium": 92756.77,
+            "limit": 10000000,
+            "state": "CA",
+            "gc_ls": "GC"
+          },
+          "current_values": null
+        }
+      ],
+      "delta_summary": {
+        "top25": 25,
+        "not_found": 19,
+        "renewed": 6,
+        "top25_renewal_rate": 0.24,
+        "book_renewal_rate": 0.839,
+        "non_renewed_prior_WP": 1816861.79,
+        "renewed_premium_change_range_pct": [
+          -0.078,
+          0.049
+        ]
+      },
+      "suggested_action": "Confirm whether the largest accounts were lost, moved to another treaty or re-keyed under new Insured IDs; reconcile with the TY2025 premium projection.",
+      "instance_count": 19,
+      "samples_returned": 19
+    },
+    {
+      "rule_id": "TRI-D",
+      "title": "Chain-ladder projection vs current diagonal deviates >15% (AY 2021, AY 2023)",
+      "severity": "High",
+      "context": "Volume-weighted LDFs from prior triangles applied to prior diagonal; Total, Loss and ALAE triangles",
+      "grouping_key": "TRI-D|incurred|AY",
+      "instances": [
+        {
+          "triangle": "Total",
+          "AY": 2021,
+          "age": "36->48",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "E23"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "F23"
+            }
+          },
+          "prior_values": {
+            "diagonal": 22311949,
+            "projected_next": 23466839
+          },
+          "current_values": {
+            "value": 28609883
+          },
+          "deltas": {
+            "abs": 5143044,
+            "pct": 0.2192
+          }
+        },
+        {
+          "triangle": "Loss",
+          "AY": 2021,
+          "age": "36->48",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "E39"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "F39"
+            }
+          },
+          "prior_values": {
+            "diagonal": 18830194,
+            "projected_next": 19810781
+          },
+          "current_values": {
+            "value": 23845039
+          },
+          "deltas": {
+            "abs": 4034258,
+            "pct": 0.2036
+          }
+        },
+        {
+          "triangle": "ALAE",
+          "AY": 2021,
+          "age": "36->48",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "E55"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "F55"
+            }
+          },
+          "prior_values": {
+            "diagonal": 3481755,
+            "projected_next": 3656781
+          },
+          "current_values": {
+            "value": 4764844
+          },
+          "deltas": {
+            "abs": 1108063,
+            "pct": 0.303
+          }
+        },
+        {
+          "triangle": "Total",
+          "AY": 2023,
+          "age": "12->24",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "C25"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "D25"
+            }
+          },
+          "prior_values": {
+            "diagonal": 17691485.9,
+            "projected_next": 50067817
+          },
+          "current_values": {
+            "value": 33986020
+          },
+          "deltas": {
+            "abs": -16081797,
+            "pct": -0.3212
+          }
+        },
+        {
+          "triangle": "Loss",
+          "AY": 2023,
+          "age": "12->24",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "C41"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "D41"
+            }
+          },
+          "prior_values": {
+            "diagonal": 14932750,
+            "projected_next": 42087678
+          },
+          "current_values": {
+            "value": 28550546
+          },
+          "deltas": {
+            "abs": -13537132,
+            "pct": -0.3216
+          }
+        },
+        {
+          "triangle": "ALAE",
+          "AY": 2023,
+          "age": "12->24",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "C57"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Loss triangles",
+              "cell": "D57"
+            }
+          },
+          "prior_values": {
+            "diagonal": 2758735.9,
+            "projected_next": 7967541
+          },
+          "current_values": {
+            "value": 5435474
+          },
+          "deltas": {
+            "abs": -2532067,
+            "pct": -0.3178
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 6,
+        "AY2021_pct": [
+          0.2192,
+          0.2036,
+          0.303
+        ],
+        "AY2023_pct": [
+          -0.3212,
+          -0.3216,
+          -0.3178
+        ]
+      },
+      "suggested_action": "Explain the AY2021 adverse jump and the AY2023 shortfall; the AY2023 shortfall conflicts with the claim listing (TRI-C), which points to an understated diagonal.",
+      "instance_count": 6,
+      "samples_returned": 6
+    },
+    {
+      "rule_id": "CLM-A",
+      "title": "Incurred loss exceeds policy limit",
+      "severity": "High",
+      "context": "Claim listing, Incurred Loss vs Policy Limit, current file",
+      "grouping_key": "CLM-A|claim_listing|limit|current",
+      "instances": [
+        {
+          "claim_id": "C--01007",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 227,
+              "range": "J227:M227"
+            }
+          },
+          "current_values": {
+            "policy_limit": 1000000,
+            "incurred_loss": 1143781.77,
+            "total_incurred": 1333503.7
+          },
+          "deltas": {
+            "excess_over_limit": 143781.77
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 1,
+        "excess": 143781.77
+      },
+      "suggested_action": "Confirm policy limit for P-2022-04021 or correct reserves; check whether ALAE is outside limits and loss is within.",
+      "instance_count": 1,
+      "samples_returned": 1
+    },
+    {
+      "rule_id": "ANM-D",
+      "title": "Coverage expiration date precedes effective date (Intro)",
+      "severity": "High",
+      "context": "Intro treaty dates",
+      "grouping_key": "ANM-D|intro|treaty_dates",
+      "instances": [
+        {
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Intro",
+              "range": "B16:B17"
+            },
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Intro",
+              "range": "B16:B17"
+            }
+          },
+          "prior_values": {
+            "effective": "2024-04-01",
+            "expiration": "2025-03-31"
+          },
+          "current_values": {
+            "effective": "2025-04-01",
+            "expiration": "2025-03-31",
+            "header_A5": "1 Apr 2025 – 1 Apr 2026"
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 1
+      },
+      "suggested_action": "Correct expiration to 2026-03-31 (consistent with A5) and confirm the treaty period.",
+      "instance_count": 1,
+      "samples_returned": 1
+    },
+    {
+      "rule_id": "CLM-F",
+      "title": "Claim description grossly inconsistent with incurred amount",
+      "severity": "Medium",
+      "context": "Claim listing narrative vs Total Incurred, current file (both new AY2024 claims)",
+      "grouping_key": "CLM-F|claim_listing|current",
+      "instances": [
+        {
+          "claim_id": "C--00979",
+          "trigger": "minor/bumper",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 217,
+              "range": "Q217:R217"
+            }
+          },
+          "current_values": {
+            "total_incurred": 4072832.14,
+            "policy_limit": 5000000,
+            "description": "Minor rear-end in traffic; bumper damage."
+          }
+        },
+        {
+          "claim_id": "C--00987",
+          "trigger": "explosion / total loss / nuclear verdict",
+          "where": {
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "row": 220,
+              "range": "Q220:R220"
+            }
+          },
+          "current_values": {
+            "total_incurred": 132387.61,
+            "policy_limit": 1000000,
+            "description": "Compressor explosion inside customer building; structural damage and equipment total loss; allegations of design defect; nuclear verdict."
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 2
+      },
+      "suggested_action": "Verify the descriptions belong to these claim IDs (possible swap) and confirm reserve adequacy for C--00987.",
+      "instance_count": 2,
+      "samples_returned": 2
+    },
+    {
+      "rule_id": "CLM-C",
+      "title": "Claim Status column removed from claim listing",
+      "severity": "Medium",
+      "context": "Claim listing schema",
+      "grouping_key": "CLM-C|claim_listing|status",
+      "instances": [
+        {
+          "field": "Status",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Claim listing",
+              "cell": "I14"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Claim listing",
+              "range": "A14:R14"
+            }
+          },
+          "prior_values": {
+            "present": true,
+            "closed": 183,
+            "open": 23
+          },
+          "current_values": {
+            "present": false
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 1
+      },
+      "suggested_action": "Restore Open/Closed status; it is needed to test reopened claims and closed-claim attribute drift (CLM-G).",
+      "instance_count": 1,
+      "samples_returned": 1
+    },
+    {
+      "rule_id": "EXP-B",
+      "title": "SIC Code column removed from exposure listing",
+      "severity": "Medium",
+      "context": "Exposure listing schema",
+      "grouping_key": "EXP-B|exposure_listing|SIC",
+      "instances": [
+        {
+          "field": "SIC Code",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "cell": "J14"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "A14:K14"
+            }
+          },
+          "prior_values": {
+            "present": true
+          },
+          "current_values": {
+            "present": false
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 1
+      },
+      "suggested_action": "Restore SIC Code to allow industry-mix and renewal attribute checks.",
+      "instance_count": 1,
+      "samples_returned": 1
+    },
+    {
+      "rule_id": "EXP-C",
+      "title": "Alabama policies excluded from exposure listing only (new scope note)",
+      "severity": "Medium",
+      "context": "Exposure listing scope; prior 94 AL policies (WP 1,375,425.91); current 0; note not echoed in exposure summary, premium, rate change, claim listing (no state field) or triangles",
+      "grouping_key": "EXP-C|exposure_listing|state_scope",
+      "instances": [
+        {
+          "segment": "State=AL",
+          "where": {
+            "prior": {
+              "workbook": "test1_EnergyQS_2024.xlsx",
+              "sheet": "Exposure listing",
+              "range": "H15:H4339 (State=AL)"
+            },
+            "current": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "cell": "A12"
+            }
+          },
+          "prior_values": {
+            "count": 94,
+            "written_premium": 1375425.91
+          },
+          "current_values": {
+            "count": 0,
+            "written_premium": 0,
+            "note": "exclude policies from Alabama state (out of appetite)"
+          }
+        }
+      ],
+      "delta_summary": {
+        "count": 1,
+        "policies_removed": 94,
+        "prior_WP_removed": 1375425.91
+      },
+      "suggested_action": "Confirm whether AL is excluded from all exhibits (premium history, claims, triangles) or only the listing; provide AL claims to as-if adjust experience.",
+      "instance_count": 1,
+      "samples_returned": 1
+    },
+    {
+      "rule_id": "EXP-D",
+      "title": "Exposure summary no longer reconciles to exposure listing",
+      "severity": "Medium",
+      "context": "Within current file, written premium and count by GC/LS × limit band; prior file reconciled exactly; consistent with AL exclusion applied to the listing only",
+      "grouping_key": "EXP-D|exposure_summary_vs_listing|current",
+      "instances": [
+        {
+          "cell_key": "GC 0–1M WP",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "cell": "B11"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:K4611 (filtered by GC/LS and limit band)"
+            }
+          },
+          "current_values": {
+            "summary": 7755051,
+            "listing": 8121130.25
+          },
+          "deltas": {
+            "abs": -366079.25,
+            "pct": -0.0451
+          }
+        },
+        {
+          "cell_key": "GC 1–1.5M WP",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "cell": "B12"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:K4611 (filtered by GC/LS and limit band)"
+            }
+          },
+          "current_values": {
+            "summary": 6434536,
+            "listing": 6316407.1
+          },
+          "deltas": {
+            "abs": 118128.9,
+            "pct": 0.0187
+          }
+        },
+        {
+          "cell_key": "GC 1.5–2M WP",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "cell": "B13"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:K4611 (filtered by GC/LS and limit band)"
+            }
+          },
+          "current_values": {
+            "summary": 8347739,
+            "listing": 8164055.49
+          },
+          "deltas": {
+            "abs": 183683.51,
+            "pct": 0.0225
+          }
+        },
+        {
+          "cell_key": "GC >2M WP",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "cell": "B14"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:K4611 (filtered by GC/LS and limit band)"
+            }
+          },
+          "current_values": {
+            "summary": 32346157,
+            "listing": 30695299.97
+          },
+          "deltas": {
+            "abs": 1650857.03,
+            "pct": 0.0538
+          }
+        },
+        {
+          "cell_key": "LS 0–1M WP",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "cell": "F11"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:K4611 (filtered by GC/LS and limit band)"
+            }
+          },
+          "current_values": {
+            "summary": 4257903,
+            "listing": 4153085.38
+          },
+          "deltas": {
+            "abs": 104817.62,
+            "pct": 0.0252
+          }
+        },
+        {
+          "cell_key": "LS 1–1.5M WP",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "cell": "F12"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:K4611 (filtered by GC/LS and limit band)"
+            }
+          },
+          "current_values": {
+            "summary": 3702519,
+            "listing": 3652276.45
+          },
+          "deltas": {
+            "abs": 50242.55,
+            "pct": 0.0138
+          }
+        },
+        {
+          "cell_key": "LS 1.5–2M WP",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "cell": "F13"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:K4611 (filtered by GC/LS and limit band)"
+            }
+          },
+          "current_values": {
+            "summary": 4666494,
+            "listing": 4587930.1
+          },
+          "deltas": {
+            "abs": 78563.9,
+            "pct": 0.0171
+          }
+        },
+        {
+          "cell_key": "LS >2M WP",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "cell": "F14"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:K4611 (filtered by GC/LS and limit band)"
+            }
+          },
+          "current_values": {
+            "summary": 17091468,
+            "listing": 16761108.9
+          },
+          "deltas": {
+            "abs": 330359.1,
+            "pct": 0.0197
+          }
+        },
+        {
+          "cell_key": "Grand total",
+          "where": {
+            "current_summary": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure summary",
+              "range": "J15,L15"
+            },
+            "current_listing": {
+              "workbook": "test1_EnergyQS_2025.xlsx",
+              "sheet": "Exposure listing",
+              "range": "J15:J4611"
+            }
+          },
+          "current_values": {
+            "summary_WP": 84601867,
+            "listing_WP": 82451293.64,
+            "summary_count": 4709,
+            "listing_count": 4597
+          },
+          "deltas": {
+            "WP": 2150573.36,
+            "count": 112
+          }
+        }
+      ],
+      "instance_count": 9,
+      "delta_summary": {
+        "total_WP_diff": 2150573.36,
+        "total_count_diff": 112,
+        "largest_cell": "B14 +1,650,857.03 (+5.4%)"
+      },
+      "suggested_action": "Rebuild the exposure summary from the listing on the same scope, or state the scope difference.",
+      "samples_returned": 9
+    }
+  ]
+}

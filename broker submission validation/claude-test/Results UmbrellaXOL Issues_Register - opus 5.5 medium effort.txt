@@ -1,0 +1,1080 @@
+{
+  "meta": {
+    "prior_workbook": "test1_UmbrellaXoL_2024.xlsx",
+    "current_workbook": "test1_UmbrellaXoL_2025.xlsx",
+    "run_time_utc": "2026-11-19T17:49:54Z",
+    "run_status": "complete",
+    "comparability_mode": "strict",
+    "tolerances": {
+      "abs": 5000,
+      "rel": 0.01,
+      "rate_pp": 2.0,
+      "prm_c": {
+        "rel": 0.2,
+        "abs": 250000
+      },
+      "prm_b": {
+        "rel": 0.2,
+        "abs": 250000
+      },
+      "clm_f": {
+        "minor_inc": 1000000,
+        "catastrophic_inc": 100000,
+        "missing_desc_inc": 500000
+      }
+    },
+    "schema_profiles": {
+      "prior": {
+        "present_tabs": [
+          "Intro",
+          "WP by State & Segment",
+          "Large Claims (subline 1)",
+          "Large Claims (subline 2)",
+          "Large Claims (subline 3)",
+          "Rate Change (subline 1)",
+          "Rate Change (subline 2)",
+          "Rate Change (subline 3)",
+          "Limit Profile (in-force)"
+        ],
+        "valuation_date": "2023-11-30",
+        "triangle_inventory": [],
+        "has_lob_column": false,
+        "policy_listing": false,
+        "claim_AY": {
+          "subline1": "2019-2023",
+          "subline2": "2020-2023",
+          "subline3": "2020-2023"
+        },
+        "notes": "CY written premium by state; claims risks-attaching; no explicit large-claim threshold note"
+      },
+      "current": {
+        "present_tabs": [
+          "Intro",
+          "WP by State & Segment",
+          "Large Claims (subline 1)",
+          "Large Claims (subline 2)",
+          "Rate Change (subline 1)",
+          "Rate Change (subline 2)",
+          "Limit Profile (in-force)"
+        ],
+        "valuation_date": "2024-11-30",
+        "triangle_inventory": [],
+        "has_lob_column": false,
+        "policy_listing": false,
+        "claim_AY": {
+          "subline1": "2020-2024",
+          "subline2": "2020-2024"
+        },
+        "notes": "Subline 3 absent; Subline 1 claims use Expense instead of ANO/DCC and no Loss State"
+      }
+    },
+    "section_mapping": {
+      "Subline 1": "Subline 1 (Retail / Main Street)",
+      "Subline 2": "Subline 2 (Middle Market)",
+      "Subline 3": "not_found"
+    },
+    "not_applicable_checks": [
+      "TRI-A..D (no triangles in either year)",
+      "EXP-A/EXP-B/EXP-E/PRM-D (no policy-level listing in either year)",
+      "PRM-E (no original vs revised premium)",
+      "RTC-B/RTC-C (no projected rate change)"
+    ],
+    "checks_run_no_findings": [
+      "PRM-A (Subline 1/2 cell-level: 0 decreases; Combined drop attributed to SEC-A)",
+      "PRM-B (prior projection vs current CY2024 within 20%)",
+      "RTC-A (0 historical cells changed)",
+      "CLM-D",
+      "CLM-E (covered by SEC-A)",
+      "CLM-B subline 1 (0 missing)",
+      "ANM-E"
+    ],
+    "issue_counts": {
+      "total": 12,
+      "Critical": 2,
+      "High": 7,
+      "Medium": 3,
+      "Low": 0
+    }
+  },
+  "issues": [
+    {
+      "rule_id": "CLM-A",
+      "title": "Claim date logic violation: accident date before policy effective date and inconsistent with AY",
+      "severity": "Critical",
+      "context": "Subline 2 large claims; row-level date logic (accident date >= policy eff date; AY = year(accident date))",
+      "grouping_key": "CLM-A|subline2|date_logic",
+      "delta_summary": {
+        "violations": 2,
+        "accident_minus_eff_days": -17
+      },
+      "instances": [
+        {
+          "claim_id": "C1--00414",
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 165,
+            "cells": [
+              "E165",
+              "H165",
+              "I165"
+            ]
+          },
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 170,
+            "cells": [
+              "E170",
+              "H170",
+              "I170"
+            ]
+          },
+          "prior_values": {
+            "policy_eff_date": "2022-10-07",
+            "accident_date": "2023-06-23",
+            "accident_year": 2023
+          },
+          "current_values": {
+            "policy_eff_date": "2022-07-10",
+            "accident_date": "2022-06-23",
+            "accident_year": 2023,
+            "total_incurred": 888959.74
+          },
+          "violations": [
+            "accident date 2022-06-23 < policy eff 2022-07-10",
+            "AY 2023 != year(accident date) 2022"
+          ]
+        }
+      ],
+      "suggested_action": "Confirm correct policy effective and accident dates (current eff date looks like a day/month swap of prior 2022-10-07); correct dates so the claim attaches to the right policy/AY.",
+      "samples_returned": 1,
+      "instance_count": 1
+    },
+    {
+      "rule_id": "ANM-B",
+      "title": "Historical WP cell outlier: Subline 1 CA 2016 inflated ~9x; Subline 1 total exceeds Combined total",
+      "severity": "Critical",
+      "context": "WP by State & Segment, Calendar Year written premium, Subline 1 block vs Combined block (same year 2016)",
+      "grouping_key": "ANM-B|WP|subline1|2016",
+      "delta_summary": {
+        "cell_delta_vs_prior": 38344887.9,
+        "ratio_current_to_prior": 9.28,
+        "subline1_total_minus_combined_total_2016": 38344888.0
+      },
+      "instances": [
+        {
+          "entity": "Subline1 CA 2016",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "WP by State & Segment",
+            "cell": "C68"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "WP by State & Segment",
+            "cell": "C68"
+          },
+          "prior_values": 4629743.1,
+          "current_values": 42974631.0,
+          "delta": 38344887.9
+        },
+        {
+          "entity": "Subline1 Total 2016 vs Combined Total 2016",
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "WP by State & Segment",
+            "cells": [
+              "C114",
+              "C58"
+            ],
+            "range": "C64:C113"
+          },
+          "prior_values": {
+            "C114": 31260789.0
+          },
+          "current_values": {
+            "C114": 69605677.0,
+            "C58": 31260789.0,
+            "C12 (Combined CA 2016)": 4629743.1
+          },
+          "note": "Combined 2016 (C58) still equals the prior Subline 1 total; Subline 1 is the only block with 2016 data, so C114 should equal C58."
+        }
+      ],
+      "suggested_action": "Correct current C68 (likely keying error; prior and Combined C12 show 4,629,743.10) and confirm no other historical cells were overwritten.",
+      "samples_returned": 2,
+      "instance_count": 2
+    },
+    {
+      "rule_id": "CLM-B",
+      "title": "Unexplained missing large claims vs prior (Subline 2)",
+      "severity": "High",
+      "context": "Subline 2 large claims; overlap window AY 2020-2023; no threshold note on tab, inferred current threshold = min current incurred 57014.23; all missing claims far above it",
+      "grouping_key": "CLM-B|subline2|unexplained",
+      "delta_summary": {
+        "missing_count": 7,
+        "sum_prior_total_incurred": 12448211.36,
+        "min_prior_incurred": 1257754.35,
+        "max_prior_incurred": 2758421.21,
+        "by_AY": {
+          "2022": 5,
+          "2023": 2
+        },
+        "explained_by_threshold": 0,
+        "subline1_missing": 0
+      },
+      "instances": [
+        {
+          "claim_id": "C1--00232",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 95,
+            "cell": "N95"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "status": "Closed",
+            "total_incurred": 1492642.64
+          }
+        },
+        {
+          "claim_id": "C1--00235",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 96,
+            "cell": "N96"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "status": "Closed",
+            "total_incurred": 2758421.21
+          }
+        },
+        {
+          "claim_id": "C1--00252",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 106,
+            "cell": "N106"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "status": "Closed",
+            "total_incurred": 1394151.8
+          }
+        },
+        {
+          "claim_id": "C1--00260",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 110,
+            "cell": "N110"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "status": "Closed",
+            "total_incurred": 1257754.35
+          }
+        },
+        {
+          "claim_id": "C1--00318",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 136,
+            "cell": "N136"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "accident_year": 2022,
+            "status": "Closed",
+            "total_incurred": 2038620.19
+          }
+        },
+        {
+          "claim_id": "C1--00436",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 180,
+            "cell": "N180"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "accident_year": 2023,
+            "status": "Open",
+            "total_incurred": 2074471.94
+          }
+        },
+        {
+          "claim_id": "C1--00469",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 194,
+            "cell": "N194"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "accident_year": 2023,
+            "status": "Open",
+            "total_incurred": 1432149.23
+          }
+        }
+      ],
+      "suggested_action": "Ask broker to reinstate or explain the 7 claims (USD 12.4m prior incurred); confirm no claims were dropped in data extraction. Subline 1 had no missing claims in the 2020-2023 overlap (AY 2019 roll-off of 106 claims is expected).",
+      "samples_returned": 7,
+      "instance_count": 7
+    },
+    {
+      "rule_id": "SEC-A",
+      "title": "Subline 3 (Wholesale / E&S Umbrella) removed from every exhibit without explanation",
+      "severity": "High",
+      "context": "Section inventory; prior Intro A16 defines Subline 3; current Intro lists Sublines 1-2 only",
+      "grouping_key": "SEC-A|subline3",
+      "delta_summary": {
+        "missing_exhibits": 4,
+        "subline3_claims_not_found": 236,
+        "subline3_prior_incurred": 74499859.53,
+        "subline3_prior_proj_WP": 53203826.0,
+        "subline3_prior_inforce_premium": 51888392.83
+      },
+      "instances": [
+        {
+          "item": "Intro subline definition",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Intro",
+            "cell": "A16:B16"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Intro",
+            "status": "not_found"
+          }
+        },
+        {
+          "item": "Large Claims (subline 3) tab",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 3)",
+            "range": "A8:O243"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 3)",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "claims": 236
+          }
+        },
+        {
+          "item": "Rate Change (subline 3) tab",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Rate Change (subline 3)",
+            "range": "A9:E458"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Rate Change (subline 3)",
+            "status": "not_found"
+          }
+        },
+        {
+          "item": "WP block Legacy subline3",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "WP by State & Segment",
+            "range": "A172:K224",
+            "cell": "K224"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "WP by State & Segment",
+            "status": "not_found"
+          },
+          "prior_values": {
+            "J224_2023": 48088170.6,
+            "K224_proj": 53203826.0
+          },
+          "note": "Combined WP totals (row 58) drop 24-46% per year solely because Subline 3 is excluded; like-for-like (prior Combined minus prior Subline 3) reconciles exactly for 2015-2022."
+        },
+        {
+          "item": "Limit Profile subline 3 block",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Limit Profile (in-force)",
+            "range": "A33:D40"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Limit Profile (in-force)",
+            "status": "not_found"
+          }
+        }
+      ],
+      "evidence_csv_base64": "Y2xhaW1faWQscHJpb3Jfcm93LGFjY2lkZW50X3llYXIsc3RhdHVzLHRvdGFsX2luY3VycmVkLGN1cnJlbnRfc3RhdHVzDQpDMS0tMDAwMDEsOCwyMDIwLENsb3NlZCwxOTk2MDQuODQsbm90X2ZvdW5kDQpDMS0tMDAwMDIsOSwyMDIwLENsb3NlZCw1NDkwOTAuNDksbm90X2ZvdW5kDQpDMS0tMDAwMDksMTAsMjAyMCxDbG9zZWQsNDY5MTgwLjM1LG5vdF9mb3VuZA0KQzEtLTAwMDEwLDExLDIwMjAsQ2xvc2VkLDM3NjMyMC40OCxub3RfZm91bmQNCkMxLS0wMDAxMiwxMiwyMDIwLENsb3NlZCwzNDIxNjIuNDIsbm90X2ZvdW5kDQpDMS0tMDAwMTQsMTMsMjAyMCxDbG9zZWQsMjUxMzY5LjkxLG5vdF9mb3VuZA0KQzEtLTAwMDE5LDE0LDIwMjAsQ2xvc2VkLDExNzQyMy4zNCxub3RfZm91bmQNCkMxLS0wMDAyNSwxNSwyMDIwLENsb3NlZCwxMjYyNTIuMzUsbm90X2ZvdW5kDQpDMS0tMDAwMjksMTYsMjAyMCxDbG9zZWQsMzMyOTIyLjY3LG5vdF9mb3VuZA0KQzEtLTAwMDMxLDE3LDIwMjAsQ2xvc2VkLDEyNzMyNy44NCxub3RfZm91bmQNCkMxLS0wMDAzMiwxOCwyMDIwLENsb3NlZCwxNTE4NTcuNjUsbm90X2ZvdW5kDQpDMS0tMDAwMzMsMTksMjAyMCxDbG9zZWQsNDQ4MzkxLjM4LG5vdF9mb3VuZA0KQzEtLTAwMDM4LDIwLDIwMjEsQ2xvc2VkLDI5MDk3My43OCxub3RfZm91bmQNCkMxLS0wMDA0MCwyMSwyMDIxLENsb3NlZCw4NTc4Ny42OSxub3RfZm91bmQNCkMxLS0wMDA0MywyMiwyMDIxLENsb3NlZCw5NzQyMS40Nyxub3RfZm91bmQNCkMxLS0wMDA0NSwyMywyMDIxLENsb3NlZCwxMjM4NTAuMDMsbm90X2ZvdW5kDQpDMS0tMDAwNDgsMjQsMjAyMSxDbG9zZWQsNzQ5NDYuODIsbm90X2ZvdW5kDQpDMS0tMDAwNDksMjUsMjAyMSxDbG9zZWQsODA5NDAuMzYsbm90X2ZvdW5kDQpDMS0tMDAwNTAsMjYsMjAyMSxDbG9zZWQsMTAwODA1LjA1LG5vdF9mb3VuZA0KQzEtLTAwMDUyLDI3LDIwMjEsQ2xvc2VkLDk3ODg2Ljc4LG5vdF9mb3VuZA0KQzEtLTAwMDU4LDI4LDIwMjEsT3Blbiw2MDY5OS45NSxub3RfZm91bmQNCkMxLS0wMDA1OSwyOSwyMDIxLENsb3NlZCw3NzgzMi4xNixub3RfZm91bmQNCkMxLS0wMDA2MSwzMCwyMDIxLENsb3NlZCw3NzIwMS4xOCxub3RfZm91bmQNCkMxLS0wMDA2MiwzMSwyMDIxLENsb3NlZCwyNTQ0NTYuNjksbm90X2ZvdW5kDQpDMS0tMDAwNjYsMzIsMjAyMSxDbG9zZWQsMTEzODgyMC4yMSxub3RfZm91bmQNCkMxLS0wMDA2OCwzMywyMDIxLENsb3NlZCw4MDg1MS4wMyxub3RfZm91bmQNCkMxLS0wMDA2OSwzNCwyMDIxLENsb3NlZCw0Nzk3OTguOTYsbm90X2ZvdW5kDQpDMS0tMDAwNzAsMzUsMjAyMSxDbG9zZWQsOTAwOTAuMDksbm90X2ZvdW5kDQpDMS0tMDAwNzIsMzYsMjAyMSxDbG9zZWQsMTg4Mzk4LjIxLG5vdF9mb3VuZA0KQzEtLTAwMDczLDM3LDIwMjEsQ2xvc2VkLDExOTQxMi4xMSxub3RfZm91bmQNCkMxLS0wMDA3NCwzOCwyMDIxLENsb3NlZCwxMDk2MTUuNzksbm90X2ZvdW5kDQpDMS0tMDAwNzYsMzksMjAyMSxDbG9zZWQsMTkzMjU1LjYyLG5vdF9mb3VuZA0KQzEtLTAwMDc3LDQwLDIwMjEsQ2xvc2VkLDIxNjU5MC40Nyxub3RfZm91bmQNCkMxLS0wMDA3OCw0MSwyMDIxLENsb3NlZCwxNTQ0NTIuNzIsbm90X2ZvdW5kDQpDMS0tMDAwNzksNDIsMjAyMSxDbG9zZWQsMTk2MDM0Ljc2LG5vdF9mb3VuZA0KQzEtLTAwMDgwLDQzLDIwMjEsQ2xvc2VkLDEzMTc0MS43OSxub3RfZm91bmQNCkMxLS0wMDA4NCw0NCwyMDIxLENsb3NlZCwyMzAwMDAuNzIsbm90X2ZvdW5kDQpDMS0tMDAwODUsNDUsMjAyMSxDbG9zZWQsMjE2MDUxOS41NCxub3RfZm91bmQNCkMxLS0wMDA4Nyw0NiwyMDIwLENsb3NlZCwxNzA0MjYuOTQsbm90X2ZvdW5kDQpDMS0tMDAwODksNDcsMjAyMSxDbG9zZWQsNTY5MjE2LjY2LG5vdF9mb3VuZA0KQzEtLTAwMDkwLDQ4LDIwMjEsQ2xvc2VkLDg3MjY4LjkzLG5vdF9mb3VuZA0KQzEtLTAwMDkxLDQ5LDIwMjEsQ2xvc2VkLDI2MjUyNy43LG5vdF9mb3VuZA0KQzEtLTAwMDkyLDUwLDIwMjEsQ2xvc2VkLDU5Nzg4LjAzLG5vdF9mb3VuZA0KQzEtLTAwMDk2LDUxLDIwMjEsQ2xvc2VkLDE2OTM3MzYuNTIsbm90X2ZvdW5kDQpDMS0tMDAwOTcsNTIsMjAyMSxDbG9zZWQsODU2NTUuNCxub3RfZm91bmQNCkMxLS0wMDA5OSw1MywyMDIxLENsb3NlZCwyNTg3Mzc2LjQ1LG5vdF9mb3VuZA0KQzEtLTAwMTAxLDU0LDIwMjEsQ2xvc2VkLDExODIyNzcuNzEsbm90X2ZvdW5kDQpDMS0tMDAxMDMsNTUsMjAyMSxDbG9zZWQsOTg1MzAuNCxub3RfZm91bmQNCkMxLS0wMDEwNCw1NiwyMDIxLENsb3NlZCwxMDA4OTMuMTgsbm90X2ZvdW5kDQpDMS0tMDAxMDUsNTcsMjAyMSxDbG9zZWQsMTEwMTUzLjMsbm90X2ZvdW5kDQpDMS0tMDAxMDgsNTgsMjAyMSxDbG9zZWQsMTA4NTk0LjIzLG5vdF9mb3VuZA0KQzEtLTAwMTEwLDU5LDIwMjEsQ2xvc2VkLDEzOTMwOC41NCxub3RfZm91bmQNCkMxLS0wMDExMiw2MCwyMDIxLENsb3NlZCwyNDU4NzcwLjA2LG5vdF9mb3VuZA0KQzEtLTAwMTEzLDYxLDIwMjEsT3BlbiwzODQxMzAuOTcsbm90X2ZvdW5kDQpDMS0tMDAxMTUsNjIsMjAyMSxDbG9zZWQsNDk4NDExLjk4LG5vdF9mb3VuZA0KQzEtLTAwMTE2LDYzLDIwMjEsQ2xvc2VkLDcwODIwLjgyLG5vdF9mb3VuZA0KQzEtLTAwMTE4LDY0LDIwMjEsQ2xvc2VkLDMxNzYwNi43NCxub3RfZm91bmQNCkMxLS0wMDEyMSw2NSwyMDIxLENsb3NlZCw5NzQ1Mi4zNixub3RfZm91bmQNCkMxLS0wMDEyNCw2NiwyMDIwLENsb3NlZCw1OTYyOC4zNixub3RfZm91bmQNCkMxLS0wMDEyNSw2NywyMDIxLENsb3NlZCw1NTc5NDIuNDIsbm90X2ZvdW5kDQpDMS0tMDAxMjYsNjgsMjAyMSxDbG9zZWQsOTI3MDUuNjMsbm90X2ZvdW5kDQpDMS0tMDAxMjksNjksMjAyMSxDbG9zZWQsMzEwMTc5LjE5LG5vdF9mb3VuZA0KQzEtLTAwMTMyLDcwLDIwMjEsQ2xvc2VkLDExNzYzNy45MSxub3RfZm91bmQNCkMxLS0wMDEzMyw3MSwyMDIxLENsb3NlZCwxNDE5NDIuNDYsbm90X2ZvdW5kDQpDMS0tMDAxMzUsNzIsMjAyMSxDbG9zZWQsMTE0OTc0LjMxLG5vdF9mb3VuZA0KQzEtLTAwMTM2LDczLDIwMjEsQ2xvc2VkLDk5MTU3LjE3LG5vdF9mb3VuZA0KQzEtLTAwMTM3LDc0LDIwMjEsQ2xvc2VkLDIzOTUwNC45Myxub3RfZm91bmQNCkMxLS0wMDE0Myw3NSwyMDIxLENsb3NlZCwxMTM3MTAuNjcsbm90X2ZvdW5kDQpDMS0tMDAxNDQsNzYsMjAyMSxDbG9zZWQsMjYzNzM1LjQzLG5vdF9mb3VuZA0KQzEtLTAwMTQ2LDc3LDIwMjEsQ2xvc2VkLDE3NTA0Ny42Mixub3RfZm91bmQNCkMxLS0wMDE1MCw3OCwyMDIxLENsb3NlZCwxNzU1NTcuMjEsbm90X2ZvdW5kDQpDMS0tMDAxNTEsNzksMjAyMSxDbG9zZWQsNzg4MTYuMzYsbm90X2ZvdW5kDQpDMS0tMDAxNTIsODAsMjAyMSxDbG9zZWQsMTQ3MTI5LG5vdF9mb3VuZA0KQzEtLTAwMTUzLDgxLDIwMjIsQ2xvc2VkLDg5NTI4LjI5LG5vdF9mb3VuZA0KQzEtLTAwMTU1LDgyLDIwMjIsQ2xvc2VkLDEzMDA3MS4zOCxub3RfZm91bmQNCkMxLS0wMDE1OCw4MywyMDIyLENsb3NlZCw3MDk3My4xNCxub3RfZm91bmQNCkMxLS0wMDE1OSw4NCwyMDIxLENsb3NlZCw3MjM2NC4yNixub3RfZm91bmQNCkMxLS0wMDE2MSw4NSwyMDIyLE9wZW4sMjMwOTE4LjgzLG5vdF9mb3VuZA0KQzEtLTAwMTYyLDg2LDIwMjIsQ2xvc2VkLDM0NjQ4MS43Nixub3RfZm91bmQNCkMxLS0wMDE2Myw4NywyMDIyLENsb3NlZCwyNjU2NTkuNzUsbm90X2ZvdW5kDQpDMS0tMDAxNjUsODgsMjAyMSxDbG9zZWQsNzE0NDMuMTcsbm90X2ZvdW5kDQpDMS0tMDAxNjYsODksMjAyMSxDbG9zZWQsMTU3NzIzLjY0LG5vdF9mb3VuZA0KQzEtLTAwMTY4LDkwLDIwMjAsQ2xvc2VkLDcyMDgzMi4yOSxub3RfZm91bmQNCkMxLS0wMDE2OSw5MSwyMDIyLENsb3NlZCwxMDc4NzUuMjQsbm90X2ZvdW5kDQpDMS0tMDAxNzAsOTIsMjAyMSxDbG9zZWQsMjI4MDI0LjQsbm90X2ZvdW5kDQpDMS0tMDAxNzEsOTMsMjAyMixDbG9zZWQsMzQ1MTIxLjM1LG5vdF9mb3VuZA0KQzEtLTAwMTcyLDk0LDIwMjIsQ2xvc2VkLDcwMTA0LjcyLG5vdF9mb3VuZA0KQzEtLTAwMTc1LDk1LDIwMjIsQ2xvc2VkLDExNjUzNC44Nyxub3RfZm91bmQNCkMxLS0wMDE4MSw5NiwyMDIyLE9wZW4sNDg0NTU3LjQxLG5vdF9mb3VuZA0KQzEtLTAwMTgzLDk3LDIwMjEsQ2xvc2VkLDIyNDg4MC45Mixub3RfZm91bmQNCkMxLS0wMDE4NCw5OCwyMDIyLENsb3NlZCwyNTI1NTUuNzgsbm90X2ZvdW5kDQpDMS0tMDAxODYsOTksMjAyMixDbG9zZWQsNTI2NTYzLjY0LG5vdF9mb3VuZA0KQzEtLTAwMTg5LDEwMCwyMDIyLENsb3NlZCw1MDYxMzcuMjUsbm90X2ZvdW5kDQpDMS0tMDAxOTEsMTAxLDIwMjIsQ2xvc2VkLDYxNjM3Ni42MSxub3RfZm91bmQNCkMxLS0wMDE5MywxMDIsMjAyMixDbG9zZWQsMjE1MTM1LjYyLG5vdF9mb3VuZA0KQzEtLTAwMTk0LDEwMywyMDIyLENsb3NlZCw3MjMzOS40OSxub3RfZm91bmQNCkMxLS0wMDE5NSwxMDQsMjAyMixDbG9zZWQsOTk2MDI0LjgxLG5vdF9mb3VuZA0KQzEtLTAwMTk3LDEwNSwyMDIyLENsb3NlZCwxMjExMDguMDgsbm90X2ZvdW5kDQpDMS0tMDAxOTksMTA2LDIwMjIsQ2xvc2VkLDIxMjM1Mi41NCxub3RfZm91bmQNCkMxLS0wMDIwMSwxMDcsMjAyMixDbG9zZWQsNzY5NDAuNzYsbm90X2ZvdW5kDQpDMS0tMDAyMDIsMTA4LDIwMjIsQ2xvc2VkLDMxNTkyMC42NCxub3RfZm91bmQNCkMxLS0wMDIwNCwxMDksMjAyMixPcGVuLDIzNDU3OC40Nixub3RfZm91bmQNCkMxLS0wMDIwNSwxMTAsMjAyMixDbG9zZWQsODg3MTguODcsbm90X2ZvdW5kDQpDMS0tMDAyMDYsMTExLDIwMjIsQ2xvc2VkLDkwODk1LjQ3LG5vdF9mb3VuZA0KQzEtLTAwMjA3LDExMiwyMDIyLENsb3NlZCw2Nzg0NDUuNzIsbm90X2ZvdW5kDQpDMS0tMDAyMTAsMTEzLDIwMjIsQ2xvc2VkLDI0MDAzNDAuMDMsbm90X2ZvdW5kDQpDMS0tMDAyMTEsMTE0LDIwMjIsQ2xvc2VkLDYzOTY3LjU0LG5vdF9mb3VuZA0KQzEtLTAwMjEyLDExNSwyMDIyLE9wZW4sMjU3Nzc4LjE3LG5vdF9mb3VuZA0KQzEtLTAwMjEzLDExNiwyMDIxLENsb3NlZCwyMDUyNDguMjIsbm90X2ZvdW5kDQpDMS0tMDAyMTQsMTE3LDIwMjIsQ2xvc2VkLDExNDY1OC42Mixub3RfZm91bmQNCkMxLS0wMDIxNSwxMTgsMjAyMixDbG9zZWQsNDc5NDQ1LjY5LG5vdF9mb3VuZA0KQzEtLTAwMjE3LDExOSwyMDIyLENsb3NlZCwyNzU3NDcuNDksbm90X2ZvdW5kDQpDMS0tMDAyMTksMTIwLDIwMjIsQ2xvc2VkLDEyMzA5Ni4yNCxub3RfZm91bmQNCkMxLS0wMDIyMSwxMjEsMjAyMixDbG9zZWQsMjI2ODk2LjM5LG5vdF9mb3VuZA0KQzEtLTAwMjI0LDEyMiwyMDIyLENsb3NlZCwzODk0MTAsbm90X2ZvdW5kDQpDMS0tMDAyMjUsMTIzLDIwMjIsT3BlbiwyOTA2MzYuODgsbm90X2ZvdW5kDQpDMS0tMDAyMjcsMTI0LDIwMjIsQ2xvc2VkLDEyMzE2Ny44OCxub3RfZm91bmQNCkMxLS0wMDIyOSwxMjUsMjAyMixPcGVuLDE0MjI3NzcuNzksbm90X2ZvdW5kDQpDMS0tMDAyMzEsMTI2LDIwMjIsQ2xvc2VkLDI1OTc1Mi45Myxub3RfZm91bmQNCkMxLS0wMDIzMiwxMjcsMjAyMixPcGVuLDEwNDAxOS40OSxub3RfZm91bmQNCkMxLS0wMDIzNSwxMjgsMjAyMixDbG9zZWQsMTA4MDc5Ny40OCxub3RfZm91bmQNCkMxLS0wMDIzNywxMjksMjAyMixPcGVuLDE3ODk3OS45LG5vdF9mb3VuZA0KQzEtLTAwMjM5LDEzMCwyMDIyLENsb3NlZCwyMTE2MjkuMTIsbm90X2ZvdW5kDQpDMS0tMDAyNDEsMTMxLDIwMjEsQ2xvc2VkLDk1MzMyMi42MSxub3RfZm91bmQNCkMxLS0wMDI0MiwxMzIsMjAyMixDbG9zZWQsOTg1NjAuODIsbm90X2ZvdW5kDQpDMS0tMDAyNDMsMTMzLDIwMjIsQ2xvc2VkLDIzNDI4NS40OSxub3RfZm91bmQNCkMxLS0wMDI0NCwxMzQsMjAyMixPcGVuLDE3MDE4OC4xLG5vdF9mb3VuZA0KQzEtLTAwMjQ1LDEzNSwyMDIyLENsb3NlZCwxNDgzMTIuMyxub3RfZm91bmQNCkMxLS0wMDI1MCwxMzYsMjAyMixDbG9zZWQsNDk1MDQ3LjU5LG5vdF9mb3VuZA0KQzEtLTAwMjUxLDEzNywyMDIyLE9wZW4sMjMzNTQxLjA0LG5vdF9mb3VuZA0KQzEtLTAwMjUyLDEzOCwyMDIyLENsb3NlZCw2ODQxODIuNTUsbm90X2ZvdW5kDQpDMS0tMDAyNTMsMTM5LDIwMjIsQ2xvc2VkLDE0NjMzOS4xNixub3RfZm91bmQNCkMxLS0wMDI1OCwxNDAsMjAyMixDbG9zZWQsMTQxOTA4LjE3LG5vdF9mb3VuZA0KQzEtLTAwMjYxLDE0MSwyMDIyLE9wZW4sMjI0OTU5LjIyLG5vdF9mb3VuZA0KQzEtLTAwMjY0LDE0MiwyMDIyLE9wZW4sNjkyNjYuOTcsbm90X2ZvdW5kDQpDMS0tMDAyNjYsMTQzLDIwMjIsQ2xvc2VkLDEyNjk2OS4wNixub3RfZm91bmQNCkMxLS0wMDI3MywxNDQsMjAyMixDbG9zZWQsMTM4OTE2LjI3LG5vdF9mb3VuZA0KQzEtLTAwMjc0LDE0NSwyMDIyLE9wZW4sNzUzMzAzLjA3LG5vdF9mb3VuZA0KQzEtLTAwMjc4LDE0NiwyMDIyLENsb3NlZCw5NzcyMC44Myxub3RfZm91bmQNCkMxLS0wMDI3OSwxNDcsMjAyMCxDbG9zZWQsNDE4NTM1LjI0LG5vdF9mb3VuZA0KQzEtLTAwMjgwLDE0OCwyMDIyLENsb3NlZCwyOTUyOTUuODYsbm90X2ZvdW5kDQpDMS0tMDAyODIsMTQ5LDIwMjIsQ2xvc2VkLDE4ODgyOTguMjUsbm90X2ZvdW5kDQpDMS0tMDAyODMsMTUwLDIwMjIsQ2xvc2VkLDEwMDUyMS4wNCxub3RfZm91bmQNCkMxLS0wMDI4NCwxNTEsMjAyMixDbG9zZWQsMTg5NzEwLjQ4LG5vdF9mb3VuZA0KQzEtLTAwMjg1LDE1MiwyMDIyLE9wZW4sMTA0NDk5LjA2LG5vdF9mb3VuZA0KQzEtLTAwMjg2LDE1MywyMDIyLENsb3NlZCw2Nzc3Mi4zMixub3RfZm91bmQNCkMxLS0wMDI4NywxNTQsMjAyMixDbG9zZWQsNDk2NDkxLjY4LG5vdF9mb3VuZA0KQzEtLTAwMjg5LDE1NSwyMDIyLENsb3NlZCw2NDYyOC45Myxub3RfZm91bmQNCkMxLS0wMDI5MSwxNTYsMjAyMixDbG9zZWQsNjIyNDIuMTcsbm90X2ZvdW5kDQpDMS0tMDAyOTMsMTU3LDIwMjIsQ2xvc2VkLDE3MzYwODguMjYsbm90X2ZvdW5kDQpDMS0tMDAyOTgsMTU4LDIwMjIsQ2xvc2VkLDE4OTI0MS44NCxub3RfZm91bmQNCkMxLS0wMDI5OSwxNTksMjAyMixDbG9zZWQsODYwNTcuNyxub3RfZm91bmQNCkMxLS0wMDMwMCwxNjAsMjAyMixDbG9zZWQsMjgzNDk1LjczLG5vdF9mb3VuZA0KQzEtLTAwMzAyLDE2MSwyMDIyLENsb3NlZCwxNTE3ODIuNDQsbm90X2ZvdW5kDQpDMS0tMDAzMDQsMTYyLDIwMjIsQ2xvc2VkLDEyMTg0MS43Mixub3RfZm91bmQNCkMxLS0wMDMwNSwxNjMsMjAyMixPcGVuLDg4OTY2LjYyLG5vdF9mb3VuZA0KQzEtLTAwMzA3LDE2NCwyMDIyLENsb3NlZCwzOTY3NzkuNjYsbm90X2ZvdW5kDQpDMS0tMDAzMDksMTY1LDIwMjIsQ2xvc2VkLDMxNDUyMi40MSxub3RfZm91bmQNCkMxLS0wMDMxMSwxNjYsMjAyMyxDbG9zZWQsMjY4MjE3LjMyLG5vdF9mb3VuZA0KQzEtLTAwMzEyLDE2NywyMDIyLENsb3NlZCw3MjA1Mi43NSxub3RfZm91bmQNCkMxLS0wMDMxMywxNjgsMjAyMixDbG9zZWQsNDAwMzIxLjc3LG5vdF9mb3VuZA0KQzEtLTAwMzE3LDE2OSwyMDIyLE9wZW4sMTc2ODAyLjU1LG5vdF9mb3VuZA0KQzEtLTAwMzE4LDE3MCwyMDIyLENsb3NlZCwyMjQ3MTMuMjcsbm90X2ZvdW5kDQpDMS0tMDAzMjEsMTcxLDIwMjIsQ2xvc2VkLDExNTIxMi40Myxub3RfZm91bmQNCkMxLS0wMDMyMiwxNzIsMjAyMyxDbG9zZWQsMTEzODEwMi4zMixub3RfZm91bmQNCkMxLS0wMDMyNywxNzMsMjAyMixPcGVuLDEyNTAxNi40OSxub3RfZm91bmQNCkMxLS0wMDMzMCwxNzQsMjAyMyxDbG9zZWQsMjUxMDQxLjg1LG5vdF9mb3VuZA0KQzEtLTAwMzMzLDE3NSwyMDIyLENsb3NlZCwxODE1NzcuNDQsbm90X2ZvdW5kDQpDMS0tMDAzMzUsMTc2LDIwMjMsQ2xvc2VkLDg1ODQxMC4wNCxub3RfZm91bmQNCkMxLS0wMDMzNiwxNzcsMjAyMyxDbG9zZWQsNzgxOTkuOTIsbm90X2ZvdW5kDQpDMS0tMDAzMzcsMTc4LDIwMjMsT3Blbiw2MzQ0MS41Myxub3RfZm91bmQNCkMxLS0wMDM0MSwxNzksMjAyMixPcGVuLDEyMDI4NC4xLG5vdF9mb3VuZA0KQzEtLTAwMzQ3LDE4MCwyMDIzLENsb3NlZCw0MzA5NDcuMTksbm90X2ZvdW5kDQpDMS0tMDAzNDksMTgxLDIwMjIsT3Blbiw3NjMwNC4xOCxub3RfZm91bmQNCkMxLS0wMDM1MCwxODIsMjAyMyxDbG9zZWQsMzUzNzA5LjQyLG5vdF9mb3VuZA0KQzEtLTAwMzU1LDE4MywyMDIyLENsb3NlZCwyMTQ0MzguMyxub3RfZm91bmQNCkMxLS0wMDM2MiwxODQsMjAyMyxPcGVuLDIwMTg0Ni4wNixub3RfZm91bmQNCkMxLS0wMDM2MywxODUsMjAyMyxDbG9zZWQsNDc2Mjk0LjgxLG5vdF9mb3VuZA0KQzEtLTAwMzY0LDE4NiwyMDIzLE9wZW4sODQ1NjYuNDUsbm90X2ZvdW5kDQpDMS0tMDAzNjUsMTg3LDIwMjIsQ2xvc2VkLDEyODEwMC41Mixub3RfZm91bmQNCkMxLS0wMDM2NiwxODgsMjAyMyxPcGVuLDIyMzU2OS41Myxub3RfZm91bmQNCkMxLS0wMDM2NywxODksMjAyMyxDbG9zZWQsNTU5OTk3LjU2LG5vdF9mb3VuZA0KQzEtLTAwMzY4LDE5MCwyMDIzLENsb3NlZCwzMjY3OTMuNDEsbm90X2ZvdW5kDQpDMS0tMDAzNzAsMTkxLDIwMjMsT3BlbiwyMTg3NzcuMTEsbm90X2ZvdW5kDQpDMS0tMDAzNzEsMTkyLDIwMjMsQ2xvc2VkLDEyODcwNy4yLG5vdF9mb3VuZA0KQzEtLTAwMzcyLDE5MywyMDIzLENsb3NlZCw3NzI5MDUuNDEsbm90X2ZvdW5kDQpDMS0tMDAzNzMsMTk0LDIwMjMsQ2xvc2VkLDIxNjkyMS4xOSxub3RfZm91bmQNCkMxLS0wMDM3NCwxOTUsMjAyMyxPcGVuLDE0MjE5NS42OCxub3RfZm91bmQNCkMxLS0wMDM3NywxOTYsMjAyMyxPcGVuLDY5MzA0LjMsbm90X2ZvdW5kDQpDMS0tMDAzODAsMTk3LDIwMjMsT3Blbiw2MDk3MTkuNjcsbm90X2ZvdW5kDQpDMS0tMDAzODEsMTk4LDIwMjMsT3Blbiw1MjUxMi45Myxub3RfZm91bmQNCkMxLS0wMDM4NSwxOTksMjAyMyxPcGVuLDgzNzE2Ljk3LG5vdF9mb3VuZA0KQzEtLTAwMzg4LDIwMCwyMDIzLENsb3NlZCwxNTM1MDQuOTgsbm90X2ZvdW5kDQpDMS0tMDAzODksMjAxLDIwMjMsQ2xvc2VkLDYyMTk3Ljg1LG5vdF9mb3VuZA0KQzEtLTAwMzkxLDIwMiwyMDIzLENsb3NlZCwxMzI3MDQuNjIsbm90X2ZvdW5kDQpDMS0tMDAzOTMsMjAzLDIwMjMsT3Blbiw3MzIyNy4xMSxub3RfZm91bmQNCkMxLS0wMDM5NCwyMDQsMjAyMyxPcGVuLDE1NTMyNy44Nyxub3RfZm91bmQNCkMxLS0wMDM5NSwyMDUsMjAyMyxPcGVuLDQ4NjA1LjQ4LG5vdF9mb3VuZA0KQzEtLTAwMzk5LDIwNiwyMDIyLE9wZW4sMjAzNTMyLjY3LG5vdF9mb3VuZA0KQzEtLTAwNDAyLDIwNywyMDIzLENsb3NlZCwxMjY3MzYuOCxub3RfZm91bmQNCkMxLS0wMDQwNSwyMDgsMjAyMyxDbG9zZWQsMjg5NzAxLjM1LG5vdF9mb3VuZA0KQzEtLTAwNDA2LDIwOSwyMDIzLE9wZW4sNDk0NzE0LjczLG5vdF9mb3VuZA0KQzEtLTAwNDA5LDIxMCwyMDIzLENsb3NlZCwzNzUwOTEuODUsbm90X2ZvdW5kDQpDMS0tMDA0MTAsMjExLDIwMjMsT3BlbiwxMjg3NDMuMTIsbm90X2ZvdW5kDQpDMS0tMDA0MTQsMjEyLDIwMjMsQ2xvc2VkLDEyMzA1NS44OCxub3RfZm91bmQNCkMxLS0wMDQxNSwyMTMsMjAyMyxPcGVuLDEyNjYwMi4yOCxub3RfZm91bmQNCkMxLS0wMDQxOCwyMTQsMjAyMyxDbG9zZWQsMTY0NDYxLjA4LG5vdF9mb3VuZA0KQzEtLTAwNDIxLDIxNSwyMDIzLE9wZW4sMTQwOTU3LjU0LG5vdF9mb3VuZA0KQzEtLTAwNDI2LDIxNiwyMDIzLE9wZW4sODU5MTcuNTEsbm90X2ZvdW5kDQpDMS0tMDA0MjgsMjE3LDIwMjMsQ2xvc2VkLDg1MjMwLjM3LG5vdF9mb3VuZA0KQzEtLTAwNDMwLDIxOCwyMDIxLE9wZW4sMTEyMTMzNC44Myxub3RfZm91bmQNCkMxLS0wMDQzMiwyMTksMjAyMyxPcGVuLDExODI4My4zNCxub3RfZm91bmQNCkMxLS0wMDQzMywyMjAsMjAyMyxPcGVuLDE0Mzc1My4wNixub3RfZm91bmQNCkMxLS0wMDQzNCwyMjEsMjAyMyxPcGVuLDIxMTU2My4yOCxub3RfZm91bmQNCkMxLS0wMDQ0MCwyMjIsMjAyMixDbG9zZWQsMzQ5MTAxLjA1LG5vdF9mb3VuZA0KQzEtLTAwNDQyLDIyMywyMDIzLE9wZW4sNTEyNTMuMTQsbm90X2ZvdW5kDQpDMS0tMDA0NDMsMjI0LDIwMjMsT3Blbiw1MTY1Mi4zOSxub3RfZm91bmQNCkMxLS0wMDQ0NiwyMjUsMjAyMyxPcGVuLDE4MTE5Ni44Nixub3RfZm91bmQNCkMxLS0wMDQ0OSwyMjYsMjAyMyxPcGVuLDc5OTAwLjA2LG5vdF9mb3VuZA0KQzEtLTAwNDUwLDIyNywyMDIzLE9wZW4sNzkzNTUuMixub3RfZm91bmQNCkMxLS0wMDQ1MSwyMjgsMjAyMyxPcGVuLDQ4MDQxLjc4LG5vdF9mb3VuZA0KQzEtLTAwNDUzLDIyOSwyMDIzLE9wZW4sMTMxMzQ3MS4zNixub3RfZm91bmQNCkMxLS0wMDQ1NSwyMzAsMjAyMyxPcGVuLDYzNzM0LjM0LG5vdF9mb3VuZA0KQzEtLTAwNDU2LDIzMSwyMDIzLE9wZW4sODIzNTguNSxub3RfZm91bmQNCkMxLS0wMDQ1OCwyMzIsMjAyMyxPcGVuLDYxNzY2MC41OSxub3RfZm91bmQNCkMxLS0wMDQ1OSwyMzMsMjAyMyxPcGVuLDc3NjQwLjU3LG5vdF9mb3VuZA0KQzEtLTAwNDYwLDIzNCwyMDIzLE9wZW4sMzM4MDE0MC45NCxub3RfZm91bmQNCkMxLS0wMDQ2MSwyMzUsMjAyMyxPcGVuLDU4OTcyLjMyLG5vdF9mb3VuZA0KQzEtLTAwNDYyLDIzNiwyMDIzLE9wZW4sMTAwNTEwLjU1LG5vdF9mb3VuZA0KQzEtLTAwNDY3LDIzNywyMDIzLE9wZW4sMTU3Njg5LjY0LG5vdF9mb3VuZA0KQzEtLTAwNDY5LDIzOCwyMDIxLE9wZW4sMTE3OTIzLjM4LG5vdF9mb3VuZA0KQzEtLTAwNDcxLDIzOSwyMDIzLE9wZW4sNzY5NjUuNjMsbm90X2ZvdW5kDQpDMS0tMDA0NzIsMjQwLDIwMjMsT3Blbiw4OTM4NC44LG5vdF9mb3VuZA0KQzEtLTAwNDc1LDI0MSwyMDIzLE9wZW4sMTM3NTQzLjMzLG5vdF9mb3VuZA0KQzEtLTAwNDc2LDI0MiwyMDIzLE9wZW4sMjAxMDIyLjAyLG5vdF9mb3VuZA0KQzEtLTAwNDc3LDI0MywyMDIzLE9wZW4sMjgwMzM0Ljg0LG5vdF9mb3VuZA0K",
+      "suggested_action": "Confirm whether Subline 3 was exited, moved to another treaty, or excluded; if still covered, restore its claims, WP, rate and limit exhibits; if exited, state the effective date and run-off treatment.",
+      "samples_returned": 5,
+      "instance_count": 5
+    },
+    {
+      "rule_id": "PRM-C",
+      "title": "Projected written premium far below historical trend in every block",
+      "severity": "High",
+      "context": "WP by State & Segment, Proj. 4/1/25-3/31/26 vs mean of full CY 2022-2023 (CY2024 excluded: data as of 11/30/2024)",
+      "grouping_key": "PRM-C|WP|proj_2025",
+      "delta_summary": {
+        "blocks_flagged": 3,
+        "min_rel": -0.633,
+        "max_rel": -0.295
+      },
+      "instances": [
+        {
+          "block": "Combined",
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "WP by State & Segment",
+            "cells": [
+              "I58",
+              "J58",
+              "K58",
+              "L58"
+            ]
+          },
+          "current_values": {
+            "I58_2022": 102121833.72,
+            "J58_2023": 118974948.46,
+            "K58_2024_partial": 118577486.97,
+            "L58_proj": 56811443.48
+          },
+          "benchmark": 110548391.09,
+          "delta": -53736947.61,
+          "rel": -0.486
+        },
+        {
+          "block": "Subline1",
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "WP by State & Segment",
+            "cells": [
+              "I114",
+              "J114",
+              "K114",
+              "L114"
+            ]
+          },
+          "current_values": {
+            "I114_2022": 56083644.35,
+            "J114_2023": 68941954.53,
+            "K114_2024_partial": 68018588.98,
+            "L114_proj": 22927617.39
+          },
+          "benchmark": 62512799.44,
+          "delta": -39585182.05,
+          "rel": -0.633,
+          "note": "Current in-force premium for Subline 1 is 73,752,560.99 (Limit Profile B17:B22)."
+        },
+        {
+          "block": "Subline2",
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "WP by State & Segment",
+            "cells": [
+              "D169",
+              "E169",
+              "F169",
+              "G169"
+            ]
+          },
+          "current_values": {
+            "D169_2022": 46038189.37,
+            "E169_2023": 50032993.93,
+            "F169_2024_partial": 50558897.99,
+            "G169_proj": 33883826.09
+          },
+          "benchmark": 48035591.65,
+          "delta": -14151765.56,
+          "rel": -0.295
+        }
+      ],
+      "suggested_action": "Request basis for the projection (partial-period, net of a scope filter, or planned shrink); prior-year projections were 12-34% above trend, so a 30-63% drop needs a business-plan explanation before setting subject premium.",
+      "samples_returned": 3,
+      "instance_count": 3
+    },
+    {
+      "rule_id": "OTH-A",
+      "title": "Program terms changed: layer, reinstatements, and commission disclosure",
+      "severity": "High",
+      "context": "Intro: treaty structure and commercial terms",
+      "grouping_key": "OTH-A|Intro|terms",
+      "delta_summary": {
+        "changes": 3
+      },
+      "instances": [
+        {
+          "item": "Retention & Limit",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Intro",
+            "cell": "B9"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Intro",
+            "cell": "B9"
+          },
+          "prior_values": "$10,000,000 xs $1,000,000",
+          "current_values": "$5,000,000 xs $5,000,000"
+        },
+        {
+          "item": "Reinstatements",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Intro",
+            "cell": "B10"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Intro",
+            "cell": "B10"
+          },
+          "prior_values": "1 free; 1 @ 100%",
+          "current_values": "2 free; 2 @ 100%"
+        },
+        {
+          "item": "Commission",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Intro",
+            "cell": "B11"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Intro",
+            "status": "not_found"
+          },
+          "prior_values": "10% broker B; 5% on reinstatements",
+          "current_values": null
+        }
+      ],
+      "suggested_action": "Confirm the new layer and reinstatement terms and supply the commission/brokerage; restate experience to the $5m xs $5m layer for burning-cost work.",
+      "samples_returned": 3,
+      "instance_count": 3
+    },
+    {
+      "rule_id": "EXP-C",
+      "title": "Combined in-force premium in limit profile is exactly 50% of Subline 1 + Subline 2 (formula error)",
+      "severity": "High",
+      "context": "Limit Profile (in-force), combined block vs subline blocks, same valuation date; policy counts reconcile, premium does not",
+      "grouping_key": "EXP-C|LimitProfile|combined",
+      "delta_summary": {
+        "combined_sum": 64224540.49,
+        "sublines_sum": 128449080.98,
+        "ratio": 0.5,
+        "prior_combined_reconciled": true
+      },
+      "instances": [
+        {
+          "limit_band": 1000000.0,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Limit Profile (in-force)",
+            "cell": "B8",
+            "range": "B17+B26"
+          },
+          "current_values": {
+            "combined": 13235749.85,
+            "subline1_plus_2": 26471499.7
+          },
+          "delta": -13235749.85
+        },
+        {
+          "limit_band": 2000000.0,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Limit Profile (in-force)",
+            "cell": "B9",
+            "range": "B18+B27"
+          },
+          "current_values": {
+            "combined": 7231030.26,
+            "subline1_plus_2": 14462060.52
+          },
+          "delta": -7231030.26
+        },
+        {
+          "limit_band": 3000000.0,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Limit Profile (in-force)",
+            "cell": "B10",
+            "range": "B19+B28"
+          },
+          "current_values": {
+            "combined": 5469959.845,
+            "subline1_plus_2": 10939919.69
+          },
+          "delta": -5469959.84
+        },
+        {
+          "limit_band": 4000000.0,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Limit Profile (in-force)",
+            "cell": "B11",
+            "range": "B20+B29"
+          },
+          "current_values": {
+            "combined": 5325024.225,
+            "subline1_plus_2": 10650048.45
+          },
+          "delta": -5325024.22
+        },
+        {
+          "limit_band": 5000000.0,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Limit Profile (in-force)",
+            "cell": "B12",
+            "range": "B21+B30"
+          },
+          "current_values": {
+            "combined": 19665257.08,
+            "subline1_plus_2": 39330514.16
+          },
+          "delta": -19665257.08
+        },
+        {
+          "limit_band": 10000000.0,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Limit Profile (in-force)",
+            "cell": "B13",
+            "range": "B22+B31"
+          },
+          "current_values": {
+            "combined": 13297519.23,
+            "subline1_plus_2": 26595038.46
+          },
+          "delta": -13297519.23
+        }
+      ],
+      "suggested_action": "Fix combined block B8:B13 (appears to average rather than sum the sublines); prior combined block reconciled exactly to the three sublines.",
+      "samples_returned": 6,
+      "instance_count": 6
+    },
+    {
+      "rule_id": "CLM-G",
+      "title": "Closed-claim attribute drift (status, state, limit, dates, insured, description)",
+      "severity": "High",
+      "context": "Matched claims, Subline 2; claims Closed in prior. Subline 1 Loss State not comparable (field removed).",
+      "grouping_key": "CLM-G|subline2|closed",
+      "delta_summary": {
+        "claims": 3,
+        "matched_claims_checked": {
+          "subline1": 348,
+          "subline2": 182
+        }
+      },
+      "instances": [
+        {
+          "claim_id": "C1--00253",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 107
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 104,
+            "cells": [
+              "D104",
+              "F104",
+              "G104",
+              "O104"
+            ]
+          },
+          "prior_values": {
+            "status": "Closed",
+            "loss_state": "FL",
+            "umbrella_limit": 10000000,
+            "description": "Catastrophic spinal injury; lifetime care; high demand"
+          },
+          "current_values": {
+            "status": "NA",
+            "loss_state": "CA",
+            "umbrella_limit": 1000000,
+            "description": "NA"
+          },
+          "note": "Financials unchanged (incurred 708,079.21)."
+        },
+        {
+          "claim_id": "C1--00414",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 170,
+            "cells": [
+              "E170",
+              "H170"
+            ]
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 165,
+            "cells": [
+              "E165",
+              "H165"
+            ]
+          },
+          "prior_values": {
+            "policy_eff_date": "2022-10-07",
+            "accident_date": "2023-06-23"
+          },
+          "current_values": {
+            "policy_eff_date": "2022-07-10",
+            "accident_date": "2022-06-23"
+          },
+          "note": "Date shift creates CLM-A violation."
+        },
+        {
+          "claim_id": "C1--00237",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "cell": "C98"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "cell": "C96"
+          },
+          "prior_values": {
+            "company_name": "20-2-00174"
+          },
+          "current_values": {
+            "company_name": "20-2-00408"
+          }
+        }
+      ],
+      "suggested_action": "Validate claim-to-policy/insured linkage; confirm correct state, limit and dates; replace invalid status \"NA\" with Open/Closed.",
+      "samples_returned": 3,
+      "instance_count": 3
+    },
+    {
+      "rule_id": "CLM-A",
+      "title": "Loss exceeds umbrella limit",
+      "severity": "High",
+      "context": "Paid Loss + Reserve vs Umbrella Limit; basis (ground-up vs umbrella-only) not documented",
+      "grouping_key": "CLM-A|loss_gt_umbrella_limit",
+      "delta_summary": {
+        "claims": 4,
+        "new_in_current": 2,
+        "max_loss_to_limit": 2.62
+      },
+      "instances": [
+        {
+          "claim_id": "C1--00656",
+          "subline": 1,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "row": 14,
+            "cells": [
+              "F14",
+              "J14",
+              "K14"
+            ]
+          },
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "row": 114
+          },
+          "current_values": {
+            "umbrella_limit": 1000000,
+            "paid_loss": 1727502.17,
+            "reserve": 0,
+            "total_incurred": 2163819.88
+          }
+        },
+        {
+          "claim_id": "C1--00721",
+          "subline": 1,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "row": 42,
+            "cells": [
+              "F42",
+              "J42",
+              "K42"
+            ]
+          },
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "row": 144
+          },
+          "current_values": {
+            "umbrella_limit": 1000000,
+            "paid_loss": 1318779.13,
+            "reserve": 0,
+            "total_incurred": 1696117.85
+          }
+        },
+        {
+          "claim_id": "C1--01439",
+          "subline": 1,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "row": 420,
+            "cells": [
+              "F420",
+              "J420",
+              "K420"
+            ]
+          },
+          "where_prior": "not in prior",
+          "current_values": {
+            "umbrella_limit": 1000000,
+            "paid_loss": 1293552.43,
+            "reserve": 1045101.07,
+            "total_incurred": 2770179.33
+          }
+        },
+        {
+          "claim_id": "C1--00539",
+          "subline": 2,
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "row": 214,
+            "cells": [
+              "G214",
+              "L214",
+              "M214"
+            ]
+          },
+          "where_prior": "not in prior",
+          "current_values": {
+            "umbrella_limit": 1000000,
+            "paid_loss": 2616092.49,
+            "reserve": 0,
+            "total_incurred": 3317362.29
+          }
+        }
+      ],
+      "suggested_action": "Confirm whether loss amounts are ground-up (including underlying) or umbrella-only and whether the limit field is correct; restate so layer losses can be capped correctly.",
+      "samples_returned": 4,
+      "instance_count": 4
+    },
+    {
+      "rule_id": "CLM-F",
+      "title": "Description grossly inconsistent with incurred amount, or missing on a large claim",
+      "severity": "Medium",
+      "context": "Current large-claim narratives (high-confidence triggers only)",
+      "grouping_key": "CLM-F|current",
+      "delta_summary": {
+        "claims": 3
+      },
+      "instances": [
+        {
+          "claim_id": "C1--01472",
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "cells": [
+              "L442",
+              "M442"
+            ]
+          },
+          "trigger": "minor",
+          "current_values": {
+            "total_incurred": 3955957.34,
+            "description": "Minor dog bite; stitches; small demand"
+          }
+        },
+        {
+          "claim_id": "C1--01451",
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "cells": [
+              "L426",
+              "M426"
+            ]
+          },
+          "trigger": "nuclear verdict / exhaustion / wrongful deaths",
+          "current_values": {
+            "total_incurred": 88672.5,
+            "description": "Exhaustion across layers; massive wrongful deaths; nuclear verdict"
+          }
+        },
+        {
+          "claim_id": "C1--00253",
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 2)",
+            "cells": [
+              "N104",
+              "O104"
+            ]
+          },
+          "trigger": "missing description",
+          "current_values": {
+            "total_incurred": 708079.21,
+            "description": "NA"
+          }
+        }
+      ],
+      "suggested_action": "Verify descriptions are mapped to the right claim numbers and that C1--01451 is not under-reserved.",
+      "samples_returned": 3,
+      "instance_count": 3
+    },
+    {
+      "rule_id": "CLM-C",
+      "title": "Subline 1 claim fields changed: Loss State removed, ANO/DCC merged into Expense",
+      "severity": "Medium",
+      "context": "Large Claims (subline 1) header row 7",
+      "grouping_key": "CLM-C|subline1|schema",
+      "delta_summary": {
+        "changes": 2,
+        "expense_equals_ano_plus_dcc_for_matched": true
+      },
+      "instances": [
+        {
+          "item": "Loss State removed",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "cell": "F7"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "status": "not_found"
+          }
+        },
+        {
+          "item": "ANO + DCC replaced by Expense",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "cells": [
+              "J7",
+              "K7"
+            ]
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Large Claims (subline 1)",
+            "cell": "I7"
+          }
+        }
+      ],
+      "suggested_action": "Restore Loss State and the ANO/DCC split (Subline 2 still reports them); confirm Expense = ANO + DCC.",
+      "samples_returned": 2,
+      "instance_count": 2
+    },
+    {
+      "rule_id": "RTC-E",
+      "title": "Rate change exhibits lost the New / Renewal split (Combined only)",
+      "severity": "Medium",
+      "context": "Rate Change (subline 1/2); State x Year retained; historical combined values unchanged (0 cells differ)",
+      "grouping_key": "RTC-E|rate_change|product_split",
+      "delta_summary": {
+        "tabs": 2
+      },
+      "instances": [
+        {
+          "tab": "Rate Change (subline 1)",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Rate Change (subline 1)",
+            "range": "C8:E8"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Rate Change (subline 1)",
+            "cell": "C8"
+          },
+          "prior_values": [
+            "New business",
+            "renewal business",
+            "Combined"
+          ],
+          "current_values": [
+            "Rate change (%)"
+          ]
+        },
+        {
+          "tab": "Rate Change (subline 2)",
+          "where_prior": {
+            "workbook": "test1_UmbrellaXoL_2024.xlsx",
+            "sheet": "Rate Change (subline 2)",
+            "range": "C8:E8"
+          },
+          "where_current": {
+            "workbook": "test1_UmbrellaXoL_2025.xlsx",
+            "sheet": "Rate Change (subline 2)",
+            "cell": "C8"
+          },
+          "prior_values": [
+            "New business",
+            "renewal business",
+            "Combined"
+          ],
+          "current_values": [
+            "Rate change (%)"
+          ]
+        }
+      ],
+      "suggested_action": "Provide new vs renewal rate change for 2024, or confirm the combined figure basis.",
+      "samples_returned": 2,
+      "instance_count": 2
+    }
+  ]
+}
