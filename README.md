@@ -33,6 +33,18 @@ The comparison runs above used the GPT-5.6 (Sol) model.
   
 - [Property XoL result — extended thinking](https://chatgpt.com/share/6a7aa1d1-ef98-83ea-b728-eb37bb454921)
 
+## Access the Claude Agent Results
+
+### Broker Submission Validation custom AI tool
+- [Energy QS result — standard thinking](https://claude.ai/share/2734a737-7263-415b-a1f6-32ec628920ec)
+- [Umbrella XoL result — standard thinking](https://claude.ai/share/9dacbfa1-33a2-4287-86d2-2988a3946ce8)
+- [Property XoL result — standard thinking](https://claude.ai/share/02df70dd-0db0-42d2-bc20-b76b55263cd2)
+- [Property XoL result — extended thinking](https://claude.ai/share/9c3cf505-c794-4198-82ef-7e28439f81d6)
+
+### Experience Rating Custom GPT
+- [Energy QS result — standard thinking](https://claude.ai/share/93e4237e-95a5-4e39-8405-60af2632e68d)
+- [Property XoL result — extended thinking](https://claude.ai/share/70a25d62-f0aa-43e3-9400-7a84d68f4a1c)
+
 ## Repository Contents
 
 ### `broker submission validation/`
