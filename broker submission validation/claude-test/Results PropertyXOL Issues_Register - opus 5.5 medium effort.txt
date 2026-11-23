@@ -1,0 +1,4532 @@
+{
+  "meta": {
+    "current_workbook": "test1_PropertyXoL_2025.xlsx",
+    "prior_workbook": "test1_PropertyXoL_2024.xlsx",
+    "run_time_utc": "2026-11-19T17:50:00Z",
+    "run_status": "complete",
+    "comparability_mode": "strict",
+    "tolerances": {
+      "abs": 5000,
+      "rel": 0.01,
+      "rate_pp": 3.0,
+      "prm_a": "max(1%,$5k)",
+      "prm_c": "|Δ|>20% and >$250k",
+      "prm_e": "max(20%,$250k)",
+      "claim_arith": 1.0
+    },
+    "schema_profiles": {
+      "prior": {
+        "present_tabs": [
+          "Email",
+          "Premium Information",
+          "Premium Projection",
+          "Limit Profile (Commercial)",
+          "Limit Profile (Personal)",
+          "Exposure Listing (Commercial)",
+          "Exposure Listing (Personal)",
+          "Claim (Non-Cat Commercial)",
+          "Claim (Cat Commercial)",
+          "Claim (Non-Cat Personal)",
+          "Claim (Cat Personal)",
+          "Rate Change"
+        ],
+        "valuation_date": "2023-09-30",
+        "currency": "USD",
+        "triangle_inventory": [],
+        "has_lob_column": false,
+        "notes": "Claim thresholds >$50k non-cat / >$250k cat; AY 2019-2023; exposure policies incepting 2022-10-01..2023-09-30"
+      },
+      "current": {
+        "present_tabs": [
+          "Email",
+          "Premium Information",
+          "Premium Projection",
+          "Limit Profile (Commercial)",
+          "Limit Profile (Personal)",
+          "Exposure Listing (Commercial)",
+          "Exposure Listing (Personal)",
+          "Claim (Non-Cat Commercial)",
+          "Claim (Cat Commercial)",
+          "Claim (Non-Cat Personal)",
+          "Claim (Cat Personal)",
+          "Rate Change"
+        ],
+        "valuation_date": "2024-09-30",
+        "currency": "USD",
+        "triangle_inventory": [],
+        "has_lob_column": false,
+        "notes": "Claim thresholds unchanged; AY 2020-2024; exposure policies incepting 2023-10-01..2024-09-30; no CA exposure rows"
+      }
+    },
+    "tab_mapping": "All 12 tabs match by exact name",
+    "skipped_checks": [
+      "TRI-A",
+      "TRI-B",
+      "TRI-C",
+      "TRI-D (no loss triangles in either submission)"
+    ],
+    "issue_counts": {
+      "total": 18,
+      "Critical": 3,
+      "High": 9,
+      "Medium": 4,
+      "Low": 2
+    }
+  },
+  "issues": [
+    {
+      "rule_id": "CLM-B",
+      "title": "Unexplained missing large cat claims vs prior (all 15 largest Commercial cat claims dropped)",
+      "severity": "Critical",
+      "context": "Claim (Cat Commercial); gross incurred incl. expense; threshold >$250,000 unchanged (A10 both years); overlap window AY 2020-2023",
+      "grouping_key": "CLM-B|Claim (Cat Commercial)|AY2020-2023|thr250k",
+      "instance_count": 15,
+      "delta_summary": {
+        "missing_count": 15,
+        "prior_incurred_sum": 98505469.72,
+        "min": 3158764.17,
+        "median": 4389957.29,
+        "max": 13545239.46,
+        "classification": "unexplained (all above threshold, inside overlap window)",
+        "note": "Missing set = the 15 largest prior overlap claims; largest remaining current overlap claim = 2,956,095.47, suggesting a ~$3M cap/filter applied",
+        "overlap_incurred_prior_AY2020_2023": 172261187.77,
+        "overlap_incurred_current_AY2020_2023": 88833425.64
+      },
+      "instances": [
+        {
+          "claim_id": "C1-1113",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A34:P34",
+              "row_key": "claim_id=C1-1113"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "TX",
+            "AY": 2020,
+            "gross_incurred": 4389957.29,
+            "cell": "L34"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1143",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A36:P36",
+              "row_key": "claim_id=C1-1143"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "FL",
+            "AY": 2020,
+            "gross_incurred": 4166745.11,
+            "cell": "L36"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1152",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A38:P38",
+              "row_key": "claim_id=C1-1152"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "TX",
+            "AY": 2020,
+            "gross_incurred": 12965049.16,
+            "cell": "L38"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1195",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A43:P43",
+              "row_key": "claim_id=C1-1195"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "CA",
+            "AY": 2020,
+            "gross_incurred": 3158764.17,
+            "cell": "L43"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1241",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A49:P49",
+              "row_key": "claim_id=C1-1241"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "FL",
+            "AY": 2021,
+            "gross_incurred": 3404731.05,
+            "cell": "L49"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1242",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A50:P50",
+              "row_key": "claim_id=C1-1242"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Open",
+            "state": "FL",
+            "AY": 2020,
+            "gross_incurred": 11393739.38,
+            "cell": "L50"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1271",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A55:P55",
+              "row_key": "claim_id=C1-1271"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "NY",
+            "AY": 2021,
+            "gross_incurred": 12818314.89,
+            "cell": "L55"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1275",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A56:P56",
+              "row_key": "claim_id=C1-1275"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "NY",
+            "AY": 2021,
+            "gross_incurred": 5660900.12,
+            "cell": "L56"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1342",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A68:P68",
+              "row_key": "claim_id=C1-1342"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "FL",
+            "AY": 2021,
+            "gross_incurred": 3773305.12,
+            "cell": "L68"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1362",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A70:P70",
+              "row_key": "claim_id=C1-1362"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "TX",
+            "AY": 2022,
+            "gross_incurred": 4445179.05,
+            "cell": "L70"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1363",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A71:P71",
+              "row_key": "claim_id=C1-1363"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "FL",
+            "AY": 2021,
+            "gross_incurred": 3373406.2,
+            "cell": "L71"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1404",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A76:P76",
+              "row_key": "claim_id=C1-1404"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "FL",
+            "AY": 2021,
+            "gross_incurred": 7727861.86,
+            "cell": "L76"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1454",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A85:P85",
+              "row_key": "claim_id=C1-1454"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "FL",
+            "AY": 2022,
+            "gross_incurred": 4041031.81,
+            "cell": "L85"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1461",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A86:P86",
+              "row_key": "claim_id=C1-1461"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "CA",
+            "AY": 2021,
+            "gross_incurred": 3641245.05,
+            "cell": "L86"
+          },
+          "current_values": null,
+          "status": "not_found"
+        },
+        {
+          "claim_id": "C1-1660",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "A108:P108",
+              "row_key": "claim_id=C1-1660"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "status": "Open",
+            "state": "FL",
+            "AY": 2023,
+            "gross_incurred": 13545239.46,
+            "cell": "L108"
+          },
+          "current_values": null,
+          "status": "not_found"
+        }
+      ],
+      "suggested_action": "Request reinstatement of the 15 claims or written explanation (cap, reclassification, transfer); confirm no other >$3M cat losses filtered; re-run experience/exposure rating for layers 2-3.",
+      "samples_returned": 15
+    },
+    {
+      "rule_id": "CLM-A",
+      "title": "Gross Incurred Loss ≠ Paid + Outstanding (row-level arithmetic failure)",
+      "severity": "Critical",
+      "context": "Claim (Non-Cat Commercial) current; columns J (Paid), K (Outstanding), L (Gross Incurred); tolerance $1",
+      "grouping_key": "CLM-A|Claim (Non-Cat Commercial)|inc=paid+os",
+      "instance_count": 26,
+      "delta_summary": {
+        "count": 26,
+        "excel_rows": "395-420",
+        "diff_min": 58.63,
+        "diff_median": 5975.32,
+        "diff_max": 33958.54,
+        "diff_sum": 222953.06,
+        "note": "All positive (incurred overstated vs components); 12 of these rows also have restated loss (P) = paid+outstanding rather than incurred"
+      },
+      "instances": [
+        {
+          "claim_id": "C1-1799",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J395:L395",
+              "row_key": "claim_id=C1-1799"
+            }
+          },
+          "current_values": {
+            "paid": 96560.95,
+            "outstanding": 22074.09,
+            "gross_incurred": 124542.49
+          },
+          "delta": 5907.45
+        },
+        {
+          "claim_id": "C1-1807",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J396:L396",
+              "row_key": "claim_id=C1-1807"
+            }
+          },
+          "current_values": {
+            "paid": 236195.23,
+            "outstanding": 149863.81,
+            "gross_incurred": 387350.09
+          },
+          "delta": 1291.05
+        },
+        {
+          "claim_id": "C1-1809",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J397:L397",
+              "row_key": "claim_id=C1-1809"
+            }
+          },
+          "current_values": {
+            "paid": 81237.78,
+            "outstanding": 16031.33,
+            "gross_incurred": 99418.59
+          },
+          "delta": 2149.48
+        },
+        {
+          "claim_id": "C1-1810",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J398:L398",
+              "row_key": "claim_id=C1-1810"
+            }
+          },
+          "current_values": {
+            "paid": 369965.12,
+            "outstanding": 123758.49,
+            "gross_incurred": 527682.15
+          },
+          "delta": 33958.54
+        },
+        {
+          "claim_id": "C1-1811",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J399:L399",
+              "row_key": "claim_id=C1-1811"
+            }
+          },
+          "current_values": {
+            "paid": 217266.26,
+            "outstanding": 0.0,
+            "gross_incurred": 236384.07
+          },
+          "delta": 19117.81
+        },
+        {
+          "claim_id": "C1-1812",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J400:L400",
+              "row_key": "claim_id=C1-1812"
+            }
+          },
+          "current_values": {
+            "paid": 166532.62,
+            "outstanding": 22909.5,
+            "gross_incurred": 198464.87
+          },
+          "delta": 9022.75
+        },
+        {
+          "claim_id": "C1-1815",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J401:L401",
+              "row_key": "claim_id=C1-1815"
+            }
+          },
+          "current_values": {
+            "paid": 238581.39,
+            "outstanding": 104252.38,
+            "gross_incurred": 362216.86
+          },
+          "delta": 19383.09
+        },
+        {
+          "claim_id": "C1-1816",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J402:L402",
+              "row_key": "claim_id=C1-1816"
+            }
+          },
+          "current_values": {
+            "paid": 50823.6,
+            "outstanding": 121257.73,
+            "gross_incurred": 175633.93
+          },
+          "delta": 3552.6
+        },
+        {
+          "claim_id": "C1-1819",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J403:L403",
+              "row_key": "claim_id=C1-1819"
+            }
+          },
+          "current_values": {
+            "paid": 58984.79,
+            "outstanding": 42625.25,
+            "gross_incurred": 109183.31
+          },
+          "delta": 7573.27
+        },
+        {
+          "claim_id": "C1-1820",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J404:L404",
+              "row_key": "claim_id=C1-1820"
+            }
+          },
+          "current_values": {
+            "paid": 92600.49,
+            "outstanding": 0.0,
+            "gross_incurred": 94678.27
+          },
+          "delta": 2077.78
+        },
+        {
+          "claim_id": "C1-1824",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J405:L405",
+              "row_key": "claim_id=C1-1824"
+            }
+          },
+          "current_values": {
+            "paid": 16355.23,
+            "outstanding": 106777.2,
+            "gross_incurred": 124771.38
+          },
+          "delta": 1638.95
+        },
+        {
+          "claim_id": "C1-1827",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J406:L406",
+              "row_key": "claim_id=C1-1827"
+            }
+          },
+          "current_values": {
+            "paid": 154405.5,
+            "outstanding": 173919.08,
+            "gross_incurred": 335106.67
+          },
+          "delta": 6782.09
+        },
+        {
+          "claim_id": "C1-1828",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J407:L407",
+              "row_key": "claim_id=C1-1828"
+            }
+          },
+          "current_values": {
+            "paid": 376198.64,
+            "outstanding": 190184.53,
+            "gross_incurred": 585065.94
+          },
+          "delta": 18682.77
+        },
+        {
+          "claim_id": "C1-1830",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J408:L408",
+              "row_key": "claim_id=C1-1830"
+            }
+          },
+          "current_values": {
+            "paid": 520745.95,
+            "outstanding": 143806.42,
+            "gross_incurred": 671602.35
+          },
+          "delta": 7049.98
+        },
+        {
+          "claim_id": "C1-1832",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J409:L409",
+              "row_key": "claim_id=C1-1832"
+            }
+          },
+          "current_values": {
+            "paid": 23433.34,
+            "outstanding": 229953.06,
+            "gross_incurred": 269050.29
+          },
+          "delta": 15663.89
+        },
+        {
+          "claim_id": "C1-1833",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J410:L410",
+              "row_key": "claim_id=C1-1833"
+            }
+          },
+          "current_values": {
+            "paid": 0.0,
+            "outstanding": 220010.09,
+            "gross_incurred": 230895.41
+          },
+          "delta": 10885.32
+        },
+        {
+          "claim_id": "C1-1834",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J411:L411",
+              "row_key": "claim_id=C1-1834"
+            }
+          },
+          "current_values": {
+            "paid": 33709.23,
+            "outstanding": 71397.18,
+            "gross_incurred": 110713.46
+          },
+          "delta": 5607.05
+        },
+        {
+          "claim_id": "C1-1835",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J412:L412",
+              "row_key": "claim_id=C1-1835"
+            }
+          },
+          "current_values": {
+            "paid": 80942.36,
+            "outstanding": 140307.43,
+            "gross_incurred": 230961.15
+          },
+          "delta": 9711.36
+        },
+        {
+          "claim_id": "C1-1836",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J413:L413",
+              "row_key": "claim_id=C1-1836"
+            }
+          },
+          "current_values": {
+            "paid": 0.0,
+            "outstanding": 71165.42,
+            "gross_incurred": 73236.75
+          },
+          "delta": 2071.33
+        },
+        {
+          "claim_id": "C1-1838",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J414:L414",
+              "row_key": "claim_id=C1-1838"
+            }
+          },
+          "current_values": {
+            "paid": 387068.95,
+            "outstanding": 337698.03,
+            "gross_incurred": 727497.13
+          },
+          "delta": 2730.15
+        },
+        {
+          "claim_id": "C1-1840",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J415:L415",
+              "row_key": "claim_id=C1-1840"
+            }
+          },
+          "current_values": {
+            "paid": 0.0,
+            "outstanding": 288092.4,
+            "gross_incurred": 305992.91
+          },
+          "delta": 17900.51
+        },
+        {
+          "claim_id": "C1-1841",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J416:L416",
+              "row_key": "claim_id=C1-1841"
+            }
+          },
+          "current_values": {
+            "paid": 102707.04,
+            "outstanding": 151180.66,
+            "gross_incurred": 259553.95
+          },
+          "delta": 5666.25
+        },
+        {
+          "claim_id": "C1-1842",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J417:L417",
+              "row_key": "claim_id=C1-1842"
+            }
+          },
+          "current_values": {
+            "paid": 47843.56,
+            "outstanding": 55243.91,
+            "gross_incurred": 107664.27
+          },
+          "delta": 4576.8
+        },
+        {
+          "claim_id": "C1-1846",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J418:L418",
+              "row_key": "claim_id=C1-1846"
+            }
+          },
+          "current_values": {
+            "paid": 13888.16,
+            "outstanding": 53164.49,
+            "gross_incurred": 70903.63
+          },
+          "delta": 3850.98
+        },
+        {
+          "claim_id": "C1-1848",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J419:L419",
+              "row_key": "claim_id=C1-1848"
+            }
+          },
+          "current_values": {
+            "paid": 0.0,
+            "outstanding": 215698.57,
+            "gross_incurred": 221741.75
+          },
+          "delta": 6043.18
+        },
+        {
+          "claim_id": "C1-1852",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "J420:L420",
+              "row_key": "claim_id=C1-1852"
+            }
+          },
+          "current_values": {
+            "paid": 0.0,
+            "outstanding": 117057.41,
+            "gross_incurred": 117116.04
+          },
+          "delta": 58.63
+        }
+      ],
+      "suggested_action": "Correct incurred or component columns for rows 395-420; confirm whether an unlisted component (e.g., expense) is included in incurred only.",
+      "samples_returned": 26
+    },
+    {
+      "rule_id": "PRM-C",
+      "title": "2025 GNEPI projection out of line with trend (CA Commercial = 1,000; Personal +34%) and feeds pricing base",
+      "severity": "Critical",
+      "context": "Premium Information current; as-of 2024-09-30 so 2024 treated as incomplete; benchmark = avg of full years 2022 (Q) and 2023 (R); threshold |Δ|>20% and >$250k",
+      "grouping_key": "PRM-C|Premium Information|GNEPI|proj2025",
+      "instance_count": 7,
+      "delta_summary": {
+        "commercial_total_U17": 151191000,
+        "commercial_benchmark": 183178253.51,
+        "commercial_pct": -17.5,
+        "personal_total_U24": 167930000,
+        "personal_benchmark": 125047018.54,
+        "personal_pct": 34.3,
+        "total_U26": 319121000,
+        "email_subject_base_B44": 319121000,
+        "email_contract_premium_B46": 33826826,
+        "note": "Email B44 subject base = U26 and contract premium = B44 x 10.6% total adj rate, so the 1,000 CA Commercial value flows directly into pricing"
+      },
+      "instances": [
+        {
+          "block": "Commercial CA",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "U12",
+              "range": "Q12:R12"
+            }
+          },
+          "current_values": {
+            "proj_2025": 1000,
+            "benchmark_avg_2022_2023": 49880615.01
+          },
+          "delta": -49879615.01,
+          "delta_pct": -100.0
+        },
+        {
+          "block": "Personal CA",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "U19",
+              "range": "Q19:R19"
+            }
+          },
+          "current_values": {
+            "proj_2025": 57710000,
+            "benchmark_avg_2022_2023": 41545606.94
+          },
+          "delta": 16164393.06,
+          "delta_pct": 38.9
+        },
+        {
+          "block": "Personal FL",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "U20",
+              "range": "Q20:R20"
+            }
+          },
+          "current_values": {
+            "proj_2025": 45530000,
+            "benchmark_avg_2022_2023": 33517923.54
+          },
+          "delta": 12012076.46,
+          "delta_pct": 35.8
+        },
+        {
+          "block": "Personal IL",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "U21",
+              "range": "Q21:R21"
+            }
+          },
+          "current_values": {
+            "proj_2025": 11660000,
+            "benchmark_avg_2022_2023": 8679089.41
+          },
+          "delta": 2980910.59,
+          "delta_pct": 34.3
+        },
+        {
+          "block": "Personal NY",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "U22",
+              "range": "Q22:R22"
+            }
+          },
+          "current_values": {
+            "proj_2025": 21360000,
+            "benchmark_avg_2022_2023": 16208288.34
+          },
+          "delta": 5151711.66,
+          "delta_pct": 31.8
+        },
+        {
+          "block": "Personal TX",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "U23",
+              "range": "Q23:R23"
+            }
+          },
+          "current_values": {
+            "proj_2025": 31670000,
+            "benchmark_avg_2022_2023": 25096110.32
+          },
+          "delta": 6573889.68,
+          "delta_pct": 26.2
+        },
+        {
+          "block": "Personal LoB Total",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "U24",
+              "range": "Q24:R24"
+            }
+          },
+          "current_values": {
+            "proj_2025": 167930000,
+            "benchmark_avg_2022_2023": 125047018.54
+          },
+          "delta": 42882981.46,
+          "delta_pct": 34.3
+        }
+      ],
+      "suggested_action": "Confirm intended CA Commercial 2025 GNEPI (exit vs data error) and support for +34% Personal growth; restate subject base/deposit premium in Email B44:B48.",
+      "samples_returned": 7
+    },
+    {
+      "rule_id": "PRM-E",
+      "title": "2024 Revised GNEPI ~88% below 2024 Projected with no explanation (also fails PRM-B vs prior projection)",
+      "severity": "High",
+      "context": "Premium Information current S (2024 Projected) vs T (2024 Revised); prior T (2024 projected) identical to current S; threshold max(20%, $250k)",
+      "grouping_key": "PRM-E|Premium Information|GNEPI|TY2024",
+      "instance_count": 13,
+      "delta_summary": {
+        "total_projected_S26": 337030000,
+        "total_revised_T26": 39710000,
+        "delta": -297320000,
+        "pct_range": "-69.1% to -99.4% by cell",
+        "note": "Revised values (e.g., CA 5.8M vs 54.87M) look like dropped digits or partial-period figures; inconsistent with 2025 projection U26 = 319.1M and exposure-listing WP"
+      },
+      "instances": [
+        {
+          "block": "Commercial CA",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T12",
+              "range": "S12:T12"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T12"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 54870000
+          },
+          "current_values": {
+            "2024_projected": 54870000,
+            "2024_revised": 5800000
+          },
+          "delta": -49070000.0,
+          "delta_pct": -89.4
+        },
+        {
+          "block": "Commercial FL",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T13",
+              "range": "S13:T13"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T13"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 58410000
+          },
+          "current_values": {
+            "2024_projected": 58410000,
+            "2024_revised": 6360000
+          },
+          "delta": -52050000.0,
+          "delta_pct": -89.1
+        },
+        {
+          "block": "Commercial IL",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T14",
+              "range": "S14:T14"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T14"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 12700000
+          },
+          "current_values": {
+            "2024_projected": 12700000,
+            "2024_revised": 3110000
+          },
+          "delta": -9590000.0,
+          "delta_pct": -75.5
+        },
+        {
+          "block": "Commercial NY",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T15",
+              "range": "S15:T15"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T15"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 30660000
+          },
+          "current_values": {
+            "2024_projected": 30660000,
+            "2024_revised": 9480000
+          },
+          "delta": -21180000.0,
+          "delta_pct": -69.1
+        },
+        {
+          "block": "Commercial TX",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T16",
+              "range": "S16:T16"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T16"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 46760000
+          },
+          "current_values": {
+            "2024_projected": 46760000,
+            "2024_revised": 5040000
+          },
+          "delta": -41720000.0,
+          "delta_pct": -89.2
+        },
+        {
+          "block": "Commercial LoB Total",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T17",
+              "range": "S17:T17"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T17"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 203400000
+          },
+          "current_values": {
+            "2024_projected": 203400000,
+            "2024_revised": 29790000
+          },
+          "delta": -173610000.0,
+          "delta_pct": -85.4
+        },
+        {
+          "block": "Personal CA",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T19",
+              "range": "S19:T19"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T19"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 45770000
+          },
+          "current_values": {
+            "2024_projected": 45770000,
+            "2024_revised": 4960000
+          },
+          "delta": -40810000.0,
+          "delta_pct": -89.2
+        },
+        {
+          "block": "Personal FL",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T20",
+              "range": "S20:T20"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T20"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 37080000
+          },
+          "current_values": {
+            "2024_projected": 37080000,
+            "2024_revised": 3360000
+          },
+          "delta": -33720000.0,
+          "delta_pct": -90.9
+        },
+        {
+          "block": "Personal IL",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T21",
+              "range": "S21:T21"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T21"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 8990000
+          },
+          "current_values": {
+            "2024_projected": 8990000,
+            "2024_revised": 1100000
+          },
+          "delta": -7890000.0,
+          "delta_pct": -87.8
+        },
+        {
+          "block": "Personal NY",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T22",
+              "range": "S22:T22"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T22"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 16560000
+          },
+          "current_values": {
+            "2024_projected": 16560000,
+            "2024_revised": 340000
+          },
+          "delta": -16220000.0,
+          "delta_pct": -97.9
+        },
+        {
+          "block": "Personal TX",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T23",
+              "range": "S23:T23"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T23"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 25230000
+          },
+          "current_values": {
+            "2024_projected": 25230000,
+            "2024_revised": 160000
+          },
+          "delta": -25070000.0,
+          "delta_pct": -99.4
+        },
+        {
+          "block": "Personal LoB Total",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T24",
+              "range": "S24:T24"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T24"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 133630000
+          },
+          "current_values": {
+            "2024_projected": 133630000,
+            "2024_revised": 9920000
+          },
+          "delta": -123710000.0,
+          "delta_pct": -92.6
+        },
+        {
+          "block": "Total subject GNEPI",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T26",
+              "range": "S26:T26"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "T26"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 337030000
+          },
+          "current_values": {
+            "2024_projected": 337030000,
+            "2024_revised": 39710000
+          },
+          "delta": -297320000.0,
+          "delta_pct": -88.2
+        }
+      ],
+      "suggested_action": "Obtain corrected 2024 revised GNEPI and its basis (full-year estimate vs YTD); reconcile to exposure listing and 2025 projection.",
+      "samples_returned": 13
+    },
+    {
+      "rule_id": "SEC-A",
+      "title": "California dropped from exposure listings and claims flagged \"no\" to write again, but still in scope elsewhere",
+      "severity": "High",
+      "context": "Territory/segment scope (CA) across Email, Exposure Listings, Limit Profiles, Premium Information, Claim tabs; no explanatory note",
+      "grouping_key": "SEC-A|CA territory|all exhibits",
+      "instance_count": 5,
+      "delta_summary": {
+        "commercial_CA_policies_prior": 1107,
+        "commercial_CA_policies_current": 0,
+        "commercial_CA_WP_prior": 50717104.43,
+        "personal_CA_policies_prior": 984,
+        "personal_CA_policies_current": 0,
+        "personal_CA_WP_prior": 42012935.25
+      },
+      "instances": [
+        {
+          "item": "Exposure Listing (Commercial) has no CA rows",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "G14:G3916"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "G14:G2919"
+            }
+          },
+          "prior_values": {
+            "CA_count": 1107
+          },
+          "current_values": {
+            "CA_count": 0
+          }
+        },
+        {
+          "item": "Exposure Listing (Personal) has no CA rows",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "G14:G3262"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "G14:G2474"
+            }
+          },
+          "prior_values": {
+            "CA_count": 984
+          },
+          "current_values": {
+            "CA_count": 0
+          }
+        },
+        {
+          "item": "Email territorial scope still includes CA",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Email",
+              "cell": "B12"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Email",
+              "cell": "B12"
+            }
+          },
+          "current_values": {
+            "text": "US (CA, NY, TX, FL, IL states)"
+          }
+        },
+        {
+          "item": "Premium Information keeps CA: Commercial 2025 proj 1,000 but Personal CA 2025 proj 57.71M (+38.9% vs trend)",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "range": "U12,U19"
+            }
+          },
+          "current_values": {
+            "U12": 1000,
+            "U19": 57710000
+          }
+        },
+        {
+          "item": "Limit Profiles (current block) still include CA policies (see EXP-D)",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Commercial)",
+              "cell": "F23"
+            }
+          },
+          "current_values": {
+            "commercial_F23": 4115,
+            "personal_F23": 3376
+          }
+        }
+      ],
+      "suggested_action": "Confirm whether CA was exited/excluded (and from which date/LoB); apply scope consistently to premium base, limit profiles, claims and Email; provide as-if restatement.",
+      "samples_returned": 5
+    },
+    {
+      "rule_id": "CLM-E",
+      "title": "All Commercial CA claims switched to \"would not write again\" (restated go-forward loss set to 0)",
+      "severity": "High",
+      "context": "Claim (Non-Cat Commercial) & Claim (Cat Commercial), column O (write again) and P (restated loss on go-forward basis); all affected claims are CA",
+      "grouping_key": "CLM-E|Commercial claims|CA|write_again",
+      "instance_count": 81,
+      "delta_summary": {
+        "non_cat_commercial": 75,
+        "cat_commercial": 6,
+        "current_incurred_removed_from_go_forward": 25850354.26,
+        "states": {
+          "CA": 81
+        },
+        "note": "Personal CA claims unchanged (15%/42% \"no\"), so the filter is inconsistent across LoBs and with Personal CA premium growth"
+      },
+      "instances": [
+        {
+          "claim_id": "C1-1037",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O69"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O13:P13"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 192331.24
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 192331.24
+          }
+        },
+        {
+          "claim_id": "C1-1068",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O83"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O19:P19"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 113974.93
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 113974.93
+          }
+        },
+        {
+          "claim_id": "C1-1103",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O102"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O31:P31"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 79836.93
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 79836.93
+          }
+        },
+        {
+          "claim_id": "C1-1111",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O105"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O32:P32"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 147965.36
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 147965.36
+          }
+        },
+        {
+          "claim_id": "C1-1120",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O108"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O34:P34"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 154198.38
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 154198.38
+          }
+        },
+        {
+          "claim_id": "C1-1129",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O114"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O39:P39"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 66819.8
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 66819.8
+          }
+        },
+        {
+          "claim_id": "C1-1135",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O116"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O41:P41"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 337431.02
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 337431.02
+          }
+        },
+        {
+          "claim_id": "C1-1140",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O120"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O44:P44"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 137198.63
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 137198.63
+          }
+        },
+        {
+          "claim_id": "C1-1155",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O127"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O51:P51"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 620600.57
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 620600.57
+          }
+        },
+        {
+          "claim_id": "C1-1158",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O129"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O53:P53"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 145246.17
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 145246.17
+          }
+        },
+        {
+          "claim_id": "C1-1168",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O136"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O59:P59"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 558116.18
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 558116.18
+          }
+        },
+        {
+          "claim_id": "C1-1169",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O137"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O60:P60"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 258647.09
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 258647.09
+          }
+        },
+        {
+          "claim_id": "C1-1175",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O141"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O63:P63"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 446141.94
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 446141.94
+          }
+        },
+        {
+          "claim_id": "C1-1181",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O145"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O67:P67"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 70472.89
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 70472.89
+          }
+        },
+        {
+          "claim_id": "C1-1198",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O155"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O75:P75"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 236099.01
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 236099.01
+          }
+        },
+        {
+          "claim_id": "C1-1201",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O157"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O77:P77"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 71511.86
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 71511.86
+          }
+        },
+        {
+          "claim_id": "C1-1205",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O159"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O78:P78"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 526875.51
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 526875.51
+          }
+        },
+        {
+          "claim_id": "C1-1206",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O160"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O79:P79"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 73221.62
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 73221.62
+          }
+        },
+        {
+          "claim_id": "C1-1219",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O167"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O86:P86"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 92907.36
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 92907.36
+          }
+        },
+        {
+          "claim_id": "C1-1227",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O172"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O91:P91"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 1101202.96
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 1101202.96
+          }
+        },
+        {
+          "claim_id": "C1-1233",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O175"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O94:P94"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 165102.34
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 165102.34
+          }
+        },
+        {
+          "claim_id": "C1-1239",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O177"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O96:P96"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 118602.96
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 118602.96
+          }
+        },
+        {
+          "claim_id": "C1-1243",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O179"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O98:P98"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 1037235.55
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 1037235.55
+          }
+        },
+        {
+          "claim_id": "C1-1252",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O182"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O101:P101"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 164809.11
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 164809.11
+          }
+        },
+        {
+          "claim_id": "C1-1254",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O184"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O103:P103"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 870802.61
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 870802.61
+          }
+        },
+        {
+          "claim_id": "C1-1262",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O188"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O107:P107"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 209274.05
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 209274.05
+          }
+        },
+        {
+          "claim_id": "C1-1278",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O195"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O114:P114"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 500772.05
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 500772.05
+          }
+        },
+        {
+          "claim_id": "C1-1284",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O198"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O117:P117"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 137988.69
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 137988.69
+          }
+        },
+        {
+          "claim_id": "C1-1307",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O210"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O129:P129"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 377839.42
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 377839.42
+          }
+        },
+        {
+          "claim_id": "C1-1309",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O212"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O131:P131"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 227336.79
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 227336.79
+          }
+        },
+        {
+          "claim_id": "C1-1325",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O218"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O137:P137"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 248269.37
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 248269.37
+          }
+        },
+        {
+          "claim_id": "C1-1337",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O224"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O143:P143"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 63453.37
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 63453.37
+          }
+        },
+        {
+          "claim_id": "C1-1343",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O226"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O145:P145"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 533419.77
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 533419.77
+          }
+        },
+        {
+          "claim_id": "C1-1353",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O232"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O150:P150"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 174745.58
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 174745.58
+          }
+        },
+        {
+          "claim_id": "C1-1359",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O235"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O153:P153"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 71769.01
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 71769.01
+          }
+        },
+        {
+          "claim_id": "C1-1372",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O242"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O160:P160"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 241362.77
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 241362.77
+          }
+        },
+        {
+          "claim_id": "C1-1375",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O243"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O161:P161"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 187286.82
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 187286.82
+          }
+        },
+        {
+          "claim_id": "C1-1383",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O249"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O166:P166"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 428085.97
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 428085.97
+          }
+        },
+        {
+          "claim_id": "C1-1413",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O267"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O182:P182"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 808125.92
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 808125.92
+          }
+        },
+        {
+          "claim_id": "C1-1417",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O269"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O184:P184"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 128703.33
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 128703.33
+          }
+        },
+        {
+          "claim_id": "C1-1418",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O270"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O185:P185"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 202981.72
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 202981.72
+          }
+        },
+        {
+          "claim_id": "C1-1430",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O277"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O192:P192"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 206392.11
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 206392.11
+          }
+        },
+        {
+          "claim_id": "C1-1438",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O278"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O193:P193"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 412271.28
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 412271.28
+          }
+        },
+        {
+          "claim_id": "C1-1445",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O284"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O199:P199"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 104177.76
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 104177.76
+          }
+        },
+        {
+          "claim_id": "C1-1449",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O287"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O202:P202"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 298147.36
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 298147.36
+          }
+        },
+        {
+          "claim_id": "C1-1452",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O290"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O205:P205"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 222293.79
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 222293.79
+          }
+        },
+        {
+          "claim_id": "C1-1463",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O295"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O210:P210"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 1357272.02
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 1357272.02
+          }
+        },
+        {
+          "claim_id": "C1-1464",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O296"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O211:P211"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 273135.34
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 273135.34
+          }
+        },
+        {
+          "claim_id": "C1-1465",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O297"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O212:P212"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 518008.21
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 518008.21
+          }
+        },
+        {
+          "claim_id": "C1-1472",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "cell": "O302"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "O217:P217"
+            }
+          },
+          "prior_values": {
+            "write_again": "yes",
+            "restated": 125844.5
+          },
+          "current_values": {
+            "write_again": "no",
+            "restated": 0.0,
+            "incurred": 125844.5
+          }
+        }
+      ],
+      "evidence_csv_base64": "dGFiLGNsYWltX2lkLHN0YXRlLHByaW9yX3JvdyxjdXJyZW50X3Jvdyxwcmlvcl93cml0ZV9hZ2FpbixjdXJyZW50X3dyaXRlX2FnYWluLHByaW9yX3Jlc3RhdGVkLGN1cnJlbnRfcmVzdGF0ZWQsY3VycmVudF9pbmN1cnJlZApDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMDM3LENBLDY5LDEzLHllcyxubywxOTIzMzEuMjQsMC4wLDE5MjMzMS4yNApDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMDY4LENBLDgzLDE5LHllcyxubywxMTM5NzQuOTMsMC4wLDExMzk3NC45MwpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMTAzLENBLDEwMiwzMSx5ZXMsbm8sNzk4MzYuOTMsMC4wLDc5ODM2LjkzCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTExMTEsQ0EsMTA1LDMyLHllcyxubywxNDc5NjUuMzYsMC4wLDE0Nzk2NS4zNgpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMTIwLENBLDEwOCwzNCx5ZXMsbm8sMTU0MTk4LjM4LDAuMCwxNTQxOTguMzgKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTEyOSxDQSwxMTQsMzkseWVzLG5vLDY2ODE5LjgsMC4wLDY2ODE5LjgKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTEzNSxDQSwxMTYsNDEseWVzLG5vLDMzNzQzMS4wMiwwLjAsMzM3NDMxLjAyCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTExNDAsQ0EsMTIwLDQ0LHllcyxubywxMzcxOTguNjMsMC4wLDEzNzE5OC42MwpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMTU1LENBLDEyNyw1MSx5ZXMsbm8sNjIwNjAwLjU3LDAuMCw2MjA2MDAuNTcKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTE1OCxDQSwxMjksNTMseWVzLG5vLDE0NTI0Ni4xNywwLjAsMTQ1MjQ2LjE3CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTExNjgsQ0EsMTM2LDU5LHllcyxubyw1NTgxMTYuMTgsMC4wLDU1ODExNi4xOApDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMTY5LENBLDEzNyw2MCx5ZXMsbm8sMjU4NjQ3LjA5LDAuMCwyNTg2NDcuMDkKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTE3NSxDQSwxNDEsNjMseWVzLG5vLDQ0NjE0MS45NCwwLjAsNDQ2MTQxLjk0CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTExODEsQ0EsMTQ1LDY3LHllcyxubyw3MDQ3Mi44OSwwLjAsNzA0NzIuODkKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTE5OCxDQSwxNTUsNzUseWVzLG5vLDIzNjA5OS4wMSwwLjAsMjM2MDk5LjAxCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTEyMDEsQ0EsMTU3LDc3LHllcyxubyw3MTUxMS44NiwwLjAsNzE1MTEuODYKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTIwNSxDQSwxNTksNzgseWVzLG5vLDUyNjg3NS41MSwwLjAsNTI2ODc1LjUxCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTEyMDYsQ0EsMTYwLDc5LHllcyxubyw3MzIyMS42MiwwLjAsNzMyMjEuNjIKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTIxOSxDQSwxNjcsODYseWVzLG5vLDkyOTA3LjM2LDAuMCw5MjkwNy4zNgpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMjI3LENBLDE3Miw5MSx5ZXMsbm8sMTEwMTIwMi45NiwwLjAsMTEwMTIwMi45NgpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMjMzLENBLDE3NSw5NCx5ZXMsbm8sMTY1MTAyLjM0LDAuMCwxNjUxMDIuMzQKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTIzOSxDQSwxNzcsOTYseWVzLG5vLDExODYwMi45NiwwLjAsMTE4NjAyLjk2CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTEyNDMsQ0EsMTc5LDk4LHllcyxubywxMDM3MjM1LjU1LDAuMCwxMDM3MjM1LjU1CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTEyNTIsQ0EsMTgyLDEwMSx5ZXMsbm8sMTY0ODA5LjExLDAuMCwxNjQ4MDkuMTEKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTI1NCxDQSwxODQsMTAzLHllcyxubyw4NzA4MDIuNjEsMC4wLDg3MDgwMi42MQpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMjYyLENBLDE4OCwxMDcseWVzLG5vLDIwOTI3NC4wNSwwLjAsMjA5Mjc0LjA1CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTEyNzgsQ0EsMTk1LDExNCx5ZXMsbm8sNTAwNzcyLjA1LDAuMCw1MDA3NzIuMDUKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTI4NCxDQSwxOTgsMTE3LHllcyxubywxMzc5ODguNjksMC4wLDEzNzk4OC42OQpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMzA3LENBLDIxMCwxMjkseWVzLG5vLDM3NzgzOS40MiwwLjAsMzc3ODM5LjQyCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTEzMDksQ0EsMjEyLDEzMSx5ZXMsbm8sMjI3MzM2Ljc5LDAuMCwyMjczMzYuNzkKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTMyNSxDQSwyMTgsMTM3LHllcyxubywyNDgyNjkuMzcsMC4wLDI0ODI2OS4zNwpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMzM3LENBLDIyNCwxNDMseWVzLG5vLDYzNDUzLjM3LDAuMCw2MzQ1My4zNwpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMzQzLENBLDIyNiwxNDUseWVzLG5vLDUzMzQxOS43NywwLjAsNTMzNDE5Ljc3CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTEzNTMsQ0EsMjMyLDE1MCx5ZXMsbm8sMTc0NzQ1LjU4LDAuMCwxNzQ3NDUuNTgKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTM1OSxDQSwyMzUsMTUzLHllcyxubyw3MTc2OS4wMSwwLjAsNzE3NjkuMDEKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTM3MixDQSwyNDIsMTYwLHllcyxubywyNDEzNjIuNzcsMC4wLDI0MTM2Mi43NwpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xMzc1LENBLDI0MywxNjEseWVzLG5vLDE4NzI4Ni44MiwwLjAsMTg3Mjg2LjgyCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTEzODMsQ0EsMjQ5LDE2Nix5ZXMsbm8sNDI4MDg1Ljk3LDAuMCw0MjgwODUuOTcKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTQxMyxDQSwyNjcsMTgyLHllcyxubyw4MDgxMjUuOTIsMC4wLDgwODEyNS45MgpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNDE3LENBLDI2OSwxODQseWVzLG5vLDEyODcwMy4zMywwLjAsMTI4NzAzLjMzCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE0MTgsQ0EsMjcwLDE4NSx5ZXMsbm8sMjAyOTgxLjcyLDAuMCwyMDI5ODEuNzIKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTQzMCxDQSwyNzcsMTkyLHllcyxubywyMDYzOTIuMTEsMC4wLDIwNjM5Mi4xMQpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNDM4LENBLDI3OCwxOTMseWVzLG5vLDQxMjI3MS4yOCwwLjAsNDEyMjcxLjI4CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE0NDUsQ0EsMjg0LDE5OSx5ZXMsbm8sMTA0MTc3Ljc2LDAuMCwxMDQxNzcuNzYKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTQ0OSxDQSwyODcsMjAyLHllcyxubywyOTgxNDcuMzYsMC4wLDI5ODE0Ny4zNgpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNDUyLENBLDI5MCwyMDUseWVzLG5vLDIyMjI5My43OSwwLjAsMjIyMjkzLjc5CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE0NjMsQ0EsMjk1LDIxMCx5ZXMsbm8sMTM1NzI3Mi4wMiwwLjAsMTM1NzI3Mi4wMgpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNDY0LENBLDI5NiwyMTEseWVzLG5vLDI3MzEzNS4zNCwwLjAsMjczMTM1LjM0CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE0NjUsQ0EsMjk3LDIxMix5ZXMsbm8sNTE4MDA4LjIxLDAuMCw1MTgwMDguMjEKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTQ3MixDQSwzMDIsMjE3LHllcyxubywxMjU4NDQuNSwwLjAsMTI1ODQ0LjUKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTQ3OCxDQSwzMDcsMjIyLHllcyxubywxMzMzOTUuMjUsMC4wLDEzMzM5NS4yNQpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNDgxLENBLDMwOSwyMjQseWVzLG5vLDM4MzgzOS4wOSwwLjAsMzgzODM5LjA5CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE0ODQsQ0EsMzExLDIyNix5ZXMsbm8sMzYxMTQ2LjU0LDAuMCwzNjExNDYuNTQKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTUxMixDQSwzMjcsMjQyLHllcyxubywxODI4OTkuNzksMC4wLDE4Mjg5OS43OQpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNTE1LENBLDMzMCwyNDUseWVzLG5vLDY5MDEzNS4xMywwLjAsNjkwMTM1LjEzCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE1NDIsQ0EsMzQyLDI1Nyx5ZXMsbm8sMTIyMjQxLjMyLDAuMCwxMjIyNDEuMzIKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTU0NSxDQSwzNDMsMjU4LHllcyxubyw4MTkxMC40NiwwLjAsODE5MTAuNDYKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTU1MCxDQSwzNDYsMjYxLHllcyxubywyMzUwNzYuODMsMC4wLDIzNTA3Ni44MwpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNTU0LENBLDM1MCwyNjUseWVzLG5vLDI0OTkwNi40NywwLjAsMjQ5OTA2LjQ3CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE1NTcsQ0EsMzUzLDI2OCx5ZXMsbm8sMTE4NzYwLjQyLDAuMCwxMTg3NjAuNDIKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTU2NixDQSwzNTksMjc0LHllcyxubyw5MzA1Ny4xOCwwLjAsOTMwNTcuMTgKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTU2NyxDQSwzNjAsMjc1LHllcyxubywzMTM5NDYuMTYsMC4wLDMxMzk0Ni4xNgpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNTcwLENBLDM2MywyNzgseWVzLG5vLDE4NzU4OC4xMSwwLjAsMTg3NTg4LjExCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE1OTksQ0EsMzgwLDI5NCx5ZXMsbm8sNjY2MzUuNDMsMC4wLDY2NjM1LjQzCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE2MDAsQ0EsMzgxLDI5NSx5ZXMsbm8sMzc1MzI0LjE5LDAuMCwzNzUzMjQuMTkKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTYzMSxDQSwzOTEsMzA1LHllcyxubywzMjIxODQuMTUsMC4wLDMyMjE4NC4xNQpDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNjMzLENBLDM5MiwzMDYseWVzLG5vLDY3NzgwLjY0LDAuMCw2Nzc4MC42NApDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNjM4LENBLDM5NiwzMTAseWVzLG5vLDExMDQyNC44MSwwLjAsMTEwNDI0LjgxCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE2MzksQ0EsMzk3LDMxMSx5ZXMsbm8sNDAwMDc1LjIyLDAuMCw0MDAwNzUuMjIKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTY0MSxDQSwzOTgsMzEyLHllcyxubyw3MTgzNi44MywwLjAsNzE4MzYuODMKQ2xhaW0gKE5vbi1DYXQgQ29tbWVyY2lhbCksQzEtMTY0NSxDQSw0MDEsMzE1LHllcyxubywyMjE4MDkuMjgsMC4wLDIyMTgwOS4yOApDbGFpbSAoTm9uLUNhdCBDb21tZXJjaWFsKSxDMS0xNjUxLENBLDQwNCwzMTcseWVzLG5vLDE2MjMxMC4wMiwwLjAsMTYyMzEwLjAyCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE2NTksQ0EsNDA4LDMyMSx5ZXMsbm8sOTg5MzIuMjgsMC4wLDk4OTMyLjI4CkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE2NjEsQ0EsNDA5LDMyMix5ZXMsbm8sMTQ1MzAwLjIsMC4wLDE0NTMwMC4yCkNsYWltIChOb24tQ2F0IENvbW1lcmNpYWwpLEMxLTE2NjIsQ0EsNDEwLDMyMyx5ZXMsbm8sMTM4MDA1Ljc0LDAuMCwxMzgwMDUuNzQKQ2xhaW0gKENhdCBDb21tZXJjaWFsKSxDMS0xMTg4LENBLDQxLDIwLHllcyxubyw4NjA3NTIuNDIsMC4wLDg2MDc1Mi40MgpDbGFpbSAoQ2F0IENvbW1lcmNpYWwpLEMxLTEyOTYsQ0EsNjAsMzQseWVzLG5vLDUzNDk4MS42MiwwLjAsNTM0OTgxLjYyCkNsYWltIChDYXQgQ29tbWVyY2lhbCksQzEtMTQzMSxDQSw4MCw0OSx5ZXMsbm8sMzEyNDkzLjg0LDAuMCwzMTI0OTMuODQKQ2xhaW0gKENhdCBDb21tZXJjaWFsKSxDMS0xNDY2LENBLDg3LDU0LHllcyxubywzMjgyNDEuNTcsMC4wLDMyODI0MS41NwpDbGFpbSAoQ2F0IENvbW1lcmNpYWwpLEMxLTE2MTgsQ0EsMTAxLDY4LHllcyxubywxODg5NzY4LjEsMC4wLDE4ODk3NjguMQpDbGFpbSAoQ2F0IENvbW1lcmNpYWwpLEMxLTE2NDgsQ0EsMTA1LDcyLHllcyxubyw3NDMyODYuMTUsMC4wLDc0MzI4Ni4xNQo=",
+      "suggested_action": "Confirm CA Commercial exit and effective date; confirm whether Personal CA is retained; ensure premium base and exposure exhibits use the same as-if scope.",
+      "samples_returned": 50
+    },
+    {
+      "rule_id": "EXP-D",
+      "title": "Exposure listings no longer reconcile to Limit Profiles (−29% / −33% premium; prior reconciled exactly)",
+      "severity": "High",
+      "context": "Within current file: Exposure Listing written premium vs Limit Profile current block (as-of 2024-09-30); prior file reconciled to the cent",
+      "grouping_key": "EXP-D|Exposure Listing vs Limit Profile|WP",
+      "instance_count": 2,
+      "delta_summary": {
+        "commercial_gap": -58491872.74,
+        "personal_gap": -50542493.22,
+        "likely_driver": "CA policies excluded from listings only (see SEC-A)"
+      },
+      "instances": [
+        {
+          "block": "Commercial",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "J14:J2919"
+            },
+            "current_summary": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Commercial)",
+              "range": "E23:J23"
+            }
+          },
+          "current_values": {
+            "listing_policies": 2906,
+            "listing_WP": 142841790.65,
+            "listing_locations": 4962,
+            "listing_buildings": 6964,
+            "profile_policies_F23": 4115,
+            "profile_WP_E23": 201333663.39,
+            "profile_locations_H23": 6967,
+            "profile_buildings_J23": 9785
+          },
+          "delta": -58491872.74,
+          "delta_pct": -29.1
+        },
+        {
+          "block": "Personal",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "J14:J2474"
+            },
+            "current_summary": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Personal)",
+              "range": "E23:J23"
+            }
+          },
+          "current_values": {
+            "listing_policies": 2461,
+            "listing_WP": 100818272.71,
+            "listing_locations": 4171,
+            "listing_buildings": 5830,
+            "profile_policies_F23": 3376,
+            "profile_WP_E23": 151360765.93,
+            "profile_locations_H23": 5842,
+            "profile_buildings_J23": 8156
+          },
+          "delta": -50542493.22,
+          "delta_pct": -33.4
+        }
+      ],
+      "suggested_action": "Provide the CA policy rows or restate Limit Profiles on the same scope as the listings.",
+      "samples_returned": 2
+    },
+    {
+      "rule_id": "CLM-G",
+      "title": "Claim attributes changed: Risk Location → \"NA\" and Policy Limit cut to 1/10",
+      "severity": "High",
+      "context": "Claim (Non-Cat Commercial), columns D (Risk Location) and E (Policy Limit); 4 of 5 Closed in both years",
+      "grouping_key": "CLM-G|Claim (Non-Cat Commercial)|state+limit",
+      "instance_count": 5,
+      "delta_summary": {
+        "pattern": "every limit divided by exactly 10; state replaced with \"NA\"",
+        "post_change_incurred_exceeds_limit": [
+          "C1-1305",
+          "C1-1306"
+        ]
+      },
+      "instances": [
+        {
+          "claim_id": "C1-1300",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D205:E205"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D124:E124"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "CA",
+            "limit": 5000000
+          },
+          "current_values": {
+            "status": "Closed",
+            "state": "NA",
+            "limit": 500000,
+            "incurred": 90943.04
+          }
+        },
+        {
+          "claim_id": "C1-1302",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D206:E206"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D125:E125"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "IL",
+            "limit": 10000000
+          },
+          "current_values": {
+            "status": "Closed",
+            "state": "NA",
+            "limit": 1000000,
+            "incurred": 223042.69
+          }
+        },
+        {
+          "claim_id": "C1-1303",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D207:E207"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D126:E126"
+            }
+          },
+          "prior_values": {
+            "status": "Open",
+            "state": "CA",
+            "limit": 10000000
+          },
+          "current_values": {
+            "status": "Closed",
+            "state": "NA",
+            "limit": 1000000,
+            "incurred": 388642.33
+          }
+        },
+        {
+          "claim_id": "C1-1305",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D208:E208"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D127:E127"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "CA",
+            "limit": 2000000
+          },
+          "current_values": {
+            "status": "Closed",
+            "state": "NA",
+            "limit": 200000,
+            "incurred": 301031.6
+          }
+        },
+        {
+          "claim_id": "C1-1306",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D209:E209"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "D128:E128"
+            }
+          },
+          "prior_values": {
+            "status": "Closed",
+            "state": "CA",
+            "limit": 2000000
+          },
+          "current_values": {
+            "status": "Closed",
+            "state": "NA",
+            "limit": 200000,
+            "incurred": 292269.69
+          }
+        }
+      ],
+      "suggested_action": "Restore correct state and policy limit; check for a units/scaling error in the limit field.",
+      "samples_returned": 5
+    },
+    {
+      "rule_id": "CLM-D",
+      "title": "Paid and incurred fell sharply on two Personal claims (paid −76% / −77%)",
+      "severity": "High",
+      "context": "Claim (Non-Cat Personal); paid (J) / outstanding (K) / incurred (L) / restated (P)",
+      "grouping_key": "CLM-D|Claim (Non-Cat Personal)|paid_drop",
+      "instance_count": 2,
+      "delta_summary": {
+        "note": "Current restated (P) = 595,249.70 and 1,026,801.00, i.e. exactly incurred + 500,000 / + 800,000 — suggests leading digits were lost in incurred/paid"
+      },
+      "instances": [
+        {
+          "claim_id": "C2-0547",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Personal)",
+              "range": "J139:L139"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Personal)",
+              "range": "J97:P97"
+            }
+          },
+          "prior_values": {
+            "status": "Open",
+            "paid": 333285.22,
+            "outstanding": 206760.9,
+            "incurred": 540046.12
+          },
+          "current_values": {
+            "status": "Open",
+            "paid": 79471.53,
+            "outstanding": 15778.17,
+            "incurred": 95249.7,
+            "restated": 595249.7
+          },
+          "delta": -444796.42
+        },
+        {
+          "claim_id": "C2-0559",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Personal)",
+              "range": "J150:L150"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Personal)",
+              "range": "J108:P108"
+            }
+          },
+          "prior_values": {
+            "status": "Open",
+            "paid": 990213.34,
+            "outstanding": 20546.23,
+            "incurred": 1010759.57
+          },
+          "current_values": {
+            "status": "Closed",
+            "paid": 226801.0,
+            "outstanding": 0.0,
+            "incurred": 226801.0,
+            "restated": 1026801.0
+          },
+          "delta": -783958.57
+        }
+      ],
+      "suggested_action": "Confirm true paid/incurred (data-entry truncation vs recovery); provide reversal/subrogation notes if genuine.",
+      "samples_returned": 2
+    },
+    {
+      "rule_id": "EXP-E",
+      "title": "Top-25 Commercial accounts largely not renewed; 3 Personal renewals cut limit but raised premium",
+      "severity": "High",
+      "context": "Commercial: top 25 prior policies by WP (all FL, $10M limit), matched by Insured ID. Personal: renewed policies with limit decrease and premium increase",
+      "grouping_key": "EXP-E|Exposure Listings|top25+renewal drift",
+      "instance_count": 21,
+      "delta_summary": {
+        "commercial_top25_not_found": 18,
+        "commercial_FL_overall_retention_pct": 84.6,
+        "commercial_top25_WP_lost": 3043358.04,
+        "personal_limit_down_premium_up": 3,
+        "personal_renewals_premium_up_gt30pct": 68,
+        "personal_median_renewal_change_pct": 9.9
+      },
+      "instances": [
+        {
+          "insured_id": "L1-230303",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A2150:K2150",
+              "row_key": "policy_id=P1-231232"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-231232",
+            "state": "FL",
+            "WP": 171013.51,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-160104",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A1763:K1763",
+              "row_key": "policy_id=P1-230845"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-230845",
+            "state": "FL",
+            "WP": 170752.49,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-140191",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A2451:K2451",
+              "row_key": "policy_id=P1-231533"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-231533",
+            "state": "FL",
+            "WP": 170617.75,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-230723",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A3807:K3807",
+              "row_key": "policy_id=P1-232889"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-232889",
+            "state": "FL",
+            "WP": 170498.76,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-190098",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A2188:K2188",
+              "row_key": "policy_id=P1-231270"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-231270",
+            "state": "FL",
+            "WP": 170218.83,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-130029",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A1160:K1160",
+              "row_key": "policy_id=P1-230242"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-230242",
+            "state": "FL",
+            "WP": 170126.5,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-230209",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A1772:K1772",
+              "row_key": "policy_id=P1-230854"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-230854",
+            "state": "FL",
+            "WP": 170115.5,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-220312",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A3464:K3464",
+              "row_key": "policy_id=P1-232546"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-232546",
+            "state": "FL",
+            "WP": 170018.12,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-200733",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A3775:K3775",
+              "row_key": "policy_id=P1-232857"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-232857",
+            "state": "FL",
+            "WP": 168894.34,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-170027",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A1071:K1071",
+              "row_key": "policy_id=P1-230153"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-230153",
+            "state": "FL",
+            "WP": 168699.91,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-220140",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A2110:K2110",
+              "row_key": "policy_id=P1-231192"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-231192",
+            "state": "FL",
+            "WP": 168676.48,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-200137",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A1451:K1451",
+              "row_key": "policy_id=P1-230533"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-230533",
+            "state": "FL",
+            "WP": 168450.38,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-210391",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A3755:K3755",
+              "row_key": "policy_id=P1-232837"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-232837",
+            "state": "FL",
+            "WP": 168167.81,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-230008",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A969:K969",
+              "row_key": "policy_id=P1-230051"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-230051",
+            "state": "FL",
+            "WP": 167757.45,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-230695",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A3709:K3709",
+              "row_key": "policy_id=P1-232791"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-232791",
+            "state": "FL",
+            "WP": 167572.12,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-130250",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A3254:K3254",
+              "row_key": "policy_id=P1-232336"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-232336",
+            "state": "FL",
+            "WP": 167472.85,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-220215",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A2756:K2756",
+              "row_key": "policy_id=P1-231838"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-231838",
+            "state": "FL",
+            "WP": 167161.7,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L1-230378",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "range": "A2438:K2438",
+              "row_key": "policy_id=P1-231520"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "status": "not_found"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P1-231520",
+            "state": "FL",
+            "WP": 167143.54,
+            "limit": 10000000
+          },
+          "status": "not_found"
+        },
+        {
+          "insured_id": "L2-210044",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "J1232:K1232"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "J908:K908"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P2-230413",
+            "WP": 171688.69,
+            "limit": 10000000
+          },
+          "current_values": {
+            "policy_id": "P2-240451",
+            "WP": 326488.86,
+            "limit": 1000000
+          },
+          "delta_pct": {
+            "WP": 90.2,
+            "limit": -90.0
+          }
+        },
+        {
+          "insured_id": "L2-200255",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "J2138:K2138"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "J1614:K1614"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P2-231319",
+            "WP": 166484.91,
+            "limit": 10000000
+          },
+          "current_values": {
+            "policy_id": "P2-241467",
+            "WP": 395377.82,
+            "limit": 2000000
+          },
+          "delta_pct": {
+            "WP": 137.5,
+            "limit": -80.0
+          }
+        },
+        {
+          "insured_id": "L2-200489",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "J3174:K3174"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Personal)",
+              "range": "J2413:K2413"
+            }
+          },
+          "prior_values": {
+            "policy_id": "P2-232355",
+            "WP": 162467.64,
+            "limit": 10000000
+          },
+          "current_values": {
+            "policy_id": "P2-242632",
+            "WP": 300705.01,
+            "limit": 2500000
+          },
+          "delta_pct": {
+            "WP": 85.1,
+            "limit": -75.0
+          }
+        }
+      ],
+      "suggested_action": "Explain non-renewal of the large FL accounts (moved treaty? re-keyed IDs?); verify limit/premium for the 3 Personal renewals.",
+      "samples_returned": 21
+    },
+    {
+      "rule_id": "RTC-B",
+      "title": "2024 actual rate change misses prior projection by 4.9–11.2 pp (Commercial turned negative)",
+      "severity": "High",
+      "context": "Rate Change; prior S (2024 Projected) vs current S (2024 actual); tolerance 3 pp",
+      "grouping_key": "RTC-B|Rate Change|2024",
+      "instance_count": 10,
+      "delta_summary": {
+        "commercial_LoB_avg": {
+          "prior_S17": 4.02,
+          "current_S17": -2.46
+        },
+        "personal_LoB_avg": {
+          "prior_S24": 7.55,
+          "current_S24": 16.2
+        },
+        "min_abs_pp": 4.9,
+        "max_abs_pp": 11.2
+      },
+      "instances": [
+        {
+          "block": "Commercial CA",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S12"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S12"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 4.2
+          },
+          "current_values": {
+            "2024_actual": -2.8
+          },
+          "delta_pp": -7.0
+        },
+        {
+          "block": "Commercial FL",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S13"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S13"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 4
+          },
+          "current_values": {
+            "2024_actual": -2
+          },
+          "delta_pp": -6
+        },
+        {
+          "block": "Commercial IL",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S14"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S14"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 3.9
+          },
+          "current_values": {
+            "2024_actual": -1.9
+          },
+          "delta_pp": -5.8
+        },
+        {
+          "block": "Commercial NY",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S15"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S15"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 4
+          },
+          "current_values": {
+            "2024_actual": -2.1
+          },
+          "delta_pp": -6.1
+        },
+        {
+          "block": "Commercial TX",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S16"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S16"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 3.9
+          },
+          "current_values": {
+            "2024_actual": -3.7
+          },
+          "delta_pp": -7.6
+        },
+        {
+          "block": "Personal CA",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S19"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S19"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 8.8
+          },
+          "current_values": {
+            "2024_actual": 18.2
+          },
+          "delta_pp": 9.4
+        },
+        {
+          "block": "Personal FL",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S20"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S20"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 7.3
+          },
+          "current_values": {
+            "2024_actual": 14.3
+          },
+          "delta_pp": 7.0
+        },
+        {
+          "block": "Personal IL",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S21"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S21"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 7.7
+          },
+          "current_values": {
+            "2024_actual": 12.6
+          },
+          "delta_pp": 4.9
+        },
+        {
+          "block": "Personal NY",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S22"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S22"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 6
+          },
+          "current_values": {
+            "2024_actual": 17.2
+          },
+          "delta_pp": 11.2
+        },
+        {
+          "block": "Personal TX",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S23"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Rate Change",
+              "cell": "S23"
+            }
+          },
+          "prior_values": {
+            "2024_projected": 6.6
+          },
+          "current_values": {
+            "2024_actual": 16.5
+          },
+          "delta_pp": 9.9
+        }
+      ],
+      "suggested_action": "Request drivers of Commercial rate decrease and Personal acceleration; confirm basis and reconcile to renewal premium movements (Personal median renewal change ~+10%).",
+      "samples_returned": 10
+    },
+    {
+      "rule_id": "EXP-A",
+      "title": "Commercial policies with blank or zero limit",
+      "severity": "High",
+      "context": "Exposure Listing (Commercial) current, column K",
+      "grouping_key": "EXP-A|Exposure Listing (Commercial)|limit",
+      "instance_count": 6,
+      "delta_summary": {
+        "blank": 3,
+        "zero": 3,
+        "note": "Prior had none; 2 of these are renewals whose prior limit was 500,000 (L1-170718) and 1,000,000 (L1-140426)"
+      },
+      "instances": [
+        {
+          "policy_id": "P1-232999",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "cell": "K14"
+            }
+          },
+          "current_values": {
+            "limit": null,
+            "WP": 8380.52
+          }
+        },
+        {
+          "policy_id": "P1-233152",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "cell": "K125"
+            }
+          },
+          "current_values": {
+            "limit": null,
+            "WP": 5808.51
+          }
+        },
+        {
+          "policy_id": "P1-233267",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "cell": "K204"
+            }
+          },
+          "current_values": {
+            "limit": null,
+            "WP": 4352.84
+          }
+        },
+        {
+          "policy_id": "P1-233398",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "cell": "K294"
+            }
+          },
+          "current_values": {
+            "limit": 0.0,
+            "WP": 8921.42
+          }
+        },
+        {
+          "policy_id": "P1-242815",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "cell": "K2740"
+            }
+          },
+          "current_values": {
+            "limit": 0.0,
+            "WP": 31219.0
+          }
+        },
+        {
+          "policy_id": "P1-243036",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Exposure Listing (Commercial)",
+              "cell": "K2895"
+            }
+          },
+          "current_values": {
+            "limit": 0.0,
+            "WP": 14163.68
+          }
+        }
+      ],
+      "suggested_action": "Populate correct limits; confirm limit-band allocation in Limit Profile.",
+      "samples_returned": 6
+    },
+    {
+      "rule_id": "PRM-A",
+      "title": "Historical Personal GNEPI (CA, FL; 2010–2015) restated downward",
+      "severity": "Medium",
+      "context": "Premium Information E19:J20 (mirrored in Premium Projection I13:J18); tolerance max(1%, $5k); Commercial block unchanged",
+      "grouping_key": "PRM-A|Premium Information|Personal|2010-2015",
+      "instance_count": 10,
+      "delta_summary": {
+        "personal_LoB_total_E24:J24_pct": [
+          -2.31,
+          -2.73,
+          -2.58,
+          -2.71,
+          -3.28,
+          -4.27
+        ],
+        "total_J26_pct": -1.1,
+        "cells_below_tolerance": [
+          "E19 (-0.48%)",
+          "G20 (-0.11%)"
+        ]
+      },
+      "instances": [
+        {
+          "block": "Personal CA",
+          "year": 2011,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "F19"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "F19"
+            }
+          },
+          "prior_values": 2465774.68,
+          "current_values": 2351547.13,
+          "delta": -114227.55,
+          "delta_pct": -4.63
+        },
+        {
+          "block": "Personal CA",
+          "year": 2012,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "G19"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "G19"
+            }
+          },
+          "prior_values": 3342898.83,
+          "current_values": 3052862.89,
+          "delta": -290035.94,
+          "delta_pct": -8.68
+        },
+        {
+          "block": "Personal CA",
+          "year": 2013,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "H19"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "H19"
+            }
+          },
+          "prior_values": 4447589.83,
+          "current_values": 4301219.88,
+          "delta": -146369.95,
+          "delta_pct": -3.29
+        },
+        {
+          "block": "Personal CA",
+          "year": 2014,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "I19"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "I19"
+            }
+          },
+          "prior_values": 6758868.47,
+          "current_values": 6227373.42,
+          "delta": -531495.05,
+          "delta_pct": -7.86
+        },
+        {
+          "block": "Personal CA",
+          "year": 2015,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "J19"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "J19"
+            }
+          },
+          "prior_values": 8455270.78,
+          "current_values": 7766690.34,
+          "delta": -688580.44,
+          "delta_pct": -8.14
+        },
+        {
+          "block": "Personal FL",
+          "year": 2010,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "E20"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "E20"
+            }
+          },
+          "prior_values": 1944608.07,
+          "current_values": 1801618.57,
+          "delta": -142989.5,
+          "delta_pct": -7.35
+        },
+        {
+          "block": "Personal FL",
+          "year": 2011,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "F20"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "F20"
+            }
+          },
+          "prior_values": 2346736.0,
+          "current_values": 2240008.75,
+          "delta": -106727.25,
+          "delta_pct": -4.55
+        },
+        {
+          "block": "Personal FL",
+          "year": 2013,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "H20"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "H20"
+            }
+          },
+          "prior_values": 3779697.49,
+          "current_values": 3533289.74,
+          "delta": -246407.75,
+          "delta_pct": -6.52
+        },
+        {
+          "block": "Personal FL",
+          "year": 2014,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "I20"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "I20"
+            }
+          },
+          "prior_values": 5845371.24,
+          "current_values": 5650779.0,
+          "delta": -194592.24,
+          "delta_pct": -3.33
+        },
+        {
+          "block": "Personal FL",
+          "year": 2015,
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Premium Information",
+              "cell": "J20"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Premium Information",
+              "cell": "J20"
+            }
+          },
+          "prior_values": 8214762.14,
+          "current_values": 7653707.49,
+          "delta": -561054.65,
+          "delta_pct": -6.83
+        }
+      ],
+      "suggested_action": "Ask for the reason for restating 2010–2015 Personal CA/FL premium (FX, audit, as-if filter).",
+      "samples_returned": 10
+    },
+    {
+      "rule_id": "EXP-C",
+      "title": "Personal Limit Profile count totals do not foot; prior-year totals restated vs last year",
+      "severity": "Medium",
+      "context": "Limit Profile (Personal) current; policy/location/building count columns F/H/J; premium columns foot correctly",
+      "grouping_key": "EXP-C|Limit Profile (Personal)|count totals",
+      "instance_count": 6,
+      "delta_summary": {
+        "prior_file_F23_H23_J23": [
+          3249,
+          5582,
+          7787
+        ],
+        "current_prior_year_block_F41_H41_J41": [
+          3107,
+          5421,
+          7487
+        ],
+        "note": "band rows F30:J40 equal prior F12:J22, only totals differ"
+      },
+      "instances": [
+        {
+          "block": "current block",
+          "measure": "number of policies",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Personal)",
+              "cell": "F23",
+              "range": "F12:F22"
+            }
+          },
+          "current_values": {
+            "band_sum": 3520,
+            "total_row": 3376
+          },
+          "delta": -144
+        },
+        {
+          "block": "prior-year block",
+          "measure": "number of policies",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Personal)",
+              "cell": "F41",
+              "range": "F30:F40"
+            }
+          },
+          "current_values": {
+            "band_sum": 3249,
+            "total_row": 3107
+          },
+          "delta": -142
+        },
+        {
+          "block": "current block",
+          "measure": "number of locations",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Personal)",
+              "cell": "H23",
+              "range": "H12:H22"
+            }
+          },
+          "current_values": {
+            "band_sum": 6020,
+            "total_row": 5842
+          },
+          "delta": -178
+        },
+        {
+          "block": "prior-year block",
+          "measure": "number of locations",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Personal)",
+              "cell": "H41",
+              "range": "H30:H40"
+            }
+          },
+          "current_values": {
+            "band_sum": 5582,
+            "total_row": 5421
+          },
+          "delta": -161
+        },
+        {
+          "block": "current block",
+          "measure": "number of buildings",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Personal)",
+              "cell": "J23",
+              "range": "J12:J22"
+            }
+          },
+          "current_values": {
+            "band_sum": 8366,
+            "total_row": 8156
+          },
+          "delta": -210
+        },
+        {
+          "block": "prior-year block",
+          "measure": "number of buildings",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Limit Profile (Personal)",
+              "cell": "J41",
+              "range": "J30:J40"
+            }
+          },
+          "current_values": {
+            "band_sum": 7787,
+            "total_row": 7487
+          },
+          "delta": -300
+        }
+      ],
+      "suggested_action": "Correct total-row formulas; confirm actual Personal policy/location/building counts.",
+      "samples_returned": 6
+    },
+    {
+      "rule_id": "CLM-F",
+      "title": "Minor-loss descriptions on multi-million wildfire claims",
+      "severity": "Medium",
+      "context": "Claim (Cat Personal) current; columns L, M, N",
+      "grouping_key": "CLM-F|Claim (Cat Personal)|minor_text_large_loss",
+      "instance_count": 2,
+      "delta_summary": {
+        "trigger_keywords": [
+          "small",
+          "no injuries",
+          "minor"
+        ],
+        "cat_type": "wildfire"
+      },
+      "instances": [
+        {
+          "claim_id": "C2-0725",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Personal)",
+              "range": "L74:N74"
+            }
+          },
+          "current_values": {
+            "incurred": 1734171.37,
+            "policy_limit": 10000000,
+            "description": "Small fire damaged kitchen with no injuries.",
+            "cat_type": "wildfire"
+          }
+        },
+        {
+          "claim_id": "C2-0737",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Personal)",
+              "range": "L77:N77"
+            }
+          },
+          "current_values": {
+            "incurred": 7446657.96,
+            "policy_limit": 5000000,
+            "description": "Minor roof collapse over garage damaged stored property and interior finishes.",
+            "cat_type": "wildfire"
+          }
+        }
+      ],
+      "suggested_action": "Validate descriptions and amounts; check the claim-to-narrative mapping.",
+      "samples_returned": 2
+    },
+    {
+      "rule_id": "OTH-B",
+      "title": "\"Restated loss on go-forward basis\" definition changed for open claims",
+      "severity": "Medium",
+      "context": "Column P, open claims flagged write-again = yes; A10 notes unchanged",
+      "grouping_key": "OTH-B|Claim tabs|restated_loss_definition",
+      "instance_count": 4,
+      "delta_summary": {
+        "pattern": "Prior: every open claim restated ≠ incurred (developed/adjusted). Current: restated = incurred for open claims except the CLM-A/CLM-D error rows"
+      },
+      "instances": [
+        {
+          "tab": "Claim (Non-Cat Commercial)",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "L13:P410"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Commercial)",
+              "range": "L13:P420"
+            }
+          },
+          "prior_values": {
+            "open_yes_claims": 76,
+            "restated_equals_incurred": 0
+          },
+          "current_values": {
+            "open_yes_claims": 41,
+            "restated_equals_incurred": 31
+          }
+        },
+        {
+          "tab": "Claim (Cat Commercial)",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "L13:P108"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Commercial)",
+              "range": "L13:P97"
+            }
+          },
+          "prior_values": {
+            "open_yes_claims": 13,
+            "restated_equals_incurred": 0
+          },
+          "current_values": {
+            "open_yes_claims": 7,
+            "restated_equals_incurred": 7
+          }
+        },
+        {
+          "tab": "Claim (Non-Cat Personal)",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Personal)",
+              "range": "L13:P194"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Personal)",
+              "range": "L13:P209"
+            }
+          },
+          "prior_values": {
+            "open_yes_claims": 28,
+            "restated_equals_incurred": 0
+          },
+          "current_values": {
+            "open_yes_claims": 40,
+            "restated_equals_incurred": 39
+          }
+        },
+        {
+          "tab": "Claim (Cat Personal)",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Personal)",
+              "range": "L13:P76"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Personal)",
+              "range": "L13:P80"
+            }
+          },
+          "prior_values": {
+            "open_yes_claims": 10,
+            "restated_equals_incurred": 0
+          },
+          "current_values": {
+            "open_yes_claims": 4,
+            "restated_equals_incurred": 4
+          }
+        }
+      ],
+      "suggested_action": "Ask the broker to define the restatement (development, trend, as-if) and apply the same method in both years.",
+      "samples_returned": 4
+    },
+    {
+      "rule_id": "ANM-A",
+      "title": "Personal claim tabs titled \"Commercial Property\"",
+      "severity": "Low",
+      "context": "Header text cell A5",
+      "grouping_key": "ANM-A|Personal claim tabs|title",
+      "instance_count": 2,
+      "delta_summary": {
+        "note": "Same mislabel in both years"
+      },
+      "instances": [
+        {
+          "tab": "Claim (Non-Cat Personal)",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Non-Cat Personal)",
+              "cell": "A5"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Non-Cat Personal)",
+              "cell": "A5"
+            }
+          },
+          "current_values": {
+            "A5": "Experience information - Commercial Property - Non-Cat losses"
+          }
+        },
+        {
+          "tab": "Claim (Cat Personal)",
+          "where": {
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Claim (Cat Personal)",
+              "cell": "A5"
+            },
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Claim (Cat Personal)",
+              "cell": "A5"
+            }
+          },
+          "current_values": {
+            "A5": "Experience information - Commercial Property - large losses from cat events"
+          }
+        }
+      ],
+      "suggested_action": "Correct tab headers to \"Personal Property\".",
+      "samples_returned": 2
+    },
+    {
+      "rule_id": "ANM-D",
+      "title": "Installment schedule: first date before inception; installment 2 date/amount swapped",
+      "severity": "Low",
+      "context": "Email installments (same pattern in both years)",
+      "grouping_key": "ANM-D|Email|installments",
+      "instance_count": 2,
+      "delta_summary": {
+        "note": "Present in prior too"
+      },
+      "instances": [
+        {
+          "item": "installment 1 date precedes coverage effective date",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Email",
+              "range": "B10,B62"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Email",
+              "range": "B10,B62"
+            }
+          },
+          "current_values": {
+            "B10": "2025-02-01",
+            "B62": "2025-01-16"
+          }
+        },
+        {
+          "item": "installment 2 date is \"TBD\" and amount holds a date",
+          "where": {
+            "current": {
+              "workbook": "test1_PropertyXoL_2025.xlsx",
+              "sheet": "Email",
+              "range": "B65:B66"
+            },
+            "prior": {
+              "workbook": "test1_PropertyXoL_2024.xlsx",
+              "sheet": "Email",
+              "range": "B65:B66"
+            }
+          },
+          "current_values": {
+            "B65": "TBD",
+            "B66": "2025-04-30"
+          }
+        }
+      ],
+      "suggested_action": "Correct installment dates/amounts.",
+      "samples_returned": 2
+    }
+  ]
+}

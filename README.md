@@ -29,10 +29,22 @@ The comparison runs above used the GPT-5.6 (Sol) model.
 
 - [Open the Experience Rating AI Chat Website via Responses API](https://reinsurance-experience-rating.sleekmars4.chatgpt.site) (Note: You need a funded API key in [OpenAI Developers Platform](https://developers.openai.com/).)
   
-- [Energy QS result — standard thinking](https://chatgpt.com/share/6a7aab5e-f0ac-83ea-8fe3-7185fd9becbe)
+- [Energy QS result — opus 5.5 medium effort](https://chatgpt.com/share/6a7aab5e-f0ac-83ea-8fe3-7185fd9becbe)
   
-- [Property XoL result — extended thinking](https://chatgpt.com/share/6a7aa1d1-ef98-83ea-b728-eb37bb454921)
+- [Property XoL result — opus 5.5 xhigh effort](https://chatgpt.com/share/6a7aa1d1-ef98-83ea-b728-eb37bb454921)
 
+## Access the Claude Agent Results
+
+### Broker Submission Validation custom AI tool
+- [Energy QS result — opus 5 medium effort](https://claude.ai/share/5f16e2be-5c2b-4707-9d94-924d6b1e5f1a)
+- [Umbrella XoL result — opus 5 medium effort](https://claude.ai/share/cb0289c8-adf2-460d-a6df-6e40b8b81057)
+- [Property XoL result — opus 5 medium effort](https://claude.ai/share/fd2d5fd1-50d1-4218-85c5-e5fc91b8846b)
+- [Property XoL result — opus 5 high effort](https://claude.ai/share/719c48f8-f51b-4a6a-b7ea-14ee61409b6a)
+
+### Experience Rating Custom GPT
+- [Energy QS result — opus 5 medium effort](https://claude.ai/share/2acaf81c-45d4-42ab-9c18-a5ee7d3a7eb9)
+- [Property XoL result — opus 5 high effort](https://claude.ai/share/f19abcd0-5d05-4fea-afa9-67665aee4125)
+  
 ## Repository Contents
 
 ### `broker submission validation/`
