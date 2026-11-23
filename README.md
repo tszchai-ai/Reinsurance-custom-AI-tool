@@ -36,15 +36,15 @@ The comparison runs above used the GPT-5.6 (Sol) model.
 ## Access the Claude Agent Results
 
 ### Broker Submission Validation custom AI tool
-- [Energy QS result — opus 5.5 medium effort](https://claude.ai/share/2734a737-7263-415b-a1f6-32ec628920ec)
-- [Umbrella XoL result — opus 5.5 medium effort](https://claude.ai/share/9dacbfa1-33a2-4287-86d2-2988a3946ce8)
-- [Property XoL result — opus 5.5 medium effort](https://claude.ai/share/02df70dd-0db0-42d2-bc20-b76b55263cd2)
-- [Property XoL result — opus 5.5 xhigh effort](https://claude.ai/share/9c3cf505-c794-4198-82ef-7e28439f81d6)
+- [Energy QS result — opus 5 medium effort](https://claude.ai/share/5f16e2be-5c2b-4707-9d94-924d6b1e5f1a)
+- [Umbrella XoL result — opus 5 medium effort](https://claude.ai/share/cb0289c8-adf2-460d-a6df-6e40b8b81057)
+- [Property XoL result — opus 5 medium effort](https://claude.ai/share/fd2d5fd1-50d1-4218-85c5-e5fc91b8846b)
+- [Property XoL result — opus 5 high effort](https://claude.ai/share/719c48f8-f51b-4a6a-b7ea-14ee61409b6a)
 
 ### Experience Rating Custom GPT
-- [Energy QS result — standard thinking](https://claude.ai/share/93e4237e-95a5-4e39-8405-60af2632e68d)
-- [Property XoL result — extended thinking](https://claude.ai/share/70a25d62-f0aa-43e3-9400-7a84d68f4a1c)
-
+- [Energy QS result — opus 5 medium effort](https://claude.ai/share/2acaf81c-45d4-42ab-9c18-a5ee7d3a7eb9)
+- [Property XoL result — opus 5 high effort](https://claude.ai/share/f19abcd0-5d05-4fea-afa9-67665aee4125)
+  
 ## Repository Contents
 
 ### `broker submission validation/`
