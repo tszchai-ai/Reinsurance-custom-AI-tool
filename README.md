@@ -29,9 +29,9 @@ The comparison runs above used the GPT-5.6 (Sol) model.
 
 - [Open the Experience Rating AI Chat Website via Responses API](https://reinsurance-experience-rating.sleekmars4.chatgpt.site) (Note: You need a funded API key in [OpenAI Developers Platform](https://developers.openai.com/).)
   
-- [Energy QS result — opus 5.5 medium effort](https://chatgpt.com/share/6a7aab5e-f0ac-83ea-8fe3-7185fd9becbe)
+- [Energy QS result — GPT standard thinking](https://chatgpt.com/share/6a7aab5e-f0ac-83ea-8fe3-7185fd9becbe)
   
-- [Property XoL result — opus 5.5 xhigh effort](https://chatgpt.com/share/6a7aa1d1-ef98-83ea-b728-eb37bb454921)
+- [Property XoL result — GPT extended thinking](https://chatgpt.com/share/6a7aa1d1-ef98-83ea-b728-eb37bb454921)
 
 ## Access the Claude Agent Results
 
